@@ -1,0 +1,29 @@
+@import "./../../utils/variables";
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 1vw;
+  background-color: $black;
+  color: $light-grey;
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-left: 1vw;
+    color: $orange;
+    font-weight: bold;
+  }
+  &__link {
+    background-color: black;
+    border: 0px solid black;
+    color: $light-grey;
+    cursor: pointer;
+    padding: 1vh 1vw;
+    text-decoration: none;
+    &:hover {
+      color: $orange;
+    }
+    &:focus {
+      border-radius: 10px;
+    }
+  }
+}

@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useContext, useRef } from "react";
+import "reset-css";
+import "./App.scss";
+import { Login, Root, Home } from "pages";
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import {
+  LoadingIndicator,
+  Header,
+  Hamburger,
+  AuthProvider,
+  PrivateRoute,
+} from "components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [pending, setPending] = useState(true);
+  // const [isActiveHamburger, setIsActiveHamburger] = useState(false);
+  // const hamburgerActive = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    setPending(false);
+  }, []);
+  // const handleHamburgerClick = () => {
+  //   if (hamburgerActive.current) {
+  //     hamburgerActive.current.classList.toggle("is-active-hamburger");
+  //   }
+  //   console.log("Hamburger");
+
+  //   setIsActiveHamburger(!isActiveHamburger);
+  // };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {pending ? (
+        <LoadingIndicator />
+      ) : (
+        <AuthProvider>
+          <Router>
+            <Header />
+            {/* <div className="mobile-menu">
+              <Hamburger
+                onClick={handleHamburgerClick}
+                isActiveHamburger={isActiveHamburger}
+                hamburgerActive={hamburgerActive}
+              />
+            </div> */}
+            <React.Suspense fallback={<LoadingIndicator />}>
+              <Switch>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <PrivateRoute path="/home" component={Home}></PrivateRoute>
+                <Route path="/" exact>
+                  <Root />
+                </Route>
+              </Switch>
+            </React.Suspense>
+          </Router>
+        </AuthProvider>
+      )}
+    </>
   );
-}
+};
 
 export default App;
