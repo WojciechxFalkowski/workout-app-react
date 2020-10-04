@@ -7,9 +7,10 @@ export interface Props {
 }
 const PrivateRoute: React.FC<Props> = ({
   component: RouteComponent,
+
   ...rest
 }) => {
-  const { currentUser }: any | undefined = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   console.log("currentUser w PRIVATEroute:", currentUser);
   return (
     <Route

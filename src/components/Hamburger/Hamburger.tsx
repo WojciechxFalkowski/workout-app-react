@@ -6,11 +6,7 @@ export interface Props<T> {
   isActiveHamburger: boolean;
   hamburgerActive: T | null;
 }
-const Hamburger: React.FC<Props<any>> = ({
-  onClick,
-  isActiveHamburger,
-  hamburgerActive,
-}) => {
+const Hamburger: React.FC<Props<any>> = ({ onClick, hamburgerActive }) => {
   return (
     <div className="hamburger" onClick={onClick}>
       <div className="hamburger__box">

@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from "react";
-import fire from "fire";
+import React, { useEffect, useState, createContext } from "react";
+
 import { LoadingIndicator } from "components";
-export const AuthContext = React.createContext({});
-export interface Props {}
-const AuthProvider: React.FC<Props> = ({ children }) => {
+export const AuthContext = createContext<Partial<ContextProps>>({});
+type ContextProps = { currentUser: user | null };
+interface user {
+  uid: string;
+}
+interface Props {
+  fire: any;
+}
+const AuthProvider: React.FC<Props> = ({ children, fire }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);
-  const writeUserData = (userId: string, email: string) => {
-    fire
-      .database()
-      .ref("users/" + userId)
-      .set({
-        email: email,
-      });
-  };
+
   useEffect(() => {
+    const writeUserData = (userId: string, email: string) => {
+      fire
+        .database()
+        .ref("users/" + userId)
+        .set({
+          email: email,
+        });
+    };
     fire.auth().onAuthStateChanged((user: any) => {
       setCurrentUser(user);
       setPending(false);
       if (user) {
         let rootRef = fire.database().ref("users/");
-        rootRef.child(user.uid).once("value", function (snapshot) {
-          var exists = snapshot.val() !== null;
+        rootRef.child(user.uid).once("value", function (snapshot: any) {
+          let exists = snapshot.val() !== null;
           if (!exists) {
             console.log("To konto nie ma bazy danych");
             writeUserData(user.uid, user.email);
@@ -31,7 +38,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
         });
       }
     });
-  }, []);
+  }, [fire]);
 
   if (pending) {
     return <LoadingIndicator />;

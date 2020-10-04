@@ -11,6 +11,10 @@
     margin-left: 1vw;
     color: $orange;
     font-weight: bold;
+    cursor: pointer;
+    & > a:hover {
+      color: $orange;
+    }
   }
   &__link {
     background-color: black;
@@ -20,7 +24,7 @@
     padding: 1vh 1vw;
     text-decoration: none;
     &:hover {
-      color: $orange;
+      color: $light-red;
     }
     &:focus {
       border-radius: 10px;
