@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "reset-css";
 import "./App.scss";
-import { Login, Root, Home, Training } from "pages";
+import { Login, Root, Home, Trainings, Training } from "pages";
 import fire from "fire";
 
 import {
@@ -13,46 +13,51 @@ import {
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
-  const [pending, setPending] = useState(true);
-  useEffect(() => {
-    setPending(false);
-  }, []);
-
   return (
     <>
-      {pending ? (
-        <LoadingIndicator />
-      ) : (
+      <React.Suspense fallback={<LoadingIndicator />}>
         <AuthProvider fire={fire}>
-          <Router>
-            <Header />
-            <React.Suspense fallback={<LoadingIndicator />}>
+          <div className="app__wrapper">
+            <Router>
+              <Header />
               <Switch>
                 <Route path="/login">
                   <Login />
                 </Route>
-                <PrivateRoute path="/home" component={Home}></PrivateRoute>
                 <PrivateRoute
-                  path="/training"
+                  path="/home"
+                  exact={false}
+                  component={Home}
+                ></PrivateRoute>
+                <PrivateRoute
+                  path="/trainings"
+                  component={Trainings}
+                  exact={true}
+                ></PrivateRoute>
+                <PrivateRoute
+                  path="/trainings/:id"
                   component={Training}
+                  exact={true}
                 ></PrivateRoute>
                 {/* <PrivateRoute path="/exercises" component={Home}></PrivateRoute> */}
                 <PrivateRoute
                   path="/statistics"
+                  exact={false}
                   component={Home}
                 ></PrivateRoute>
                 <PrivateRoute
                   path="/measurement"
+                  exact={false}
                   component={Home}
                 ></PrivateRoute>
                 <Route path="/" exact>
                   <Root />
                 </Route>
               </Switch>
-            </React.Suspense>
-          </Router>
+            </Router>
+          </div>
         </AuthProvider>
-      )}
+      </React.Suspense>
     </>
   );
 };
