@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { FormTemplate } from "components";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import fire from "./../../fire";
-import { List } from "./components";
+import fire from "fire";
+import { useHistory } from "react-router-dom";
+import { Arrow } from "./components";
+import { FormTemplate } from "components";
+import { useList } from "react-firebase-hooks/database";
+import { Link } from "react-router-dom";
 import {
   required,
   // checkAtSign,
@@ -12,104 +15,115 @@ import {
   composeValidators,
   // uniqueString,
 } from "utils/validation";
-interface user {
-  uid: string;
-}
+import "./training.scss";
 
-export interface Props {}
-type Trainings = Array<training>;
 interface training {
+  id: string;
   date: string;
   trainingName: string;
 }
-const Training: React.FC<Props> = () => {
+interface Exercise {
+  exerciseName: string;
+}
+type MatchParams = {
+  params: any;
+};
+export interface Props {
+  match: MatchParams;
+}
+
+const Training: React.FC<Props> = ({ match }) => {
+  let history = useHistory();
+
+  const { id } = match.params;
   const { currentUser } = useContext(AuthContext);
-  const [trainings, setTrainings] = useState<Trainings>();
+  const [exercise, setExercise] = useState(null);
+  var tutorialsRef;
+  if (currentUser) {
+    tutorialsRef = fire
+      .database()
+      .ref("users/" + currentUser.uid + "/trainings/" + id + "/exercises");
+  }
+  const [snapshots, loading, error] = useList(tutorialsRef);
+  if (snapshots) {
+    // snapshots.map((tutorial, index) => {
+    //   console.log("JAKIES ", tutorial.val(), index);
+    // });
+    console.log("snapshots", snapshots);
+  }
 
-  // console.log("currentUser w Training", currentUser.uid);
-
-  const today = new Date();
-  const todayDatePattern = `${today.getFullYear()}-${today.getMonth() + 1}-${
-    today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
-  }T${today.getHours() > 9 ? today.getHours() : "0" + today.getHours()}:${
-    today.getMinutes() > 9 ? today.getMinutes() : "0" + today.getMinutes()
-  }`;
-  // console.log(todayDatePattern);
   const formFields = {
     fields: [
       {
-        name: "date",
-        validate: composeValidators(required("To pole jest wymagane!")),
-        initialValue: todayDatePattern,
-        text: "Data treningu",
-        placeholder: "Data treningu",
-        type: "datetime-local",
-      },
-      {
-        name: "trainingName",
+        name: "exerciseName",
         validate: composeValidators(required("To pole jest wymagane!")),
         initialValue: undefined,
-        text: "Nazwa treningu",
-        placeholder: "Nazwa treningu",
+        text: "Nowe ćwiczenie",
+        placeholder: "Nowe ćwiczenie",
       },
     ],
     button: {
       type: "submit",
-      text: "Dodaj trening",
+      text: "Dodaj ćwiczenie",
     },
   };
-  const handleSubmit = (values: any) => {
-    // const recipientsList = {
-    //   name: values.name,
-    //   surname: values.surname,
-    //   email: values.email,
-    //   accountNumber: values.accountNumber,
-    //   phoneNumber: values.phoneNumber,
-    //   address: values.address,
-    //   city: values.city,
-    //   country: values.country,
-    // };
-    console.log(values);
-    console.log(typeof values.date);
-    if (currentUser) {
-      saveNewTraining(currentUser.uid, values.date, values.trainingName);
-    }
-  };
-  const saveNewTraining = (
-    userId: string,
-    date: Date,
-    trainingName: string
-  ) => {
-    fire
-      .database()
-      .ref("users/" + userId + "/trainings/" + date + trainingName)
-      .set({
-        date,
-        trainingName,
-      });
-  };
-  useEffect(() => {
+
+  const handleDeleteTraining = () => {
     if (currentUser) {
       fire
         .database()
-        .ref("users/" + currentUser.uid + "/trainings")
-        .orderByChild("date")
-        .on("value", function (snapshot) {
-          console.log("HALKO");
-          const trainingArray: any = [];
-          snapshot.forEach(function (childSnapshot) {
-            var childData = childSnapshot.val();
-            trainingArray.push(childData);
-          });
-          setTrainings(trainingArray);
-        });
+        .ref("users/" + currentUser.uid + "/trainings/" + id)
+        .remove();
+      history.goBack();
     }
-  }, []);
+  };
+  const handleSubmit = (values: Exercise) => {
+    console.log(values.exerciseName);
+    if (currentUser) {
+      fire
+        .database()
+        .ref("users/" + currentUser.uid + "/trainings/" + id)
+        .child("exercises")
+        .push()
+        .set({ name: values.exerciseName });
+
+      // .set(values.exerciseName);
+
+      //   const databasePath = fire
+      //   .database()
+      //   .ref("users/" + currentUser.uid + "/trainings/" + id + "training");
+      // databasePath.on("value", function (snapshot) {
+      //   console.log("Snap", snapshot.val());
+      // });
+      // .set(values.exerciseName);
+    }
+  };
+  const handleTrainingExercise = (exerciseName: any) => {
+    console.log(exerciseName);
+    history.push(`/trainings/${id}/${exerciseName}`);
+  };
   return (
-    <>
+    <div className="training">
+      <Arrow />
+      <button onClick={handleDeleteTraining} className="training__button">
+        Usuń trening
+      </button>
       <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      {trainings && <List trainings={trainings} />}
-    </>
+      <ul>
+        {!loading &&
+          snapshots &&
+          snapshots
+            .map((exerciseName, index) => (
+              <li
+                onClick={() => handleTrainingExercise(exerciseName.key)}
+                key={exerciseName.key}
+              >
+                {exerciseName.val().name}
+              </li>
+            ))
+            .reverse()}
+      </ul>
+    </div>
   );
 };
 

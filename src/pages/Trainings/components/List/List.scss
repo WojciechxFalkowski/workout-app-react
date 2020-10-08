@@ -10,7 +10,12 @@
   }
 
   &__li {
-    margin: 2vh 0;
+    width: 200px;
+    margin: 2vh auto;
+    cursor: pointer;
+    &:hover .list__p:nth-child(1) {
+      text-decoration: underline;
+    }
   }
   &__p {
     margin: 0.5vh 0;

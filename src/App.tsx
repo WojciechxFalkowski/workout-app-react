@@ -39,6 +39,11 @@ const App = () => {
                   component={Training}
                   exact={true}
                 ></PrivateRoute>
+                <PrivateRoute
+                  path="/trainings/:id/:id"
+                  component={Home}
+                  exact={true}
+                ></PrivateRoute>
                 {/* <PrivateRoute path="/exercises" component={Home}></PrivateRoute> */}
                 <PrivateRoute
                   path="/statistics"

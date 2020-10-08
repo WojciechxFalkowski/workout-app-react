@@ -8,19 +8,14 @@ interface Props {}
 
 const Header: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
-  console.log("currentUser w HEADER:", currentUser);
   useEffect(() => {}, []);
   const handleSignOut = () => {
     firebase
       .auth()
       .signOut()
       .then(
-        function () {
-          // console.log("Signed Out");
-        },
-        function (error) {
-          // console.error("Sign Out Error", error);
-        }
+        function () {},
+        function (error) {}
       );
   };
 

@@ -1,0 +1,110 @@
+import React, { useState, useEffect, useContext } from "react";
+import { FormTemplate } from "components";
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import fire from "../../fire";
+import { List } from "./components";
+import { useHistory } from "react-router-dom";
+
+import {
+  required,
+  // checkAtSign,
+  // mustBeNumber,
+  // minValue,
+  // maxValue,
+  composeValidators,
+  // uniqueString,
+} from "utils/validation";
+interface user {
+  uid: string;
+}
+
+export interface Props {}
+type Trainings = Array<training>;
+interface training {
+  id: string;
+  date: string;
+  trainingName: string;
+}
+const Trainings: React.FC<Props> = () => {
+  let history = useHistory();
+
+  const { currentUser } = useContext(AuthContext);
+  const [trainings, setTrainings] = useState<Trainings>();
+
+  const today = new Date();
+  const todayDatePattern = `${today.getFullYear()}-${today.getMonth() + 1}-${
+    today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
+  }T${today.getHours() > 9 ? today.getHours() : "0" + today.getHours()}:${
+    today.getMinutes() > 9 ? today.getMinutes() : "0" + today.getMinutes()
+  }`;
+  const formFields = {
+    fields: [
+      {
+        name: "date",
+        validate: composeValidators(required("To pole jest wymagane!")),
+        initialValue: todayDatePattern,
+        text: "Data treningu",
+        placeholder: "Data treningu",
+        type: "datetime-local",
+      },
+      {
+        name: "trainingName",
+        validate: composeValidators(required("To pole jest wymagane!")),
+        initialValue: undefined,
+        text: "Nazwa treningu",
+        placeholder: "Nazwa treningu",
+      },
+    ],
+    button: {
+      type: "submit",
+      text: "Dodaj trening",
+    },
+  };
+  const saveNewTraining = (
+    userId: string,
+    id: string,
+    date: string,
+    trainingName: string
+  ) => {
+    fire
+      .database()
+      .ref("users/" + userId + "/trainings/" + id)
+      .set({ id, date, trainingName });
+  };
+  const handleSubmit = (values: any) => {
+    const date = values.date
+      .replace(/-/g, "")
+      .replace(/T/g, "")
+      .replace(/:/g, "");
+
+    if (currentUser) {
+      saveNewTraining(currentUser.uid, date, values.date, values.trainingName);
+      history.push(`/trainings/${date}`);
+    }
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      fire
+        .database()
+        .ref("users/" + currentUser.uid + "/trainings")
+        .orderByChild("date")
+        .on("value", function (snapshot) {
+          const trainingArray: any = [];
+          snapshot.forEach(function (childSnapshot) {
+            const childData = childSnapshot.val();
+            trainingArray.push(childData);
+          });
+          setTrainings(trainingArray);
+        });
+    }
+  }, [currentUser]);
+  return (
+    <>
+      <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
+      {trainings && <List trainings={trainings} />}
+    </>
+  );
+};
+
+export default Trainings;

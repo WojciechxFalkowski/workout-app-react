@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 export interface Props {
   component: any;
+  exact: boolean;
   path: string;
 }
 const PrivateRoute: React.FC<Props> = ({
@@ -11,7 +12,6 @@ const PrivateRoute: React.FC<Props> = ({
   ...rest
 }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log("currentUser w PRIVATEroute:", currentUser);
   return (
     <Route
       {...rest}
