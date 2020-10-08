@@ -1,0 +1,9 @@
+.arrow {
+  &__span {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 1.3rem;
+  }
+}
