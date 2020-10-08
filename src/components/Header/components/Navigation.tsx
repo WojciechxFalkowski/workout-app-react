@@ -14,7 +14,7 @@ const Navigation: React.FC<Props> = () => {
             </Link>
           </li> */}
           <li className="navigation__li">
-            <Link to="/training" className="navigation__a">
+            <Link to="/trainings" className="navigation__a">
               Treningi
             </Link>
           </li>
