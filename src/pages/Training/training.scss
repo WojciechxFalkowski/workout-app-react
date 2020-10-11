@@ -15,4 +15,11 @@
       color: white;
     }
   }
+  &__exercise {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

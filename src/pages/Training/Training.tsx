@@ -49,7 +49,7 @@ const Training: React.FC<Props> = ({ match }) => {
     // snapshots.map((tutorial, index) => {
     //   console.log("JAKIES ", tutorial.val(), index);
     // });
-    console.log("snapshots", snapshots);
+    // console.log("snapshots", snapshots);
   }
 
   const formFields = {
@@ -78,7 +78,7 @@ const Training: React.FC<Props> = ({ match }) => {
     }
   };
   const handleSubmit = (values: Exercise) => {
-    console.log(values.exerciseName);
+    // console.log(values.exerciseName);
     if (currentUser) {
       fire
         .database()
@@ -98,9 +98,12 @@ const Training: React.FC<Props> = ({ match }) => {
       // .set(values.exerciseName);
     }
   };
-  const handleTrainingExercise = (exerciseName: any) => {
-    console.log(exerciseName);
-    history.push(`/trainings/${id}/${exerciseName}`);
+  const handleTrainingExercise = (exerciseKey: any, exerciseName: any) => {
+    // console.log(exerciseName);
+    history.push({
+      pathname: `/trainings/${id}/${exerciseKey}`,
+      state: { exerciseName },
+    });
   };
   return (
     <div className="training">
@@ -115,8 +118,14 @@ const Training: React.FC<Props> = ({ match }) => {
           snapshots
             .map((exerciseName, index) => (
               <li
-                onClick={() => handleTrainingExercise(exerciseName.key)}
+                onClick={() =>
+                  handleTrainingExercise(
+                    exerciseName.key,
+                    exerciseName.val().name
+                  )
+                }
                 key={exerciseName.key}
+                className="training__exercise"
               >
                 {exerciseName.val().name}
               </li>

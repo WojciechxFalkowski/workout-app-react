@@ -1,7 +1,7 @@
 import React from "react";
 import "reset-css";
 import "./App.scss";
-import { Login, Root, Home, Trainings, Training } from "pages";
+import { Login, Root, Home, Trainings, Training, Exercise } from "pages";
 import fire from "fire";
 
 import {
@@ -41,7 +41,7 @@ const App = () => {
                 ></PrivateRoute>
                 <PrivateRoute
                   path="/trainings/:id/:id"
-                  component={Home}
+                  component={Exercise}
                   exact={true}
                 ></PrivateRoute>
                 {/* <PrivateRoute path="/exercises" component={Home}></PrivateRoute> */}
