@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "fire";
 import { useHistory } from "react-router-dom";
 import { Arrow } from "./components";
 import { FormTemplate } from "components";
 import { useList } from "react-firebase-hooks/database";
-import { Link } from "react-router-dom";
+
 import {
   required,
   // checkAtSign,
@@ -37,7 +37,6 @@ const Training: React.FC<Props> = ({ match }) => {
 
   const { id } = match.params;
   const { currentUser } = useContext(AuthContext);
-  const [exercise, setExercise] = useState(null);
   var tutorialsRef;
   if (currentUser) {
     tutorialsRef = fire
@@ -99,7 +98,6 @@ const Training: React.FC<Props> = ({ match }) => {
     }
   };
   const handleTrainingExercise = (exerciseKey: any, exerciseName: any) => {
-    // console.log(exerciseName);
     history.push({
       pathname: `/trainings/${id}/${exerciseKey}`,
       state: { exerciseName },
@@ -112,24 +110,26 @@ const Training: React.FC<Props> = ({ match }) => {
         Usuń trening
       </button>
       <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      <ul>
+      <ul className="training__ul">
         {!loading &&
           snapshots &&
           snapshots
-            .map((exerciseName, index) => (
-              <li
-                onClick={() =>
-                  handleTrainingExercise(
-                    exerciseName.key,
-                    exerciseName.val().name
-                  )
-                }
-                key={exerciseName.key}
-                className="training__exercise"
-              >
-                {exerciseName.val().name}
-              </li>
-            ))
+            .map((exerciseName) => {
+              return (
+                <li
+                  onClick={() =>
+                    handleTrainingExercise(
+                      exerciseName.key,
+                      exerciseName.val().name
+                    )
+                  }
+                  key={exerciseName.key}
+                  className="training__exercise"
+                >
+                  {exerciseName.val().name}
+                </li>
+              );
+            })
             .reverse()}
       </ul>
     </div>

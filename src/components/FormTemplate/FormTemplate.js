@@ -1,10 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import "./FormTemplate.scss";
-const FormTemplate = ({
-  formFields: { fields, button, enlargement },
-  handleSubmit,
-}) => {
+const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
       {(props) => (

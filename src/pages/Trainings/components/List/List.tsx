@@ -15,6 +15,7 @@ const List: React.FC<Props> = ({ trainings }) => {
     console.log(training);
     history.push(`/trainings/${training.id}`);
   };
+
   return (
     <div className="list">
       <h2 className="list__h2">Ostatnie treningi</h2>
@@ -22,6 +23,7 @@ const List: React.FC<Props> = ({ trainings }) => {
         {trainings &&
           trainings
             .map((training) => {
+              const modifiedDate = training.date.replace(/T/g, " ");
               return (
                 <li
                   onClick={() => handleTraining(training)}
@@ -29,7 +31,7 @@ const List: React.FC<Props> = ({ trainings }) => {
                   className="list__li"
                 >
                   <p className="list__p">{training.trainingName}</p>
-                  <p className="list__p">{training.date}</p>
+                  <p className="list__p">{modifiedDate}</p>
                 </li>
               );
             })
