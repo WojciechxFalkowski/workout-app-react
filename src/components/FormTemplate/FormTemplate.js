@@ -1,7 +1,10 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import "./FormTemplate.scss";
-const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
+const FormTemplate = ({
+  formFields: { fields, button, enlargement },
+  handleSubmit,
+}) => {
   return (
     <Form onSubmit={handleSubmit}>
       {(props) => (
@@ -43,6 +46,7 @@ const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
               </Field>
             );
           })}
+
           <button
             variant={button.variant}
             type={button.type}
