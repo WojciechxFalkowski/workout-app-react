@@ -1,0 +1,37 @@
+.exercise {
+  &__line {
+    width: 100%;
+    margin: 40px 0;
+    height: 1px;
+    position: relative;
+    background-color: rgb(209, 209, 209);
+    cursor: pointer;
+    &:hover {
+      background-color: orange;
+    }
+    &:hover .exercise__check {
+      border-color: orange;
+      color: orange;
+    }
+  }
+  &__check {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    color: rgb(209, 209, 209);
+    background-color: white;
+    border: 1px solid rgb(209, 209, 209);
+    text-align: center;
+    line-height: 22px;
+    border-radius: 50%;
+    -ms-transform: translate(-50%, -40%); /* IE 9 */
+    -webkit-transform: translate(-50%, -40%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -55%);
+    user-select: none;
+    &:hover {
+    }
+  }
+}

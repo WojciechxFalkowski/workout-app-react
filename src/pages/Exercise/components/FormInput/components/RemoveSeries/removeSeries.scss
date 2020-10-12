@@ -1,0 +1,18 @@
+@import "./../../../../../../utils/variables";
+.remove-series {
+  margin: 1vh auto;
+  &__button {
+    box-sizing: border-box;
+    min-width: 100px;
+    font-size: 0.8rem;
+    margin: 1vh 0;
+
+    color: white;
+    background-color: $light-red;
+    border: 2px solid $light-red;
+    padding: 2px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 1vh auto;
+  }
+}
