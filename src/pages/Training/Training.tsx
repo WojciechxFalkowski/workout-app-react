@@ -1,56 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "fire";
 import { useHistory } from "react-router-dom";
-import { Arrow } from "./components";
-import { FormTemplate } from "components";
-import { useList } from "react-firebase-hooks/database";
-
-import {
-  required,
-  // checkAtSign,
-  // mustBeNumber,
-  // minValue,
-  // maxValue,
-  composeValidators,
-  // uniqueString,
-} from "utils/validation";
+import { TrainingExerciseList } from "./components";
+import { FormTemplate, Button, Arrow } from "components";
+import { required, composeValidators } from "utils/validation";
 import "./training.scss";
-
-interface training {
-  id: string;
-  date: string;
-  trainingName: string;
-}
 interface Exercise {
   exerciseName: string;
 }
+interface Id {
+  id: string;
+}
 type MatchParams = {
-  params: any;
+  params: Id;
 };
 export interface Props {
   match: MatchParams;
 }
-
 const Training: React.FC<Props> = ({ match }) => {
-  let history = useHistory();
-
+  const history = useHistory();
   const { id } = match.params;
   const { currentUser } = useContext(AuthContext);
-  var tutorialsRef;
-  if (currentUser) {
-    tutorialsRef = fire
-      .database()
-      .ref("users/" + currentUser.uid + "/trainings/" + id + "/exercises");
-  }
-  const [snapshots, loading, error] = useList(tutorialsRef);
-  if (snapshots) {
-    // snapshots.map((tutorial, index) => {
-    //   console.log("JAKIES ", tutorial.val(), index);
-    // });
-    // console.log("snapshots", snapshots);
-  }
-
   const formFields = {
     fields: [
       {
@@ -69,69 +40,58 @@ const Training: React.FC<Props> = ({ match }) => {
 
   const handleDeleteTraining = () => {
     if (currentUser) {
-      fire
-        .database()
-        .ref("users/" + currentUser.uid + "/trainings/" + id)
-        .remove();
+      fire.database().ref(`users/${currentUser.uid}/trainings/${id}`).remove();
       history.goBack();
     }
   };
   const handleSubmit = (values: Exercise) => {
-    // console.log(values.exerciseName);
     if (currentUser) {
       fire
         .database()
-        .ref("users/" + currentUser.uid + "/trainings/" + id)
+        .ref(`users/${currentUser.uid}/trainings/${id}`)
         .child("exercises")
         .push()
         .set({ name: values.exerciseName });
-
-      // .set(values.exerciseName);
-
-      //   const databasePath = fire
-      //   .database()
-      //   .ref("users/" + currentUser.uid + "/trainings/" + id + "training");
-      // databasePath.on("value", function (snapshot) {
-      //   console.log("Snap", snapshot.val());
-      // });
-      // .set(values.exerciseName);
+      // history.push(`/trainings/${date}`); //think about that
     }
   };
-  const handleTrainingExercise = (exerciseKey: any, exerciseName: any) => {
-    history.push({
-      pathname: `/trainings/${id}/${exerciseKey}`,
-      state: { exerciseName },
-    });
+
+  const [trainingName, setTrainingName] = useState();
+  if (currentUser) {
+  }
+  const [exercises, setExercises] = useState();
+  const loadTrainingName = function (snapshot: any) {
+    setTrainingName(snapshot.val().trainingName);
   };
+  const loadTrainings = function (snapshot: any) {
+    const exerciseArray: any = [];
+    snapshot.forEach(function (childSnapshot: any) {
+      const { name } = childSnapshot.val();
+      const key = childSnapshot.key;
+      exerciseArray.push({ name, key });
+    });
+    setExercises(exerciseArray);
+  };
+  useEffect(() => {
+    if (currentUser) {
+      const ref = fire
+        .database()
+        .ref(`users/${currentUser.uid}/trainings/${id}`);
+      ref.once("value").then(loadTrainingName);
+      ref.child(`exercises`).on("value", loadTrainings);
+      return () => {
+        ref.off("value", loadTrainingName);
+        ref.child(`exercises`).off("value", loadTrainings);
+      };
+    }
+  }, [currentUser, id]);
   return (
     <div className="training">
       <Arrow />
-      <button onClick={handleDeleteTraining} className="training__button">
-        Usuń trening
-      </button>
+      <Button onClick={handleDeleteTraining}>Usuń trening</Button>
+      <h2 className="exercise__h2">{trainingName}</h2>
       <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      <ul className="training__ul">
-        {!loading &&
-          snapshots &&
-          snapshots
-            .map((exerciseName) => {
-              return (
-                <li
-                  onClick={() =>
-                    handleTrainingExercise(
-                      exerciseName.key,
-                      exerciseName.val().name
-                    )
-                  }
-                  key={exerciseName.key}
-                  className="training__exercise"
-                >
-                  {exerciseName.val().name}
-                </li>
-              );
-            })
-            .reverse()}
-      </ul>
+      {exercises && <TrainingExerciseList exercises={exercises} id={id} />}
     </div>
   );
 };
