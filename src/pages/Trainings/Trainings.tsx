@@ -5,19 +5,7 @@ import fire from "../../fire";
 import { List } from "./components";
 import { useHistory } from "react-router-dom";
 
-import {
-  required,
-  // checkAtSign,
-  // mustBeNumber,
-  // minValue,
-  // maxValue,
-  composeValidators,
-  // uniqueString,
-} from "utils/validation";
-interface user {
-  uid: string;
-}
-
+import { required, composeValidators } from "utils/validation";
 export interface Props {}
 type Trainings = Array<training>;
 interface training {
@@ -82,21 +70,24 @@ const Trainings: React.FC<Props> = () => {
       history.push(`/trainings/${date}`);
     }
   };
-
+  const uploadTrainings = function (snapshot: any) {
+    const trainingArray: any = [];
+    snapshot.forEach(function (childSnapshot: any) {
+      const childData = childSnapshot.val();
+      trainingArray.push(childData);
+    });
+    setTrainings(trainingArray);
+  };
   useEffect(() => {
     if (currentUser) {
-      fire
+      const ref = fire
         .database()
         .ref("users/" + currentUser.uid + "/trainings")
-        .orderByChild("date")
-        .on("value", function (snapshot) {
-          const trainingArray: any = [];
-          snapshot.forEach(function (childSnapshot) {
-            const childData = childSnapshot.val();
-            trainingArray.push(childData);
-          });
-          setTrainings(trainingArray);
-        });
+        .orderByChild("date");
+      ref.on("value", uploadTrainings);
+      return () => {
+        ref.off("value", uploadTrainings);
+      };
     }
   }, [currentUser]);
   return (

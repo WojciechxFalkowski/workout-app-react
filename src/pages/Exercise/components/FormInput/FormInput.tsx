@@ -3,12 +3,22 @@ import { Form, Field } from "react-final-form";
 import { required, composeValidators } from "utils/validation";
 import "./formInput.scss";
 import { Line, RemoveSeries, SeriesNumber } from "./components";
-interface formFields {
-  fields: any;
-  button: any;
+interface Fields {
+  name: string;
+  validate: (value: any) => void;
+  initialValue: string | undefined;
+  text: string;
+  placeholder: string;
+}
+interface Button {
+  text: string;
+}
+interface FormFields {
+  fields: Fields[];
+  button: Button;
 }
 interface Props {
-  formFields: any;
+  formFields: FormFields;
   setFormFields: (cos: any) => void;
   handleSubmit: (values: any) => void;
 }
@@ -19,8 +29,6 @@ const FormInput: React.FC<Props> = ({
   setFormFields,
 }) => {
   const handleAddSeries = () => {
-    console.log("handleAddSeries", fields.length);
-
     fields.push(
       {
         name: `exerciseWeight${ID()}`,
@@ -37,7 +45,6 @@ const FormInput: React.FC<Props> = ({
         placeholder: "Liczba powtórzeń",
       }
     );
-
     setFormFields({
       fields,
       button,
@@ -50,10 +57,7 @@ const FormInput: React.FC<Props> = ({
     );
   };
   const handleRemoveSeries = (number: number) => {
-    console.log("handleRemoveSeries");
-    console.log("number", number);
-    console.log("number", fields.splice(number - 1, 2));
-    console.log(fields);
+    fields.splice(number - 1, 2);
     setFormFields({
       fields,
       button,

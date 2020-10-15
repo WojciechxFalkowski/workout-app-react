@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Arrow } from "./../Training/components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { FormInput } from "./components";
+import { Button, Arrow } from "components";
 import { required, composeValidators } from "utils/validation";
 import fire from "./../../fire";
 import "./exercise.scss";
@@ -111,9 +111,7 @@ const Exercise: React.FC<Props> = (props) => {
   return (
     <div className="exercise">
       <Arrow />
-      <button onClick={handleSaveExercise} className="exercise__button">
-        Usuń ćwiczenie
-      </button>
+      <Button onClick={handleSaveExercise}>Usuń ćwiczenie</Button>
       <h2 className="exercise__h2">{exerciseName}</h2>
       <FormInput
         formFields={formFields}
