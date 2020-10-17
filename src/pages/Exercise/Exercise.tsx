@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { FormInput } from "./components";
-import { Button, Arrow } from "components";
+import { EditTitle, GoBackDelete } from "components";
 import { required, composeValidators } from "utils/validation";
 import fire from "./../../fire";
 import "./exercise.scss";
@@ -21,17 +21,17 @@ export interface Props {
 const Exercise: React.FC<Props> = (props) => {
   let history = useHistory();
   const { currentUser } = useContext(AuthContext);
-  const { exerciseName }: any = history.location.state;
   const url = props.match.url.replace("/trainings/", "");
   const id = url.replace("/" + props.match.params.id, "");
+  const [isActiveEditing, setIsActiveEditing] = useState(false);
   const [formFields, setFormFields] = useState({
     fields: [
       {
         name: "exerciseWeight",
         validate: composeValidators(required("To pole jest wymagane!")),
         initialValue: undefined,
-        text: "Ciężar",
-        placeholder: "Ciężar",
+        text: "Ciężar (kg)",
+        placeholder: "Ciężar (kg)",
       },
       {
         name: "exerciseRepeat",
@@ -88,14 +88,17 @@ const Exercise: React.FC<Props> = (props) => {
               text: "Zapisz",
             };
             snapshot.forEach(function (childSnapshot) {
+              const text =
+                fields.length % 2 === 0 ? "Ciężar" : "Liczba powtórzeń";
+
               fields.push({
                 name: `${
                   fields.length % 2 === 0 ? "exerciseWeight" : "exerciseRepeat"
                 }${ID()}`,
                 validate: composeValidators(required("To pole jest wymagane!")),
                 initialValue: childSnapshot.val(),
-                text: "Ciężar",
-                placeholder: "Ciężar",
+                text: text,
+                placeholder: text,
               });
             });
             if (fields.length > 0) {
@@ -110,14 +113,23 @@ const Exercise: React.FC<Props> = (props) => {
   }, [currentUser, id, props.match.params.id]);
   return (
     <div className="exercise">
-      <Arrow />
-      <Button onClick={handleSaveExercise}>Usuń ćwiczenie</Button>
-      <h2 className="exercise__h2">{exerciseName}</h2>
-      <FormInput
-        formFields={formFields}
-        setFormFields={setFormFields}
-        handleSubmit={handleSubmit}
-      />
+      {!isActiveEditing && <GoBackDelete handleEdit={handleSaveExercise} />}
+      {currentUser && (
+        <EditTitle
+          labelText="Nazwa ćwiczenia"
+          editDate={false}
+          refUrl={`users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`}
+          isActiveEditing={isActiveEditing}
+          setIsActiveEditing={setIsActiveEditing}
+        />
+      )}
+      {!isActiveEditing && (
+        <FormInput
+          formFields={formFields}
+          setFormFields={setFormFields}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 };

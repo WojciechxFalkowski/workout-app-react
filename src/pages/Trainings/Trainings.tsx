@@ -11,14 +11,12 @@ type Trainings = Array<training>;
 interface training {
   id: string;
   date: string;
-  trainingName: string;
+  workoutName: string;
 }
 const Trainings: React.FC<Props> = () => {
-  let history = useHistory();
-
+  const history = useHistory();
   const { currentUser } = useContext(AuthContext);
   const [trainings, setTrainings] = useState<Trainings>();
-
   const today = new Date();
   const todayDatePattern = `${today.getFullYear()}-${today.getMonth() + 1}-${
     today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
@@ -36,7 +34,7 @@ const Trainings: React.FC<Props> = () => {
         type: "datetime-local",
       },
       {
-        name: "trainingName",
+        name: "workoutName",
         validate: composeValidators(required("To pole jest wymagane!")),
         initialValue: undefined,
         text: "Nazwa treningu",
@@ -52,12 +50,12 @@ const Trainings: React.FC<Props> = () => {
     userId: string,
     id: string,
     date: string,
-    trainingName: string
+    workoutName: string
   ) => {
     fire
       .database()
       .ref("users/" + userId + "/trainings/" + id)
-      .set({ id, date, trainingName });
+      .set({ id, date, workoutName });
   };
   const handleSubmit = (values: any) => {
     const date = values.date
@@ -66,7 +64,7 @@ const Trainings: React.FC<Props> = () => {
       .replace(/:/g, "");
 
     if (currentUser) {
-      saveNewTraining(currentUser.uid, date, values.date, values.trainingName);
+      saveNewTraining(currentUser.uid, date, values.date, values.workoutName);
       history.push(`/trainings/${date}`);
     }
   };

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://wojciechxfalkowski.github.io/workout-app-react",
   "name": "workout-app-react",
   "version": "0.1.0",
   "private": true,
@@ -9,12 +10,15 @@
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.62",
     "@types/react": "^16.9.49",
+    "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "final-form": "^4.20.1",
     "firebase": "^7.21.1",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.1",
     "react-firebase-hooks": "^2.2.0",
@@ -26,6 +30,8 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

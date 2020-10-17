@@ -5,7 +5,6 @@ export interface Props {
   exercises: any;
   id: string;
 }
-
 const TrainingExerciseList: React.FC<Props> = ({ exercises, id }) => {
   const history = useHistory();
   const handleTrainingExercise = (exerciseKey: any, exerciseName: any) => {
@@ -15,23 +14,26 @@ const TrainingExerciseList: React.FC<Props> = ({ exercises, id }) => {
     });
   };
   return (
-    <ul className="training-exercise-list__ul">
-      {exercises
-        .map((exerciseName: any) => {
+    <>
+      <ul className="training-exercise-list__ul">
+        {exercises.map((exerciseName: any) => {
           return (
             <li
               onClick={() =>
-                handleTrainingExercise(exerciseName.key, exerciseName.name)
+                handleTrainingExercise(
+                  exerciseName.key,
+                  exerciseName.workoutName
+                )
               }
               key={exerciseName.key}
               className="training-exercise-list__exercise"
             >
-              {exerciseName.name}
+              {exerciseName.workoutName}
             </li>
           );
-        })
-        .reverse()}
-    </ul>
+        })}
+      </ul>
+    </>
   );
 };
 

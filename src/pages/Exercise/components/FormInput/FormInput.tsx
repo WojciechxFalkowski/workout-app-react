@@ -34,8 +34,8 @@ const FormInput: React.FC<Props> = ({
         name: `exerciseWeight${ID()}`,
         validate: composeValidators(required("To pole jest wymagane!")),
         initialValue: undefined,
-        text: "Ciężar",
-        placeholder: "Ciężar",
+        text: "Ciężar (kg)",
+        placeholder: "Ciężar (kg)",
       },
       {
         name: `exerciseRepeat${ID()}`,

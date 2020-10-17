@@ -1,0 +1,28 @@
+.edit-title {
+  &__div {
+    margin: 5vh auto;
+    text-align: center;
+  }
+
+  &__h2 {
+    display: inline-block;
+    margin-right: 1vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  &__input {
+    box-sizing: border-box;
+    display: block;
+    min-width: 220px;
+    min-height: 33px;
+    margin: 1px 1vw 0 0;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+
+  &__icon-check,
+  &__icon-edit {
+    cursor: pointer;
+  }
+}
