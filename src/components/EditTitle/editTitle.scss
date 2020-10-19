@@ -20,8 +20,10 @@
     padding: 5px 10px;
     font-size: 0.9rem;
   }
-
-  &__icon-check,
+  &__div-icon {
+    display: inline-block;
+    transform: translateY(1px);
+  }
   &__icon-edit {
     cursor: pointer;
   }

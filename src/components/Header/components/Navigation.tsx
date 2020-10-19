@@ -23,11 +23,11 @@ const Navigation: React.FC<Props> = () => {
               Statystyki
             </Link>
           </li>
-          <li className="navigation__li">
+          {/* <li className="navigation__li">
             <Link to="/measurement" className="navigation__a">
               Pomiary
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

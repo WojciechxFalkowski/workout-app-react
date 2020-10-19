@@ -89,7 +89,7 @@ const Exercise: React.FC<Props> = (props) => {
             };
             snapshot.forEach(function (childSnapshot) {
               const text =
-                fields.length % 2 === 0 ? "Ciężar" : "Liczba powtórzeń";
+                fields.length % 2 === 0 ? "Ciężar (kg)" : "Liczba powtórzeń";
 
               fields.push({
                 name: `${

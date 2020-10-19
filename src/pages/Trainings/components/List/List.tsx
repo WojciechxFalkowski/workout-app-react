@@ -16,7 +16,7 @@ const List: React.FC<Props> = ({ trainings }) => {
   };
   return (
     <div className="list">
-      <h2 className="list__h2">Ostatnie treningi</h2>
+      <h2 className="list__h2">Treningi</h2>
       <ul className="list__ul">
         {trainings &&
           trainings

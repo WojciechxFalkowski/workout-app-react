@@ -87,10 +87,12 @@ const EditTitle: React.FC<Props> = ({
       ) : (
         <div className="edit-title__div">
           <h2 className="edit-title__h2">{workoutName}</h2>
-          <BiEditAlt
-            onClick={handleClickIcon}
-            className="edit-title__icon-edit"
-          />
+          <div className="edit-title__div-icon">
+            <BiEditAlt
+              onClick={handleClickIcon}
+              className="edit-title__icon-edit"
+            />
+          </div>
         </div>
       )}
     </>

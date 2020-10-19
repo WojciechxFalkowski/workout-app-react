@@ -35,8 +35,6 @@ const DragAndDropList: React.FC<Props> = ({ exercises, id, refUrl }) => {
     items.forEach((item: any) => {
       fire.database().ref(refUrl).push().set({ workoutName: item.content });
     });
-
-    console.log("items", items);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
