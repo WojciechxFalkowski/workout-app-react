@@ -20,7 +20,6 @@ const TrainingsPerTrainingName: React.FC<Props> = ({ trainings }) => {
     amount: [],
   };
   trainings.forEach((training: training) => {
-    // console.log(`training: ${training.workoutName} `);
     const index = trainingsPerTrainingName.name.findIndex(
       (item) => item === training.workoutName
     );
@@ -30,18 +29,8 @@ const TrainingsPerTrainingName: React.FC<Props> = ({ trainings }) => {
       trainingsPerTrainingName.name.push(training.workoutName);
       trainingsPerTrainingName.amount.push(1);
     }
-    // trainingsPerTrainingName.forEach((item: trainingsPerTrainingNameItem) => {
-    //   if (item.name === training.workoutName) {
-    //     ++item.amount;
-    //   } else {
-    //     trainingsPerTrainingName.push({
-    //       name: training.workoutName,
-    //       amount: 0,
-    //     });
-    //   }
-    // });
   });
-  console.log("trainingsPerTrainingName", trainingsPerTrainingName);
+
   const specification = {
     type: "pie",
 

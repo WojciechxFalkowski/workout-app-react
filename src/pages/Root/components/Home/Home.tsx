@@ -13,9 +13,9 @@ interface training {
   exercises?: object;
 }
 export interface Props {}
-let index = 0;
+// let index = 0;
 const Home: React.FC<Props> = () => {
-  console.log(`wywołanie Home:${index++}`);
+  // console.log(`wywołanie Home:${index++}`);
   const { currentUser }: any | undefined = useContext(AuthContext);
   // console.log("currentUser w HOME:", currentUser);
   const [trainings, setTrainings] = useState<Array<training>>();

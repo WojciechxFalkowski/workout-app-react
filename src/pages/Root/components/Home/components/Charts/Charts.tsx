@@ -1,5 +1,9 @@
 import React from "react";
-import { TrainingsPerMonth, TrainingsPerTrainingName } from "./components";
+import {
+  TrainingsPerMonth,
+  TrainingsPerTrainingName,
+  WeightRaisedPerTrainingName,
+} from "./components";
 interface training {
   date: string;
   id: string;
@@ -9,13 +13,14 @@ interface training {
 export interface Props {
   trainings: Array<training>;
 }
-let index = 0;
+// let index = 0;
 const Charts: React.FC<Props> = ({ trainings }) => {
-  console.log(`wywołanie Home:${index++}`);
+  // console.log(`wywołanie Home:${index++}`);
   return (
     <>
       <TrainingsPerMonth trainings={trainings} />
       <TrainingsPerTrainingName trainings={trainings} />
+      <WeightRaisedPerTrainingName trainings={trainings} />
     </>
   );
 };
