@@ -12,7 +12,10 @@ const Chart: React.FC<Props> = ({ specification, children }) => {
     if (canvasRef.current !== null) {
       const ctx = canvasRef.current.getContext("2d");
       if (ctx) {
-        new ChartJS(ctx, specification);
+        const chart = new ChartJS(ctx, specification);
+        return () => {
+          chart.destroy();
+        };
       }
     }
   });

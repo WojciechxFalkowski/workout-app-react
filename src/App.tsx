@@ -1,7 +1,7 @@
 import React from "react";
 import "reset-css";
 import "./App.scss";
-import { Login, Root, Trainings, Training, Exercise } from "pages";
+import { Login, Root, Trainings, Training, Exercise, Statistics } from "pages";
 import fire from "fire";
 
 import {
@@ -42,7 +42,7 @@ const App = () => {
               <PrivateRoute
                 path="/statistics"
                 exact={false}
-                component={Root}
+                component={Statistics}
               ></PrivateRoute>
               <PrivateRoute
                 path="/measurement"

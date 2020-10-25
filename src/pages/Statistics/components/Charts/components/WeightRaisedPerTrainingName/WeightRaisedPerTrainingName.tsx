@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Chart } from "components";
-import { Training } from "pages";
+
+import "./weightRaisedPerTrainingName.scss";
 interface trainingsPerTrainingNameItem {
   date: Array<string>;
   amount: Array<number>;
@@ -16,6 +17,7 @@ export interface Props {
 }
 
 const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
+  // console.log("trainings", trainings);
   const options: Array<string> = [];
   trainings.forEach((training: training, index: number) => {
     const id = options.findIndex((item) => item === training.workoutName);
@@ -25,6 +27,7 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
   });
 
   const [selectChange, setSelectChange] = useState<string>(options[0]);
+  const [cos, setCos] = useState<trainingsPerTrainingNameItem>();
 
   const data = trainings.filter((training: training) => {
     return training.workoutName === selectChange;
@@ -48,11 +51,10 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
     }
     const date = new Date(training.date);
     const formatedDate = `${
-      date.getDay() <= 9 ? "0" + date.getDay() : date.getDay()
+      date.getDate() <= 9 ? "0" + date.getDate() : date.getDate()
     }/${
       date.getMonth() + 1 < 10 ? "0" + date.getMonth() + 1 : date.getMonth() + 1
     }/${date.getFullYear()}`;
-
     trainingsArray.date.push(formatedDate);
     trainingsArray.amount.push(amount);
   });
@@ -174,22 +176,22 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
           {
             ticks: {
               lineHeight: 2,
+              beginAtZero: true,
             },
           },
         ],
       },
     },
   };
-  console.log("trainingsArray", trainingsArray);
-  // console.log(`Wartosc select: ${selectChange}`);
+  // console.log("trainingsArray", trainingsArray);
   const handleSelectChange = (e: any) => {
-    // console.log("handleSelectChange");
-    // console.log(e.target.value);
     setSelectChange(e.target.value);
   };
   return (
-    <>
-      <label>Wybierz partię mięśni</label>
+    <div className="weightRaisedPerTrainingName">
+      <label className="weightRaisedPerTrainingName__label">
+        Wybierz partię mięśni
+      </label>
       <select onChange={handleSelectChange}>
         {options.map((item, index) => {
           return (
@@ -201,7 +203,7 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
       </select>
 
       {<Chart specification={specification}> </Chart>}
-    </>
+    </div>
   );
 };
 
