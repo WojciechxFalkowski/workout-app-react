@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/workout-app-react/static/css/main.9559dc3b.chunk.css",
-    "main.js": "/workout-app-react/static/js/main.67fbd44b.chunk.js",
-    "main.js.map": "/workout-app-react/static/js/main.67fbd44b.chunk.js.map",
+    "main.css": "/workout-app-react/static/css/main.58338ada.chunk.css",
+    "main.js": "/workout-app-react/static/js/main.87dc6cae.chunk.js",
+    "main.js.map": "/workout-app-react/static/js/main.87dc6cae.chunk.js.map",
     "runtime-main.js": "/workout-app-react/static/js/runtime-main.b27fd735.js",
     "runtime-main.js.map": "/workout-app-react/static/js/runtime-main.b27fd735.js.map",
     "static/css/2.117ce29f.chunk.css": "/workout-app-react/static/css/2.117ce29f.chunk.css",
-    "static/js/2.2d76e93b.chunk.js": "/workout-app-react/static/js/2.2d76e93b.chunk.js",
-    "static/js/2.2d76e93b.chunk.js.map": "/workout-app-react/static/js/2.2d76e93b.chunk.js.map",
+    "static/js/2.5f2114ac.chunk.js": "/workout-app-react/static/js/2.5f2114ac.chunk.js",
+    "static/js/2.5f2114ac.chunk.js.map": "/workout-app-react/static/js/2.5f2114ac.chunk.js.map",
     "index.html": "/workout-app-react/index.html",
-    "precache-manifest.855401a725e25332217ad152283a6310.js": "/workout-app-react/precache-manifest.855401a725e25332217ad152283a6310.js",
+    "precache-manifest.2c340b897c8f10d05e3571929eb67246.js": "/workout-app-react/precache-manifest.2c340b897c8f10d05e3571929eb67246.js",
     "service-worker.js": "/workout-app-react/service-worker.js",
     "static/css/2.117ce29f.chunk.css.map": "/workout-app-react/static/css/2.117ce29f.chunk.css.map",
-    "static/css/main.9559dc3b.chunk.css.map": "/workout-app-react/static/css/main.9559dc3b.chunk.css.map",
-    "static/js/2.2d76e93b.chunk.js.LICENSE.txt": "/workout-app-react/static/js/2.2d76e93b.chunk.js.LICENSE.txt"
+    "static/css/main.58338ada.chunk.css.map": "/workout-app-react/static/css/main.58338ada.chunk.css.map",
+    "static/js/2.5f2114ac.chunk.js.LICENSE.txt": "/workout-app-react/static/js/2.5f2114ac.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b27fd735.js",
     "static/css/2.117ce29f.chunk.css",
-    "static/js/2.2d76e93b.chunk.js",
-    "static/css/main.9559dc3b.chunk.css",
-    "static/js/main.67fbd44b.chunk.js"
+    "static/js/2.5f2114ac.chunk.js",
+    "static/css/main.58338ada.chunk.css",
+    "static/js/main.87dc6cae.chunk.js"
   ]
 }
