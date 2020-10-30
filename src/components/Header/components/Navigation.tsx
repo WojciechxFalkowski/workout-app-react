@@ -1,33 +1,81 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
 import "./navigation.scss";
-export interface Props {}
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+export interface Props {
+  handleHamburger: () => void;
+}
 
-const Navigation: React.FC<Props> = () => {
+const Navigation: React.FC<Props> = ({ handleHamburger }) => {
+  const { currentUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    handleHamburger();
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        function () {},
+        function (error) {}
+      );
+  };
   return (
     <>
       <div className="navigation">
         <ul className="navigation__ul">
-          {/* <li className="navigation__li">
+          {currentUser ? (
+            <>
+              {/* <li className="navigation__li">
             <Link to="/training" className="navigation__a">
               Nowy Trening
             </Link>
           </li> */}
-          <li className="navigation__li">
-            <Link to="/trainings" className="navigation__a">
-              Treningi
-            </Link>
-          </li>
-          <li className="navigation__li">
-            <Link to="/statistics" className="navigation__a">
-              Statystyki
-            </Link>
-          </li>
-          {/* <li className="navigation__li">
-            <Link to="/measurement" className="navigation__a">
-              Pomiary
-            </Link>
-          </li> */}
+              <li className="navigation__li">
+                <Link
+                  onClick={handleHamburger}
+                  to="/trainings"
+                  className="navigation__a"
+                >
+                  Treningi
+                </Link>
+              </li>
+              <li className="navigation__li">
+                <Link
+                  onClick={handleHamburger}
+                  to="/statistics"
+                  className="navigation__a"
+                >
+                  Statystyki
+                </Link>
+              </li>
+              <li className="navigation__li">
+                <Link
+                  onClick={handleHamburger}
+                  to="/measurement"
+                  className="navigation__a"
+                >
+                  Pomiary
+                </Link>
+              </li>
+              <li
+                className="navigation__li navigation__logout"
+                onClick={handleSignOut}
+              >
+                Wyloguj
+              </li>
+            </>
+          ) : (
+            <li className="navigation__li navigation__login">
+              <Link
+                onClick={handleHamburger}
+                className="navigation__a"
+                to="/login"
+              >
+                Zaloguj się
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </>

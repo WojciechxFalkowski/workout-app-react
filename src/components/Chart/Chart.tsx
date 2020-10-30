@@ -8,6 +8,7 @@ export interface Props {
 }
 const Chart: React.FC<Props> = ({ specification, children }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     if (canvasRef.current !== null) {
       const ctx = canvasRef.current.getContext("2d");

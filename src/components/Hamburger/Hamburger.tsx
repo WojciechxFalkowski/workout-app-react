@@ -3,7 +3,7 @@ import "./Hamburger.scss";
 
 export interface Props<T> {
   onClick: any;
-  isActiveHamburger: boolean;
+  // isActiveHamburger: boolean;
   hamburgerActive: T | null;
 }
 const Hamburger: React.FC<Props<any>> = ({ onClick, hamburgerActive }) => {

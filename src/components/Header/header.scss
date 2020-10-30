@@ -1,24 +1,93 @@
 @import "./../../utils/variables";
+.invisible__header {
+  height: 77px;
+  width: 100vw;
+}
 .header {
+  top: 0;
+  left: 0;
+  background-color: black;
   display: flex;
+  position: fixed;
   justify-content: space-between;
-  padding: 1vh 1vw;
-  background-color: $black;
-  color: $light-grey;
+  height: 77px;
+  width: 100vw;
+  transition: height 0.6s ease-out;
+  z-index: 100;
+  @media (min-width: 768px) {
+    justify-content: none;
+  }
+  &--active {
+    height: 100vh;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .header__logo {
+      flex-basis: 49vw;
+    }
+    .header__hamburger {
+      flex-basis: 49vw;
+      text-align: right;
+    }
+    .header__links {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      flex-direction: column;
+      .navigation {
+        flex-grow: unset;
+        .navigation__ul {
+          flex-direction: column;
+          .navigation__li {
+            margin: 2vh 1vw;
+            .navigation__a {
+              font-size: 1.1rem;
+            }
+          }
+        }
+      }
+      .header__link {
+        font-size: 1.1rem;
+        background-color: black;
+      }
+    }
+  }
+  &__hamburger {
+    margin-top: 13px;
+    transition: align-self 1s ease-out 10s;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+  &__links {
+    display: none;
+    overflow: hidden;
+    @media (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      flex-basis: 100%;
+      padding: 1vh 1vw;
+      background-color: $black;
+      color: $light-grey;
+    }
+  }
   &__logo {
     display: flex;
-    align-items: center;
+    // align-items: center;
     margin-left: 1vw;
     color: $orange;
     font-weight: bold;
     cursor: pointer;
+    & a {
+      margin-top: 15px;
+    }
     & > a:hover {
       color: $orange;
     }
   }
   &__link {
-    width: 85px;
-    background-color: black;
+    width: 110px;
+
     border: 0px solid black;
     color: $light-grey;
     cursor: pointer;
@@ -30,5 +99,8 @@
     &:focus {
       border-radius: 10px;
     }
+  }
+  @media (min-width: 768px) {
+    background-color: black;
   }
 }

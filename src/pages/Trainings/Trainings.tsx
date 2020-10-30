@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { FormTemplate } from "components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "../../fire";
-import { List } from "./components";
+import { Table } from "./components";
 import { useHistory } from "react-router-dom";
 
 import { required, composeValidators } from "utils/validation";
@@ -76,6 +76,7 @@ const Trainings: React.FC<Props> = () => {
     });
     setTrainings(trainingArray);
   };
+
   useEffect(() => {
     if (currentUser) {
       const ref = fire
@@ -91,7 +92,7 @@ const Trainings: React.FC<Props> = () => {
   return (
     <>
       <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      {trainings && <List trainings={trainings} />}
+      {trainings && <Table trainings={trainings} />}
     </>
   );
 };
