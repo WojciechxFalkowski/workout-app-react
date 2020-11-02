@@ -1,0 +1,51 @@
+.measurement {
+  &__h2 {
+    margin: 5vh 0 2vh 0;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+  &__add {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 101;
+  }
+  &__table {
+    margin-top: 5vh;
+    margin: 0 auto;
+    font-size: 0.8rem;
+  }
+  &__th,
+  &__td {
+    padding: 1vh 1vw;
+    border: 1px solid black;
+    @media (min-width: 640px) {
+      padding: 2vh 2vw;
+    }
+  }
+  &__td {
+    text-align: center;
+  }
+  &__delete {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -38,17 +38,12 @@ const TrainingsPerMonth: React.FC<Props> = ({ trainings }) => {
           data: trainingsPerMonth,
           backgroundColor: function (context: any) {
             const index = context.dataIndex;
-            const value = context.dataset.data[index];
-            return value < 0
-              ? "rgba(230, 25, 75, 0.5)"
-              : index % 2
-              ? "rgba(0, 130, 200, 0.5)"
-              : "rgba(0, 200,130 , 0.5)";
+            return index % 2 ? "rgba(255, 165, 0, 0.5)" : "rgba(0,0,0, 0.8)";
           },
 
           borderColor: function (context: any) {
             const index = context.dataIndex;
-            return index % 2 ? "blue" : "green";
+            return index % 2 ? "rgba(255, 165, 0, 0.5)" : "rgba(0,0,0, 1)";
           },
           borderWidth: 1,
           hoverBackgroundColor: [],

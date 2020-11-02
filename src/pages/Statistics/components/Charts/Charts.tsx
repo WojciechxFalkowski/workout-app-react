@@ -13,9 +13,7 @@ interface training {
 export interface Props {
   trainings: Array<training>;
 }
-// let index = 0;
 const Charts: React.FC<Props> = ({ trainings }) => {
-  // console.log(`wywołanie Home:${index++}`);
   return (
     <>
       <TrainingsPerMonth trainings={trainings} />
