@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FormTemplate } from "components";
 import { required, composeValidators } from "utils/validation";
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import fire from "../../../../fire";
 export interface Props {
   measurements: Array<measurement>;
   setShowBlock: (arg: boolean) => void;
@@ -20,6 +22,7 @@ const Block: React.FC<Props> = ({
   setShowBlock,
   setMeasurements,
 }) => {
+  const { currentUser } = useContext(AuthContext);
   const today = new Date();
   const todayDatePattern = `${today.getFullYear()}-${today.getMonth() + 1}-${
     today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
@@ -48,6 +51,15 @@ const Block: React.FC<Props> = ({
         initialValue: undefined,
         text: "Arm",
         placeholder: "Arm",
+        type: "number",
+        step: "1",
+        min: "0",
+      },
+      {
+        name: "chest",
+        initialValue: undefined,
+        text: "Chest",
+        placeholder: "Chest",
         type: "number",
         step: "1",
         min: "0",
@@ -84,11 +96,15 @@ const Block: React.FC<Props> = ({
     );
   };
   const handleRemoveBlock = () => {
-    console.log("wyłącz okno");
     setShowBlock(false);
   };
+  const saveMeasurement = (userId: string, newMeasurement: any) => {
+    fire
+      .database()
+      .ref("users/" + userId + "/measurements")
+      .set([...measurements, newMeasurement]);
+  };
   const handleSubmit = (values: measurement) => {
-    console.log("Submit");
     if (
       !values.arm &&
       !values.chest &&
@@ -99,6 +115,9 @@ const Block: React.FC<Props> = ({
     } else {
       setMeasurements([...measurements, { ...values, id: ID() }]);
       setShowBlock(false);
+      if (currentUser) {
+        saveMeasurement(currentUser.uid, { ...values, id: ID() });
+      }
     }
   };
   return (

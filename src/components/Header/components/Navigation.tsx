@@ -11,6 +11,7 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
   const { currentUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
+    console.log("halko");
     handleHamburger();
     firebase
       .auth()
@@ -58,11 +59,16 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                   Pomiary
                 </Link>
               </li>
-              <li
+              {/* <li
                 className="navigation__li navigation__logout"
                 onClick={handleSignOut}
               >
                 Wyloguj
+              </li> */}
+              <li className="navigation__li navigation__logout">
+                <a onClick={handleSignOut} href="/" className="navigation__a">
+                  Wyloguj
+                </a>
               </li>
             </>
           ) : (

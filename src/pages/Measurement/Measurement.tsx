@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Block } from "./components";
-
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import fire from "../../fire";
 import "./measurement.scss";
 export interface Props {}
 
@@ -14,17 +15,43 @@ interface measurement {
   thighs: number;
 }
 const Measurement: React.FC<Props> = () => {
+  const { currentUser } = useContext(AuthContext);
   const [measurements, setMeasurements] = useState<Array<measurement>>([]);
-
   const [showBlock, setShowBlock] = useState(false);
-
   const handleAddMeasurement = () => {
     setShowBlock(true);
   };
-
   const handleDeleteMeasurement = (id: string) => {
-    setMeasurements(measurements.filter((item) => item.id !== id));
+    const filteredMeasurements = measurements.filter(
+      (item: any) => item.id !== id
+    );
+    if (currentUser) {
+      fire
+        .database()
+        .ref("users/" + currentUser.uid + "/measurements")
+        .set([...filteredMeasurements]);
+    }
   };
+  const uploadMeasurements = function (snapshot: any) {
+    const measurementsArray: any = [];
+    snapshot.forEach(function (childSnapshot: any) {
+      const childData = childSnapshot.val();
+      measurementsArray.push(childData);
+    });
+    setMeasurements(measurementsArray);
+  };
+  useEffect(() => {
+    if (currentUser) {
+      const ref = fire
+        .database()
+        .ref("users/" + currentUser.uid + "/measurements")
+        .orderByChild("date");
+      ref.on("value", uploadMeasurements);
+      return () => {
+        ref.off("value", uploadMeasurements);
+      };
+    }
+  }, [currentUser]);
   return (
     <div className="measurement">
       <h2 onClick={handleAddMeasurement} className="measurement__h2">

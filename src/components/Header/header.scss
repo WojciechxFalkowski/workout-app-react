@@ -46,10 +46,6 @@
           }
         }
       }
-      .header__link {
-        font-size: 1.1rem;
-        background-color: black;
-      }
     }
   }
   &__hamburger {
@@ -73,26 +69,25 @@
   }
   &__logo {
     display: flex;
-    // align-items: center;
     margin-left: 1vw;
     color: $orange;
     font-weight: bold;
     cursor: pointer;
-    & a {
-      margin-top: 15px;
-    }
     & > a:hover {
       color: $orange;
+    }
+    @media (min-width: 768px) {
+      margin-right: 10px;
     }
   }
   &__link {
     width: 110px;
-
     border: 0px solid black;
     color: $light-grey;
     cursor: pointer;
-    padding: 1vh 1vw;
     text-decoration: none;
+    padding: 1vh 1vw;
+    margin-top: 15px;
     &:hover {
       color: $light-red;
     }
@@ -102,5 +97,6 @@
   }
   @media (min-width: 768px) {
     background-color: black;
+    align-self: center;
   }
 }
