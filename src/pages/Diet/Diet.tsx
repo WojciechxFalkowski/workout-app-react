@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import { DietElement } from "./components";
+import { DietList } from "./components";
+import "./diet.scss";
 export interface Props {}
+interface meal {
+  name: string;
+  carbs: number;
+  fat: number;
+  protein: number;
+  sodium: number;
+  sugar: number;
+  calories: number;
+}
+interface diet {
+  date: Date;
+  meals: Array<meal>;
+}
 
 const Diet: React.FC<Props> = () => {
-  const [diets, setDiets] = useState([
+  const [diets, setDiets] = useState<Array<diet>>([
     {
       date: new Date("2020-11-05T21:25"),
       meals: [
@@ -51,40 +65,19 @@ const Diet: React.FC<Props> = () => {
       ],
     },
   ]);
+  const handleAddDiet = () => {
+    console.log("handleAddDiet");
+    //stworzyc zapytanie do bazy danych aby utworzyl nowy rekort
+    //po stworzeniu nowej diety przenosi do routa z nowo utworzoną dietą
+    //usunac setDiets i diets i zrobic zwykla zmienna
+    // setDiets([...diets, { date: new Date(), meals: [] }]);
+  };
   return (
     <>
-      <h2 className="diet__h2">Diet</h2>
-      {diets.map((diet) => {
-        const date = new Date(diet.date);
-        const modifiedDate = `${
-          date.getDate() > 9 ? date.getDate() : "0" + date.getDate()
-        }/${
-          date.getMonth() + 1 > 9
-            ? date.getMonth() + 1
-            : "0" + date.getMonth() + 1
-        }/${date.getFullYear()}`;
-        let [carbs, fat, protein, sodium, sugar, calories] = [0, 0, 0, 0, 0, 0];
-        diet.meals.forEach((meal) => {
-          carbs += meal.carbs;
-          fat += meal.fat;
-          protein += meal.protein;
-          sodium += meal.sodium;
-          sugar += meal.sugar;
-          calories += meal.calories;
-        });
-        console.log(carbs, fat, protein, sodium, sugar, calories);
-        return (
-          <DietElement
-            modifiedDate={modifiedDate}
-            carbs={carbs}
-            fat={fat}
-            protein={protein}
-            sodium={sodium}
-            sugar={sugar}
-            calories={calories}
-          />
-        );
-      })}
+      <h2 onClick={handleAddDiet} className="diet__h2">
+        Diet
+      </h2>
+      <DietList diets={diets} />
     </>
   );
 };

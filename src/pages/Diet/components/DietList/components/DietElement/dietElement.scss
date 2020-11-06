@@ -1,0 +1,35 @@
+.diet-element {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 2vh auto;
+  padding: 3vh 0 3vh 2vw;
+  align-items: center;
+  font-size: 0.8rem;
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+  &__date {
+    flex-basis: 20%;
+    text-align: center;
+    margin-right: 5vw;
+  }
+  &__nutrients {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-basis: 80%;
+  }
+  &__nutrient {
+    margin: 2vh 0;
+    flex-basis: 30%;
+  }
+  &__title {
+    text-align: center;
+  }
+  &__amount {
+    text-align: center;
+  }
+}

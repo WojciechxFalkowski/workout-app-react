@@ -1,1 +1,1 @@
-export { default as DietElement } from "./DietElement";
+export { default as DietList } from "./DietList";
