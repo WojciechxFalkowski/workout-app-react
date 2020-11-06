@@ -59,12 +59,15 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                   Pomiary
                 </Link>
               </li>
-              {/* <li
-                className="navigation__li navigation__logout"
-                onClick={handleSignOut}
-              >
-                Wyloguj
-              </li> */}
+              <li className="navigation__li">
+                <Link
+                  onClick={handleHamburger}
+                  to="/diet"
+                  className="navigation__a"
+                >
+                  Dieta
+                </Link>
+              </li>
               <li className="navigation__li navigation__logout">
                 <a onClick={handleSignOut} href="/" className="navigation__a">
                   Wyloguj

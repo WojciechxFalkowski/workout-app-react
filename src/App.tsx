@@ -9,6 +9,7 @@ import {
   Exercise,
   Statistics,
   Measurement,
+  Diet,
 } from "pages";
 import fire from "fire";
 
@@ -56,6 +57,11 @@ const App = () => {
                 path="/measurement"
                 exact={false}
                 component={Measurement}
+              ></PrivateRoute>
+              <PrivateRoute
+                path="/diet"
+                exact={false}
+                component={Diet}
               ></PrivateRoute>
               <Route path="/" exact>
                 <Root />
