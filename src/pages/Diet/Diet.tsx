@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DietList } from "./components";
 import "./diet.scss";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import firebase from "firebase";
+
 export interface Props {}
 interface meal {
   name: string;
@@ -17,6 +21,9 @@ interface diet {
 }
 
 const Diet: React.FC<Props> = () => {
+  const history = useHistory();
+  const { currentUser } = useContext(AuthContext);
+  const [diet, setDiet] = useState([]);
   const [diets, setDiets] = useState<Array<diet>>([
     {
       date: new Date("2020-11-05T21:25"),
@@ -65,19 +72,59 @@ const Diet: React.FC<Props> = () => {
       ],
     },
   ]);
+  console.log("diet", diet);
   const handleAddDiet = () => {
+    const saveNewDiet = (userId: string, date: string) => {
+      firebase
+        .database()
+        .ref("users/" + userId + "/diet/" + date)
+        .set({ date });
+    };
+    const today = new Date();
+    const todayDatePattern = `${today.getFullYear()}${today.getMonth() + 1}${
+      today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
+    }`;
+
+    if (currentUser) {
+      saveNewDiet(currentUser.uid, todayDatePattern);
+      history.push(`/diet/${todayDatePattern}`);
+    }
+
     console.log("handleAddDiet");
     //stworzyc zapytanie do bazy danych aby utworzyl nowy rekort
     //po stworzeniu nowej diety przenosi do routa z nowo utworzoną dietą
     //usunac setDiets i diets i zrobic zwykla zmienna
     // setDiets([...diets, { date: new Date(), meals: [] }]);
+  }; //************************************************************************ */
+  const uploadDiet = function (snapshot: any) {
+    const dietArray: any = [];
+    snapshot.forEach(function (childSnapshot: any) {
+      const childData = childSnapshot.val();
+      dietArray.push(childData);
+    });
+
+    setDiet(dietArray);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      const ref = firebase
+        .database()
+        .ref("users/" + currentUser.uid + "/diet")
+        .orderByChild("date");
+      ref.on("value", uploadDiet);
+      return () => {
+        ref.off("value", uploadDiet);
+      };
+    }
+  }, []);
+  //************************************************************************ */
   return (
     <>
       <h2 onClick={handleAddDiet} className="diet__h2">
-        Diet
+        Dieta
       </h2>
-      <DietList diets={diets} />
+      <DietList diets={diet} />
     </>
   );
 };

@@ -1,8 +1,9 @@
 import React from "react";
 import { DietNutrient } from "./components";
 import "./dietElement.scss";
+import { useHistory } from "react-router-dom";
 export interface Props {
-  modifiedDate: string;
+  date: string;
   carbs: number;
   fat: number;
   protein: number;
@@ -12,7 +13,7 @@ export interface Props {
 }
 
 const DietElement: React.FC<Props> = ({
-  modifiedDate,
+  date,
   carbs,
   fat,
   protein,
@@ -20,6 +21,7 @@ const DietElement: React.FC<Props> = ({
   sugar,
   calories,
 }) => {
+  const history = useHistory();
   const titles: Array<string> = [
     "Węglowodany",
     "Tłuszcze",
@@ -36,9 +38,21 @@ const DietElement: React.FC<Props> = ({
     sugar,
     calories,
   ];
+  const handleDietDay = (date: string) => {
+    history.push(`diet/${date}`);
+    console.log("handleDietDay", date);
+  };
+  const modifiedDate = `${date.slice(6, 8)}/${date.slice(4, 6)}/${date.slice(
+    0,
+    4
+  )}`;
   return (
     <>
-      <div className="diet-element" key={modifiedDate}>
+      <div
+        onClick={() => handleDietDay(date)}
+        className="diet-element"
+        key={date}
+      >
         <div className="diet-element__date">{modifiedDate}</div>
         <div className="diet-element__nutrients">
           {titles.map((title: string, index: number) => {

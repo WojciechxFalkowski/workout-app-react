@@ -60,7 +60,7 @@ const App = () => {
               ></PrivateRoute>
               <PrivateRoute
                 path="/diet"
-                exact={false}
+                exact={true}
                 component={Diet}
               ></PrivateRoute>
               <Route path="/" exact>
