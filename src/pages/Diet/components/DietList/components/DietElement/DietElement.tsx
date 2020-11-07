@@ -1,4 +1,5 @@
 import React from "react";
+import { DietNutrient } from "./components";
 import "./dietElement.scss";
 export interface Props {
   modifiedDate: string;
@@ -19,35 +20,37 @@ const DietElement: React.FC<Props> = ({
   sugar,
   calories,
 }) => {
+  const titles: Array<string> = [
+    "Węglowodany",
+    "Tłuszcze",
+    "Białko",
+    "Sole mineralne",
+    "Cukry",
+    "Kalorie",
+  ];
+  const nutrients: Array<number> = [
+    carbs,
+    fat,
+    protein,
+    sodium,
+    sugar,
+    calories,
+  ];
   return (
     <>
       <div className="diet-element" key={modifiedDate}>
         <div className="diet-element__date">{modifiedDate}</div>
         <div className="diet-element__nutrients">
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Węglowodany</p>
-            <p className="diet-element__amount">{carbs}</p>
-          </div>
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Tłuszcze</p>
-            <p className="diet-element__amount">{fat}</p>
-          </div>
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Białko</p>
-            <p className="diet-element__amount">{protein}</p>
-          </div>
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Sole mineralne</p>
-            <p className="diet-element__amount">{sodium}</p>
-          </div>
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Cukry</p>
-            <p className="diet-element__amount">{sugar}</p>
-          </div>
-          <div className="diet-element__nutrient">
-            <p className="diet-element__title">Kalorie</p>
-            <p className="diet-element__amount">{calories}</p>
-          </div>
+          {titles.map((title: string, index: number) => {
+            return (
+              <DietNutrient
+                key={title}
+                title={title}
+                nutrients={nutrients}
+                index={index}
+              />
+            );
+          })}
         </div>
       </div>
     </>
