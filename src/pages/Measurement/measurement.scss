@@ -1,12 +1,7 @@
+@import "./../../utils/variables";
 .measurement {
-  &__h2 {
-    margin: 5vh 0 2vh 0;
-    text-align: center;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  margin-top: 2vh;
+  text-align: center;
   &__block {
     position: fixed;
     top: 0;
@@ -31,12 +26,30 @@
     margin: 0 auto;
     font-size: 0.8rem;
   }
+  &__tbody {
+    tr:nth-child(odd) {
+      background-color: $steelblue;
+      td {
+        button {
+          background-color: $steelblue;
+        }
+      }
+    }
+    tr:nth-child(even) {
+      background-color: $goldenrod;
+      td {
+        button {
+          background-color: $goldenrod;
+        }
+      }
+    }
+  }
   &__th,
   &__td {
     box-sizing: border-box;
     min-width: 42px;
     padding: 1vh 1vw;
-    border: 1px solid black;
+    border: 1px solid white;
 
     &:nth-child(1) {
       min-width: 72px;
@@ -47,11 +60,5 @@
   }
   &__td {
     text-align: center;
-  }
-  &__delete {
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }

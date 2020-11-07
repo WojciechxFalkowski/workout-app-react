@@ -1,3 +1,4 @@
+@import "./../../../../utils/variables";
 .trainings {
   &__h2 {
     text-align: center;
@@ -10,7 +11,7 @@
   }
 
   &__th {
-    padding: 1vh 1vw;
+    padding: 1vh 2vw;
   }
   &__span:hover {
     text-decoration: underline;
@@ -19,16 +20,17 @@
 }
 thead {
   .trainings__tr {
-    background-color: rgba(255, 165, 0, 1);
+    // background-color: rgba(255, 165, 0, 1);
   }
 }
 tbody {
   .trainings__tr:nth-child(even) {
-    background-color: orange;
-    color: white;
+    // background-color: $steelblue;
+    // color: white;
   }
+
   .trainings__tr:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 1);
+    background-color: orange;
     color: white;
   }
 }

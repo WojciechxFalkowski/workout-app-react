@@ -40,7 +40,6 @@ const DietElement: React.FC<Props> = ({
   ];
   const handleDietDay = (date: string) => {
     history.push(`diet/${date}`);
-    console.log("handleDietDay", date);
   };
   const modifiedDate = `${date.slice(6, 8)}/${date.slice(4, 6)}/${date.slice(
     0,

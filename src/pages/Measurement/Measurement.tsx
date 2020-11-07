@@ -3,6 +3,7 @@ import { Block } from "./components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "../../fire";
 import "./measurement.scss";
+import { Button } from "components";
 export interface Props {}
 
 interface measurement {
@@ -54,9 +55,7 @@ const Measurement: React.FC<Props> = () => {
   }, [currentUser]);
   return (
     <div className="measurement">
-      <h2 onClick={handleAddMeasurement} className="measurement__h2">
-        Dodaj pomiary
-      </h2>
+      <Button onClick={handleAddMeasurement}>Dodaj pomiary</Button>
       {showBlock && (
         <Block
           measurements={measurements}
@@ -76,7 +75,7 @@ const Measurement: React.FC<Props> = () => {
             <th className="measurement__th"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="measurement__tbody">
           {measurements
             .map((measurement) => {
               const date = new Date(measurement.date);
@@ -96,12 +95,11 @@ const Measurement: React.FC<Props> = () => {
                   <td className="measurement__td">{measurement.waist}</td>
                   <td className="measurement__td">{measurement.thighs}</td>
                   <td className="measurement__td">
-                    <span
+                    <Button
                       onClick={() => handleDeleteMeasurement(measurement.id)}
-                      className="measurement__delete"
                     >
                       Usuń
-                    </span>
+                    </Button>
                   </td>
                 </tr>
               );

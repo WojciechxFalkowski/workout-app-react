@@ -2,6 +2,7 @@ import "./arrow.scss";
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useHistory } from "react-router-dom";
+import { Button } from "components";
 
 const Arrow = () => {
   const history = useHistory();
@@ -9,11 +10,11 @@ const Arrow = () => {
     history.goBack();
   };
   return (
-    <>
-      <span className="arrow__span" onClick={handleArrowClick}>
+    <div className="arrow">
+      <Button onClick={handleArrowClick}>
         <IoIosArrowBack />
-      </span>
-    </>
+      </Button>
+    </div>
   );
 };
 

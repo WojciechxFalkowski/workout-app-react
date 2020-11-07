@@ -10,6 +10,7 @@ import {
   Statistics,
   Measurement,
   Diet,
+  DietDay,
 } from "pages";
 import fire from "fire";
 
@@ -62,6 +63,11 @@ const App = () => {
                 path="/diet"
                 exact={true}
                 component={Diet}
+              ></PrivateRoute>
+              <PrivateRoute
+                path="/diet/:id"
+                exact={true}
+                component={DietDay}
               ></PrivateRoute>
               <Route path="/" exact>
                 <Root />

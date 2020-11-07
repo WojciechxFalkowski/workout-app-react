@@ -9,14 +9,19 @@
   font-size: 0.8rem;
   border-radius: 10px;
   color: white;
+  cursor: pointer;
+
   &:nth-child(even) {
     background-color: $salmon;
   }
   &:nth-child(odd) {
     background-color: $goldenrod;
   }
+  &:hover {
+    opacity: 0.9;
+  }
   @media (min-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     width: 70%;
     margin: 2vh auto;
   }

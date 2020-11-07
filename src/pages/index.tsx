@@ -6,3 +6,4 @@ export { default as Exercise } from "./Exercise";
 export { default as Statistics } from "./Statistics";
 export { default as Measurement } from "./Measurement";
 export { default as Diet } from "./Diet";
+export { default as DietDay } from "./DietDay";

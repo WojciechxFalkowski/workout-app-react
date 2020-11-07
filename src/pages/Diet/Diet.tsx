@@ -4,7 +4,7 @@ import "./diet.scss";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase";
-
+import { Button } from "components";
 export interface Props {}
 interface meal {
   name: string;
@@ -72,7 +72,6 @@ const Diet: React.FC<Props> = () => {
       ],
     },
   ]);
-  console.log("diet", diet);
   const handleAddDiet = () => {
     const saveNewDiet = (userId: string, date: string) => {
       firebase
@@ -89,13 +88,7 @@ const Diet: React.FC<Props> = () => {
       saveNewDiet(currentUser.uid, todayDatePattern);
       history.push(`/diet/${todayDatePattern}`);
     }
-
-    console.log("handleAddDiet");
-    //stworzyc zapytanie do bazy danych aby utworzyl nowy rekort
-    //po stworzeniu nowej diety przenosi do routa z nowo utworzoną dietą
-    //usunac setDiets i diets i zrobic zwykla zmienna
-    // setDiets([...diets, { date: new Date(), meals: [] }]);
-  }; //************************************************************************ */
+  };
   const uploadDiet = function (snapshot: any) {
     const dietArray: any = [];
     snapshot.forEach(function (childSnapshot: any) {
@@ -117,15 +110,12 @@ const Diet: React.FC<Props> = () => {
         ref.off("value", uploadDiet);
       };
     }
-  }, []);
-  //************************************************************************ */
+  }, [currentUser]);
   return (
-    <>
-      <h2 onClick={handleAddDiet} className="diet__h2">
-        Dieta
-      </h2>
+    <div className="diet">
+      <Button onClick={handleAddDiet}>Dodaj diete</Button>
       <DietList diets={diet} />
-    </>
+    </div>
   );
 };
 
