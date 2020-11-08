@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { FormTemplate } from "components";
 import { required, composeValidators } from "utils/validation";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "../../../../fire";
+import { PopUp } from "components";
 export interface Props {
   measurements: Array<measurement>;
   setShowBlock: (arg: boolean) => void;
@@ -17,6 +17,24 @@ interface measurement {
   waist: number;
   thighs: number;
 }
+interface Fields {
+  name?: string;
+  validate?: (value: any) => void;
+  initialValue?: string | undefined;
+  text?: string;
+  placeholder?: string;
+  type?: string;
+  step?: string;
+  min?: string;
+}
+interface Button {
+  text: string;
+  type: string;
+}
+interface FormFields {
+  fields: Fields[];
+  button: Button;
+}
 const Block: React.FC<Props> = ({
   measurements,
   setShowBlock,
@@ -27,7 +45,7 @@ const Block: React.FC<Props> = ({
   const todayDatePattern = `${today.getFullYear()}-${today.getMonth() + 1}-${
     today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
   }`;
-  const formFields = {
+  const formFields: FormFields = {
     fields: [
       {
         name: "date",
@@ -121,11 +139,11 @@ const Block: React.FC<Props> = ({
     }
   };
   return (
-    <div onClick={(e) => handleRemoveBlock()} className="measurement__block">
-      <div onClick={(e) => e.stopPropagation()} className="measurement__add">
-        <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      </div>
-    </div>
+    <PopUp
+      handleRemoveBlock={handleRemoveBlock}
+      formFields={formFields}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 
