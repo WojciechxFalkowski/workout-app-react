@@ -17,9 +17,8 @@ export interface Props {
 }
 
 const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
-  // console.log("trainings", trainings);
   const options: Array<string> = [];
-  trainings.forEach((training: training, index: number) => {
+  trainings.forEach((training: training) => {
     const id = options.findIndex((item) => item === training.workoutName);
     if (id === -1) {
       options.push(training.workoutName);
@@ -27,8 +26,6 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
   });
 
   const [selectChange, setSelectChange] = useState<string>(options[0]);
-  const [cos, setCos] = useState<trainingsPerTrainingNameItem>();
-
   const data = trainings.filter((training: training) => {
     return training.workoutName === selectChange;
   });
@@ -36,11 +33,11 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
   data.forEach((training) => {
     let amount = 0;
     if (training.exercises) {
-      for (const [key, value] of Object.entries(training.exercises)) {
+      for (const [, value] of Object.entries(training.exercises)) {
         if (value.series) {
           let seriesArray = [];
 
-          for (const [key, series] of Object.entries(value.series)) {
+          for (const [, series] of Object.entries(value.series)) {
             seriesArray.push(series);
           }
           for (let i = 0; i < seriesArray.length; i += 2) {
@@ -68,12 +65,16 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
           data: trainingsArray.amount,
           backgroundColor: function (context: any) {
             const index = context.dataIndex;
-            return index % 2 ? "rgba(255, 165, 0, 0.5)" : "rgba(0,0,0, 0.8)";
+            return index % 2
+              ? "rgba(255, 165, 0, 0.5)"
+              : "rgba(235, 118, 98, 0.8)";
           },
 
           borderColor: function (context: any) {
             const index = context.dataIndex;
-            return index % 2 ? "rgba(255, 165, 0, 0.5)" : "rgba(0,0,0, 1)";
+            return index % 2
+              ? "rgba(255, 165, 0, 0.5)"
+              : "rgba(235, 118, 98, 1)";
           },
           borderWidth: 1,
           hoverBackgroundColor: [],
