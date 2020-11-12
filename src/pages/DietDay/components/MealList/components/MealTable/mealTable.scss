@@ -1,0 +1,87 @@
+@import "./../../../../../../utils/variables";
+.meal-table {
+  width: 96%;
+  margin: 5vh auto;
+  font-size: 0.6rem;
+  &:nth-child(even) {
+    background-color: $goldenrod;
+    tbody {
+      tr {
+        td {
+          button {
+            &:hover {
+              background-color: $goldenrod;
+            }
+          }
+        }
+      }
+    }
+  }
+  &:nth-child(odd) {
+    background-color: $steelblue;
+    tbody {
+      tr {
+        td {
+          button {
+            &:hover {
+              background-color: $steelblue;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    width: 70%;
+  }
+  &__tr {
+    &:nth-last-child(1) {
+      font-weight: bold;
+      // background-color: unset;
+      td {
+        button {
+          font-size: 0.6rem;
+          @media (min-width: 768px) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+  &__th {
+    padding: 1vh 0.5vw;
+    @media (min-width: 768px) {
+      padding: 1vh 2vw;
+    }
+    &:nth-child(1) {
+      text-align: left;
+    }
+
+    // background-color: yellow;
+
+    &:nth-child(1) {
+      @media (min-width: 768px) {
+        min-width: 170px;
+      }
+    }
+  }
+  &__td {
+    padding: 1vh 2vw;
+    &:nth-child(1) {
+      text-align: left;
+    }
+    svg {
+      fill: red;
+      cursor: pointer;
+    }
+  }
+  &__tbody {
+    tr {
+      background-color: white;
+      &:nth-last-child(1) {
+        background-color: unset;
+      }
+    }
+  }
+}

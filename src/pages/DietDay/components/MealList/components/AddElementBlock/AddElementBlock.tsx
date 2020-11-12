@@ -3,6 +3,18 @@ import { PopUp } from "components";
 import { required, composeValidators } from "utils/validation";
 import firebase from "firebase";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
+interface mealItem {
+  ingredient: string;
+  carbs: number;
+  fats: number;
+  proteins: number;
+  mineralsalt: number;
+  calories: number;
+}
+interface meal {
+  mealName: string;
+  list: Array<mealItem>;
+}
 interface Fields {
   name?: string;
   validate?: (value: any) => void;
@@ -28,12 +40,18 @@ export interface Props {
   index: number;
   id: string;
   setShowBlock: (arg: boolean) => void;
+  meal: meal;
   // meals: any;
   // setMeals: any;
   // id: string;
 }
 
-const AddElementBlock: React.FC<Props> = ({ index, id, setShowBlock }) => {
+const AddElementBlock: React.FC<Props> = ({
+  index,
+  id,
+  setShowBlock,
+  meal,
+}) => {
   const { currentUser } = useContext(AuthContext);
 
   const formFields: FormFields = {
@@ -105,19 +123,24 @@ const AddElementBlock: React.FC<Props> = ({ index, id, setShowBlock }) => {
   const handleRemoveBlock = () => {
     setShowBlock(false);
   };
-  const saveIngredient = (userId: string, index: number, values: any) => {
+  const saveIngredient = (
+    userId: string,
+    index: number,
+    values: any,
+    list: Array<mealItem>
+  ) => {
+    const newList = list ? list : [];
     firebase
       .database()
-      .ref(`users/${userId}/diet/${id}/meal/${index}`)
-      .push()
-      .set(values);
+      .ref(`users/${userId}/diet/${id}/meal/${index}/list`)
+      .set([...newList, values]);
   };
   const handleSubmit = (values: values) => {
     console.log(values);
 
     // setMeals([...meals, values.meal]);
     if (currentUser) {
-      saveIngredient(currentUser.uid, index, values);
+      saveIngredient(currentUser.uid, index, values, meal.list);
     }
 
     setShowBlock(false);

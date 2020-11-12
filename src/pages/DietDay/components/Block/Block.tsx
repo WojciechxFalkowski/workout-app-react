@@ -3,7 +3,7 @@ import { PopUp } from "components";
 import firebase from "firebase";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 interface values {
-  meal: string;
+  mealName: string;
 }
 
 interface Fields {
@@ -37,7 +37,7 @@ const Block: React.FC<Props> = ({ setShowBlock, meals, setMeals, id }) => {
   const formFields: FormFields = {
     fields: [
       {
-        name: "meal",
+        name: "mealName",
         initialValue: undefined,
         text: "Nazwa posiłku",
         placeholder: "Nazwa posiłku",
@@ -59,7 +59,7 @@ const Block: React.FC<Props> = ({ setShowBlock, meals, setMeals, id }) => {
       .set([...meals, values]);
   };
   const handleSubmit = (values: values) => {
-    if (values.meal) {
+    if (values.mealName) {
       // setMeals([...meals, values.meal]);
       if (currentUser) {
         saveMeal(currentUser.uid, values);

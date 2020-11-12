@@ -8,14 +8,17 @@ import { Block, MealList } from "./components";
 interface params {
   id: string;
 }
-interface meal {
-  name: string;
+interface mealItem {
+  ingredient: string;
   carbs: number;
-  fat: number;
-  protein: number;
-  sodium: number;
-  sugar: number;
+  fats: number;
+  proteins: number;
+  mineralsalt: number;
   calories: number;
+}
+interface meal {
+  mealName: string;
+  list: Array<mealItem>;
 }
 
 export interface Props {}

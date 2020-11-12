@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Button } from "components";
-import { AddElementBlock } from "./components";
-interface meal {
-  name: string;
+import React from "react";
+
+import { MealTable } from "./components";
+interface mealItem {
+  ingredient: string;
   carbs: number;
-  fat: number;
-  protein: number;
-  sodium: number;
-  sugar: number;
+  fats: number;
+  proteins: number;
+  mineralsalt: number;
   calories: number;
+}
+interface meal {
+  mealName: string;
+  list: Array<mealItem>;
 }
 
 export interface Props {
@@ -16,49 +19,17 @@ export interface Props {
   id: string;
 }
 const MealList: React.FC<Props> = ({ meals, id }) => {
-  const [showBlock, setShowBlock] = useState(false);
-  const titles: Array<string> = [
-    "Węglowodany",
-    "Tłuszcze",
-    "Białko",
-    "Sole mineralne",
-    "Kalorie",
-  ];
-  const handleAddMealEelement = () => {
-    setShowBlock(true);
-    console.log("dziala");
-  };
   return (
     <>
       {meals &&
         meals.map((meal, index) => {
           return (
-            <>
-              <table key={meal.name}>
-                <thead>
-                  <tr>
-                    <th>{meal.name}</th>
-                    {titles.map((title) => (
-                      <th>{title}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Button onClick={handleAddMealEelement}>Dodaj</Button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              {showBlock && (
-                <AddElementBlock
-                  index={index}
-                  id={id}
-                  setShowBlock={setShowBlock}
-                />
-              )}
-            </>
+            <MealTable
+              key={meal.mealName}
+              meal={meal}
+              indexList={index}
+              id={id}
+            />
           );
         })}
     </>
