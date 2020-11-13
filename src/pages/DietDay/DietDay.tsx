@@ -3,8 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import "./dietDay.scss";
-import { Button, GoBackDelete } from "components";
-import { Block, MealList } from "./components";
+import { GoBackDelete } from "components";
+import { MealList, AddMeal } from "./components";
 interface params {
   id: string;
 }
@@ -29,7 +29,6 @@ const DietDay: React.FC<Props> = () => {
   const history = useHistory();
   const [meals, setMeals] = useState<Array<meal>>([]);
 
-  const [showBlock, setShowBlock] = useState(false);
   const uploadDietDay = function (snapshot: any) {
     const dietDayArray: any = [];
     snapshot.forEach(function (childSnapshot: any) {
@@ -52,9 +51,6 @@ const DietDay: React.FC<Props> = () => {
     }
   }, [currentUser, params.id]);
 
-  const handleAddMeal = () => {
-    setShowBlock(true);
-  };
   const handleRemoveDietDay = () => {
     if (currentUser) {
       firebase
@@ -66,17 +62,9 @@ const DietDay: React.FC<Props> = () => {
   };
   return (
     <div className="diet-day">
-      {showBlock && (
-        <Block
-          setShowBlock={setShowBlock}
-          meals={meals}
-          setMeals={setMeals}
-          id={params.id}
-        />
-      )}
       <GoBackDelete handleEdit={handleRemoveDietDay} />
-      <Button onClick={handleAddMeal}>Dodaj posiłek</Button>
 
+      <AddMeal meals={meals} id={params.id} />
       <MealList meals={meals} id={params.id} />
     </div>
   );

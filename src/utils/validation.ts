@@ -10,8 +10,8 @@ export const minValue = (min: number, text: string) => (value: string) =>
   isNaN(value.length) || value.length >= min ? undefined : text;
 export const maxValue = (max: number, text: string) => (value: string) =>
   isNaN(value.length) || value.length <= max ? undefined : text;
-export const uniqueString = (contacts: any, text: string) => (value: string) =>
-  contacts.find((contact: any) => contact.accountNumber === value) === undefined
+export const uniqueMealName = (items: any, text: string) => (value: string) =>
+  items.find((item: any) => item.mealName === value) === undefined
     ? undefined
     : text;
 

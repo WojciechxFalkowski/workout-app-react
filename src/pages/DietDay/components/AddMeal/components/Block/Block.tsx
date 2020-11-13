@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { PopUp } from "components";
 import firebase from "firebase/app";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
+import { composeValidators, required, uniqueMealName } from "utils/validation";
 interface values {
   mealName: string;
 }
@@ -27,17 +28,21 @@ interface FormFields {
 export interface Props {
   setShowBlock: (arg: boolean) => void;
   meals: any;
-  setMeals: any;
   id: string;
 }
 
-const Block: React.FC<Props> = ({ setShowBlock, meals, setMeals, id }) => {
+const Block: React.FC<Props> = ({ setShowBlock, meals, id }) => {
   const { currentUser } = useContext(AuthContext);
-
+  console.log("meals", meals);
   const formFields: FormFields = {
     fields: [
       {
         name: "mealName",
+        validate: composeValidators(
+          required("To pole jest wymagane!"),
+          uniqueMealName(meals, "Taki posiłek już istnieje!")
+        ),
+
         initialValue: undefined,
         text: "Nazwa posiłku",
         placeholder: "Nazwa posiłku",
@@ -60,7 +65,6 @@ const Block: React.FC<Props> = ({ setShowBlock, meals, setMeals, id }) => {
   };
   const handleSubmit = (values: values) => {
     if (values.mealName) {
-      // setMeals([...meals, values.meal]);
       if (currentUser) {
         saveMeal(currentUser.uid, values);
       }

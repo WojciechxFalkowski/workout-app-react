@@ -1,2 +1,2 @@
-export { default as Block } from "./Block";
 export { default as MealList } from "./MealList";
+export { default as AddMeal } from "./AddMeal";

@@ -48,7 +48,6 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
       sumNutrientsByType[4] += Number(item.calories);
     });
   }
-  // console.log("sumNutrientsByType", sumNutrientsByType);
   const handleRemoveMealItem = (index: number) => {
     if (currentUser) {
       const filteredList = meal.list.filter((item, ind) => ind !== index);
@@ -100,8 +99,13 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
               <Button onClick={handleAddMealEelement}>Dodaj</Button>
             </td>
             {sumNutrientsByType.map((item, index) => {
-              return <td key={titles[index]}>{item}</td>;
+              return (
+                <td key={titles[index]} className="meal-table__td">
+                  {item}
+                </td>
+              );
             })}
+            <td className="meal-table__td"></td>
           </tr>
         </tbody>
       </table>

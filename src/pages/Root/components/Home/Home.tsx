@@ -1,6 +1,6 @@
 import React from "react";
-import { AuthContext } from "components/AuthProvider/AuthProvider";
-import fire from "fire";
+// import { AuthContext } from "components/AuthProvider/AuthProvider";
+// import fire from "fire";
 
 export interface Props {}
 // let index = 0;

@@ -41,9 +41,6 @@ export interface Props {
   id: string;
   setShowBlock: (arg: boolean) => void;
   meal: meal;
-  // meals: any;
-  // setMeals: any;
-  // id: string;
 }
 
 const AddElementBlock: React.FC<Props> = ({
