@@ -1,32 +1,30 @@
 import React, { useEffect, useState, createContext } from "react";
-
+import firebase from "firebase/app";
 import { LoadingIndicator } from "components";
 export const AuthContext = createContext<Partial<ContextProps>>({});
 type ContextProps = { currentUser: user | null };
 interface user {
   uid: string;
 }
-interface Props {
-  fire: any;
-}
-const AuthProvider: React.FC<Props> = ({ children, fire }) => {
+interface Props {}
+const AuthProvider: React.FC<Props> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
     const writeUserData = (userId: string, email: string) => {
-      fire
+      firebase
         .database()
         .ref("users/" + userId)
         .set({
           email: email,
         });
     };
-    fire.auth().onAuthStateChanged((user: any) => {
+    firebase.auth().onAuthStateChanged((user: any) => {
       setCurrentUser(user);
       setPending(false);
       if (user) {
-        let rootRef = fire.database().ref("users/");
+        let rootRef = firebase.database().ref("users/");
         rootRef.child(user.uid).once("value", function (snapshot: any) {
           let exists = snapshot.val() !== null;
           if (!exists) {
@@ -38,7 +36,7 @@ const AuthProvider: React.FC<Props> = ({ children, fire }) => {
         });
       }
     });
-  }, [fire]);
+  }, []);
 
   if (pending) {
     return <LoadingIndicator />;

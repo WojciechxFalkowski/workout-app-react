@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PopUp } from "components";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 interface values {
   mealName: string;

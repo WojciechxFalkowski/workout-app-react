@@ -3,7 +3,7 @@ import { DietList } from "./components";
 import "./diet.scss";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { Button } from "components";
 export interface Props {}
 

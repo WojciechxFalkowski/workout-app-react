@@ -1,6 +1,8 @@
 import React from "react";
 import "reset-css";
 import "./App.scss";
+import "firebase/auth";
+import "firebase/database";
 import {
   Login,
   Root,
@@ -12,7 +14,6 @@ import {
   Diet,
   DietDay,
 } from "pages";
-import fire from "fire";
 
 import {
   LoadingIndicator,
@@ -25,7 +26,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
   return (
     <React.Suspense fallback={<LoadingIndicator />}>
-      <AuthProvider fire={fire}>
+      <AuthProvider>
         <div className="app__wrapper">
           <Router>
             <Header />

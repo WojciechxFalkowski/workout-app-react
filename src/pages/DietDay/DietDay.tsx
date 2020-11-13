@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "./dietDay.scss";
 import { Button, GoBackDelete } from "components";
 import { Block, MealList } from "./components";
