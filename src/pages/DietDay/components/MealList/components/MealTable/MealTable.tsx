@@ -3,8 +3,7 @@ import React, { useState, useContext } from "react";
 import { AddElementBlock } from "./../../components";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import firebase from "firebase";
-
+import firebase from "firebase/app";
 import "./mealTable.scss";
 interface mealItem {
   ingredient: string;
@@ -35,9 +34,21 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
     "Kalorie",
     "",
   ];
+  const sumNutrientsByType = [0, 0, 0, 0, 0];
   const handleAddMealEelement = () => {
     setShowBlock(true);
   };
+
+  if (meal.list) {
+    meal.list.forEach((item) => {
+      sumNutrientsByType[0] += Number(item.carbs);
+      sumNutrientsByType[1] += Number(item.fats);
+      sumNutrientsByType[2] += Number(item.proteins);
+      sumNutrientsByType[3] += Number(item.mineralsalt);
+      sumNutrientsByType[4] += Number(item.calories);
+    });
+  }
+  // console.log("sumNutrientsByType", sumNutrientsByType);
   const handleRemoveMealItem = (index: number) => {
     if (currentUser) {
       const filteredList = meal.list.filter((item, ind) => ind !== index);
@@ -49,7 +60,7 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
   };
   return (
     <>
-      <table className="meal-table" key={meal.mealName}>
+      <table key={meal.mealName} className="meal-table">
         <thead className="meal-table__thead">
           <tr className="meal-table__tr">
             <th className="meal-table__th">{meal.mealName}</th>
@@ -63,6 +74,11 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
         <tbody className="meal-table__tbody">
           {meal.list &&
             meal.list.map((item, index) => {
+              sumNutrientsByType[0] += Number(item.carbs);
+              sumNutrientsByType[1] += Number(item.fats);
+              sumNutrientsByType[2] += Number(item.proteins);
+              sumNutrientsByType[3] += Number(item.mineralsalt);
+              sumNutrientsByType[4] += Number(item.calories);
               return (
                 <tr key={item.ingredient}>
                   <td className="meal-table__td">{item.ingredient}</td>
@@ -83,6 +99,9 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
             <td className="meal-table__td">
               <Button onClick={handleAddMealEelement}>Dodaj</Button>
             </td>
+            {sumNutrientsByType.map((item, index) => {
+              return <td key={titles[index]}>{item}</td>;
+            })}
           </tr>
         </tbody>
       </table>
