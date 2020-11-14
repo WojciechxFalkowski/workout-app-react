@@ -26,6 +26,7 @@ const MealList: React.FC<Props> = ({ meals, id }) => {
           return (
             <MealTable
               key={meal.mealName}
+              meals={meals}
               meal={meal}
               indexList={index}
               id={id}

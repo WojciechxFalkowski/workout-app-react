@@ -113,7 +113,12 @@ const Exercise: React.FC<Props> = (props) => {
   }, [currentUser, id, props.match.params.id]);
   return (
     <div className="exercise">
-      {!isActiveEditing && <GoBackDelete handleEdit={handleSaveExercise} />}
+      {!isActiveEditing && (
+        <GoBackDelete
+          handleEdit={handleSaveExercise}
+          editTitle="Usuń ćwiczenie"
+        />
+      )}
       {currentUser && (
         <EditTitle
           labelText="Nazwa ćwiczenia"

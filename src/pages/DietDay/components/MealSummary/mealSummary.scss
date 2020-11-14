@@ -1,0 +1,47 @@
+@import "./../../../../utils/variables";
+.mealSummary {
+  width: 96%;
+  margin: 5vh auto;
+  background-color: $salmon;
+  color: white;
+  font-size: 0.7rem;
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    width: 70%;
+  }
+  &__tr {
+    border-bottom: 1px solid white;
+    &:nth-last-child(1) {
+      font-weight: bold;
+    }
+  }
+  &__td {
+    padding: 1vh 2vw;
+    min-width: 51px;
+  }
+  &__above-zero {
+    color: green;
+  }
+  &__below-zero {
+    color: red;
+  }
+  &__th {
+    padding: 1vh 0.5vw;
+    @media (min-width: 768px) {
+      padding: 1vh 2vw;
+    }
+    &:nth-child(1) {
+      @media (min-width: 768px) {
+        min-width: 170px;
+      }
+    }
+  }
+  &__tfoot {
+    tr {
+      border: unset;
+      th {
+        padding: 1vh 1vw;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import "./dietDay.scss";
 import { GoBackDelete } from "components";
-import { MealList, AddMeal } from "./components";
+import { MealList, AddMeal, MealSummary } from "./components";
 interface params {
   id: string;
 }
@@ -62,10 +62,10 @@ const DietDay: React.FC<Props> = () => {
   };
   return (
     <div className="diet-day">
-      <GoBackDelete handleEdit={handleRemoveDietDay} />
-
+      <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
       <AddMeal meals={meals} id={params.id} />
       <MealList meals={meals} id={params.id} />
+      <MealSummary meals={meals} />
     </div>
   );
 };

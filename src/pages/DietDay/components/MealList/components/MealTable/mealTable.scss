@@ -3,7 +3,7 @@
   width: 96%;
   margin: 5vh auto;
   font-size: 0.6rem;
-  &:nth-child(even) {
+  &:nth-of-type(even) {
     background-color: $goldenrod;
     tbody {
       tr {
@@ -17,13 +17,14 @@
       }
     }
   }
-  &:nth-child(odd) {
+  &:nth-of-type(odd) {
     background-color: $steelblue;
     tbody {
       tr {
         td {
           button {
-            &:hover {
+            &:hover,
+            &:focus {
               background-color: $steelblue;
             }
           }
@@ -38,8 +39,6 @@
   &__tr {
     &:nth-last-child(1) {
       font-weight: bold;
-
-      // background-color: unset;
       td {
         min-width: 51px;
         box-sizing: border-box;
@@ -60,9 +59,12 @@
     &:nth-child(1) {
       text-align: left;
     }
-
-    // background-color: yellow;
-
+    &:nth-last-child(1) {
+      svg {
+        transform: translateY(5px);
+        cursor: pointer;
+      }
+    }
     &:nth-child(1) {
       @media (min-width: 768px) {
         min-width: 170px;

@@ -1,9 +1,11 @@
 import { Button } from "components";
 import React, { useState, useContext } from "react";
 import { AddElementBlock } from "./../../components";
-import { IoIosRemoveCircleOutline } from "react-icons/io";
+
+import { AiFillDelete } from "react-icons/ai";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
+import { IngredientItem, SumNutrientsByType } from "./components";
 import "./mealTable.scss";
 interface mealItem {
   ingredient: string;
@@ -18,12 +20,13 @@ interface meal {
   list: Array<mealItem>;
 }
 export interface Props {
+  meals: Array<meal>;
   meal: meal;
   indexList: number;
   id: string;
 }
 
-const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
+const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
   const { currentUser } = useContext(AuthContext);
   const [showBlock, setShowBlock] = useState(false);
   const titles: Array<string> = [
@@ -32,29 +35,22 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
     "Białko",
     "Sole mineralne",
     "Kalorie",
-    "",
   ];
-  const sumNutrientsByType = [0, 0, 0, 0, 0];
+
   const handleAddMealEelement = () => {
     setShowBlock(true);
   };
 
-  if (meal.list) {
-    meal.list.forEach((item) => {
-      sumNutrientsByType[0] += Number(item.carbs);
-      sumNutrientsByType[1] += Number(item.fats);
-      sumNutrientsByType[2] += Number(item.proteins);
-      sumNutrientsByType[3] += Number(item.mineralsalt);
-      sumNutrientsByType[4] += Number(item.calories);
-    });
-  }
-  const handleRemoveMealItem = (index: number) => {
+  const handleRemoveMeal = (mealName: string) => {
     if (currentUser) {
-      const filteredList = meal.list.filter((item, ind) => ind !== index);
+      const filteredMealList = meals.filter(
+        (item) => item.mealName !== mealName
+      );
+      console.log("filteredMealList", filteredMealList);
       firebase
         .database()
-        .ref(`users/${currentUser.uid}/diet/${id}/meal/${indexList}/list`)
-        .set([...filteredList]);
+        .ref(`users/${currentUser.uid}/diet/${id}/meal`)
+        .set([...filteredMealList]);
     }
   };
   return (
@@ -68,43 +64,31 @@ const MealTable: React.FC<Props> = ({ meal, indexList, id }) => {
                 {title}
               </th>
             ))}
+
+            <th className="meal-table__th">
+              <AiFillDelete onClick={() => handleRemoveMeal(meal.mealName)} />
+            </th>
           </tr>
         </thead>
         <tbody className="meal-table__tbody">
           {meal.list &&
             meal.list.map((item, index) => {
-              sumNutrientsByType[0] += Number(item.carbs);
-              sumNutrientsByType[1] += Number(item.fats);
-              sumNutrientsByType[2] += Number(item.proteins);
-              sumNutrientsByType[3] += Number(item.mineralsalt);
-              sumNutrientsByType[4] += Number(item.calories);
               return (
-                <tr key={item.ingredient}>
-                  <td className="meal-table__td">{item.ingredient}</td>
-                  <td className="meal-table__td">{item.carbs}</td>
-                  <td className="meal-table__td">{item.fats}</td>
-                  <td className="meal-table__td">{item.proteins}</td>
-                  <td className="meal-table__td">{item.mineralsalt}</td>
-                  <td className="meal-table__td">{item.calories}</td>
-                  <td className="meal-table__td">
-                    <IoIosRemoveCircleOutline
-                      onClick={() => handleRemoveMealItem(index)}
-                    />
-                  </td>
-                </tr>
+                <IngredientItem
+                  key={item.ingredient}
+                  meal={meal}
+                  item={item}
+                  index={index}
+                  indexList={indexList}
+                  id={id}
+                />
               );
             })}
           <tr className="meal-table__tr">
             <td className="meal-table__td">
               <Button onClick={handleAddMealEelement}>Dodaj</Button>
             </td>
-            {sumNutrientsByType.map((item, index) => {
-              return (
-                <td key={titles[index]} className="meal-table__td">
-                  {item}
-                </td>
-              );
-            })}
+            <SumNutrientsByType meal={meal} titles={titles} />
             <td className="meal-table__td"></td>
           </tr>
         </tbody>

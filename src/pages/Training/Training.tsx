@@ -84,7 +84,12 @@ const Training: React.FC<Props> = ({ match }) => {
 
   return (
     <div className="training">
-      {!isActiveEditing && <GoBackDelete handleEdit={handleDeleteTraining} />}
+      {!isActiveEditing && (
+        <GoBackDelete
+          handleEdit={handleDeleteTraining}
+          editTitle="Usuń trening"
+        />
+      )}
 
       {currentUser && (
         <EditTitle
