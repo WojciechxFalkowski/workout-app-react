@@ -20,11 +20,11 @@ const SumNutrientsByType: React.FC<Props> = ({ meal, titles }) => {
   const sumNutrientsByType = [0, 0, 0, 0, 0];
   if (meal.list) {
     meal.list.forEach((item) => {
-      sumNutrientsByType[0] += Number(item.carbs);
-      sumNutrientsByType[1] += Number(item.fats);
-      sumNutrientsByType[2] += Number(item.proteins);
-      sumNutrientsByType[3] += Number(item.mineralsalt);
-      sumNutrientsByType[4] += Number(item.calories);
+      sumNutrientsByType[0] += item.carbs;
+      sumNutrientsByType[1] += item.fats;
+      sumNutrientsByType[2] += item.proteins;
+      sumNutrientsByType[3] += item.mineralsalt;
+      sumNutrientsByType[4] += item.calories;
     });
   }
   return (

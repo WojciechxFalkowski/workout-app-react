@@ -8,6 +8,8 @@ export const mustBeNumber = (text: string) => (
 ): string | undefined => (isNaN(value) ? text : undefined);
 export const minValue = (min: number, text: string) => (value: string) =>
   isNaN(value.length) || value.length >= min ? undefined : text;
+export const mustBeAmount = (text: string) => (value: string) =>
+  value.length === Number(value).toString().length ? undefined : text;
 export const maxValue = (max: number, text: string) => (value: string) =>
   isNaN(value.length) || value.length <= max ? undefined : text;
 export const uniqueMealName = (items: any, text: string) => (value: string) =>

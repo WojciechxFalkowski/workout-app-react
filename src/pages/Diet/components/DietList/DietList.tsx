@@ -2,11 +2,11 @@ import React from "react";
 import { DietElement } from "./components";
 interface list {
   ingredient: string;
-  carbs: string;
-  fats: string;
-  proteins: string;
-  mineralsalt: string;
-  calories: string;
+  carbs: number;
+  fats: number;
+  proteins: number;
+  mineralsalt: number;
+  calories: number;
 }
 interface meal {
   mealName: string;
@@ -30,11 +30,11 @@ const DietList: React.FC<Props> = ({ diets }) => {
             diet.meal.forEach((meal) => {
               if (meal.list) {
                 meal.list.forEach((item) => {
-                  carbs += Number(item.carbs);
-                  fats += Number(item.fats);
-                  proteins += Number(item.proteins);
-                  mineralsalt += Number(item.mineralsalt);
-                  calories += Number(item.calories);
+                  carbs += item.carbs;
+                  fats += item.fats;
+                  proteins += item.proteins;
+                  mineralsalt += item.mineralsalt;
+                  calories += item.calories;
                 });
               }
             });

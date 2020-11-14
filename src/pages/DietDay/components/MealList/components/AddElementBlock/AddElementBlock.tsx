@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PopUp } from "components";
-import { required, composeValidators } from "utils/validation";
+import { required, composeValidators, mustBeAmount } from "utils/validation";
 import firebase from "firebase/app";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 interface mealItem {
@@ -33,9 +33,7 @@ interface FormFields {
   fields: Fields[];
   button: Button;
 }
-interface values {
-  meal: string;
-}
+
 export interface Props {
   index: number;
   id: string;
@@ -63,7 +61,10 @@ const AddElementBlock: React.FC<Props> = ({
       },
       {
         name: "carbs",
-        validate: composeValidators(required("To pole jest wymagane!")),
+        validate: composeValidators(
+          required("To pole jest wymagane!"),
+          mustBeAmount("To nie jest liczba!")
+        ),
         initialValue: undefined,
         text: "Węglowodany",
         placeholder: "Węglowodany",
@@ -123,7 +124,7 @@ const AddElementBlock: React.FC<Props> = ({
   const saveIngredient = (
     userId: string,
     index: number,
-    values: any,
+    values: mealItem,
     list: Array<mealItem>
   ) => {
     const newList = list ? list : [];
@@ -132,9 +133,18 @@ const AddElementBlock: React.FC<Props> = ({
       .ref(`users/${userId}/diet/${id}/meal/${index}/list`)
       .set([...newList, values]);
   };
-  const handleSubmit = (values: values) => {
+  const handleSubmit = (values: mealItem) => {
+    const valuesModified = {
+      ingredient: values.ingredient,
+      carbs: Number(values.carbs),
+      fats: Number(values.fats),
+      proteins: Number(values.proteins),
+      mineralsalt: Number(values.mineralsalt),
+      calories: Number(values.calories),
+    };
+
     if (currentUser) {
-      saveIngredient(currentUser.uid, index, values, meal.list);
+      saveIngredient(currentUser.uid, index, valuesModified, meal.list);
     }
     setShowBlock(false);
   };
