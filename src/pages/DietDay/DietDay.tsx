@@ -20,9 +20,7 @@ interface meal {
   mealName: string;
   list: Array<mealItem>;
 }
-
 export interface Props {}
-
 const DietDay: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const params: params = useParams();
@@ -43,7 +41,6 @@ const DietDay: React.FC<Props> = () => {
       const ref = firebase
         .database()
         .ref("users/" + currentUser.uid + "/diet/" + params.id + "/meal");
-
       ref.on("value", uploadDietDay);
       return () => {
         ref.off("value", uploadDietDay);
@@ -65,7 +62,7 @@ const DietDay: React.FC<Props> = () => {
       <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
       <AddMeal meals={meals} id={params.id} />
       <MealList meals={meals} id={params.id} />
-      <MealSummary meals={meals} />
+      {meals.length !== 0 && <MealSummary meals={meals} />}
     </div>
   );
 };

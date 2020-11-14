@@ -3,6 +3,7 @@
   width: 96%;
   margin: 5vh auto;
   font-size: 0.6rem;
+  max-width: 1100px;
   &:nth-of-type(even) {
     background-color: $goldenrod;
     tbody {
@@ -34,13 +35,11 @@
   }
   @media (min-width: 768px) {
     font-size: 0.9rem;
-    width: 70%;
   }
   &__tr {
     &:nth-last-child(1) {
       font-weight: bold;
       td {
-        min-width: 51px;
         box-sizing: border-box;
         button {
           font-size: 0.6rem;
@@ -52,7 +51,7 @@
     }
   }
   &__th {
-    padding: 1vh 0.5vw;
+    padding: 2vh 1vw;
     @media (min-width: 768px) {
       padding: 1vh 2vw;
     }
@@ -72,7 +71,7 @@
     }
   }
   &__td {
-    padding: 1vh 2vw;
+    padding: 2vh 2vw;
     &:nth-child(1) {
       text-align: left;
     }
