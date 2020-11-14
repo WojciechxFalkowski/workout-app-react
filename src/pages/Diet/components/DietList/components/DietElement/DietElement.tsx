@@ -5,20 +5,18 @@ import { useHistory } from "react-router-dom";
 export interface Props {
   date: string;
   carbs: number;
-  fat: number;
-  protein: number;
-  sodium: number;
-  sugar: number;
+  fats: number;
+  proteins: number;
+  mineralsalt: number;
   calories: number;
 }
 
 const DietElement: React.FC<Props> = ({
   date,
   carbs,
-  fat,
-  protein,
-  sodium,
-  sugar,
+  fats,
+  proteins,
+  mineralsalt,
   calories,
 }) => {
   const history = useHistory();
@@ -27,15 +25,13 @@ const DietElement: React.FC<Props> = ({
     "Tłuszcze",
     "Białko",
     "Sole mineralne",
-    "Cukry",
     "Kalorie",
   ];
   const nutrients: Array<number> = [
     carbs,
-    fat,
-    protein,
-    sodium,
-    sugar,
+    fats,
+    proteins,
+    mineralsalt,
     calories,
   ];
   const handleDietDay = (date: string) => {

@@ -46,7 +46,6 @@ const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
       const filteredMealList = meals.filter(
         (item) => item.mealName !== mealName
       );
-      console.log("filteredMealList", filteredMealList);
       firebase
         .database()
         .ref(`users/${currentUser.uid}/diet/${id}/meal`)

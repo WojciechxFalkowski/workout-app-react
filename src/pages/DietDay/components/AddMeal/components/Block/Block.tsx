@@ -33,7 +33,6 @@ export interface Props {
 
 const Block: React.FC<Props> = ({ setShowBlock, meals, id }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log("meals", meals);
   const formFields: FormFields = {
     fields: [
       {

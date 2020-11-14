@@ -107,7 +107,6 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
       },
     },
   };
-  // console.log("trainingsArray", trainingsArray);
   const handleSelectChange = (e: any) => {
     setSelectChange(e.target.value);
   };

@@ -36,14 +36,12 @@ const MealSummary: React.FC<Props> = ({ meals }) => {
       });
     }
   });
-  console.log("sumNutrientsByType", sumNutrientsByType);
   return (
     <table className="mealSummary">
       <tbody className="mealSummary__tbody">
         <tr className="mealSummary__tr">
           <td className="mealSummary__td">Razem</td>
           {sumNutrientsByType.map((type, index) => {
-            console.log("type", type);
             return (
               <td key={titles[index]} className="mealSummary__td">
                 {type}

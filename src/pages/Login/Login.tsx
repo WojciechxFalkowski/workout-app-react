@@ -10,7 +10,6 @@ export interface Test {
 }
 const LoginPage: React.FC<Props> = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  console.log("Login");
   const uiConfig: Test = {
     signInFlow: "popup",
     signInOptions: [

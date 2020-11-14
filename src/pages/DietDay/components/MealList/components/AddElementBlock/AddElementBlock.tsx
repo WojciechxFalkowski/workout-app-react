@@ -133,13 +133,9 @@ const AddElementBlock: React.FC<Props> = ({
       .set([...newList, values]);
   };
   const handleSubmit = (values: values) => {
-    console.log(values);
-
-    // setMeals([...meals, values.meal]);
     if (currentUser) {
       saveIngredient(currentUser.uid, index, values, meal.list);
     }
-
     setShowBlock(false);
   };
 
