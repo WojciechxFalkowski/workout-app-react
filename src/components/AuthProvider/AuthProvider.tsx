@@ -5,6 +5,7 @@ export const AuthContext = createContext<Partial<ContextProps>>({});
 type ContextProps = { currentUser: user | null };
 interface user {
   uid: string;
+  displayName: string;
 }
 interface Props {}
 const AuthProvider: React.FC<Props> = ({ children }) => {

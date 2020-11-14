@@ -1,0 +1,15 @@
+@import "./../../../../../../utils/variables";
+.greetings {
+  margin: 5vh 0 5vh 5vw;
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &__date {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: $dark-grey;
+  }
+}
