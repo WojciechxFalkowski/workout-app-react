@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import { Greetings } from "./components";
+import { Greetings, MyProfile, Activities, TableResults } from "./components";
+import "./home.scss";
 // import fire from "fire";
 
 export interface Props {}
@@ -10,7 +11,16 @@ const Home: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   console.log("currentUser w HOME:", currentUser);
 
-  return <>{currentUser && <Greetings />}</>;
+  return (
+    <div className="home">
+      {currentUser && <Greetings />}
+      <div className="home__profile">
+        <MyProfile />
+        <Activities />
+      </div>
+      <TableResults />
+    </div>
+  );
 };
 
 export default Home;

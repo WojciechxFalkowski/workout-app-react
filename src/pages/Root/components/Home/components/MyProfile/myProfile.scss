@@ -1,0 +1,36 @@
+@import "./../../../../../../utils/variables";
+.my-profile {
+  text-align: center;
+  margin: 0 auto;
+  &__text {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+  }
+  &__div-initials {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: black;
+  }
+  &__initials {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+  }
+  &__name {
+    display: block;
+    margin-top: 1vh;
+    font-weight: bold;
+  }
+  &__rank {
+    color: $dark-grey;
+  }
+}

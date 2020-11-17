@@ -1,0 +1,14 @@
+.today-trainings {
+  margin: 2vh 0;
+  &__title {
+    font-weight: bold;
+  }
+  &__trainings {
+    margin-top: 1vh;
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    line-height: 50px;
+    text-align: center;
+  }
+}
