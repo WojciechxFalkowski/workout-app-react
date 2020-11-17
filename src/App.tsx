@@ -28,7 +28,7 @@ const App = () => {
     <React.Suspense fallback={<LoadingIndicator />}>
       <AuthProvider>
         <div className="app__wrapper">
-          <Router basename="workout-app-react">
+          <Router basename={process.env.PUBLIC_URL}>
             <Header />
             <Switch>
               <Route path="/login">
