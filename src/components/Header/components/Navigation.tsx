@@ -62,8 +62,21 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                   Dieta
                 </Link>
               </li>
+              <li className="navigation__li">
+                <Link
+                  onClick={handleHamburger}
+                  to="/settings"
+                  className="navigation__a"
+                >
+                  Ustawienia
+                </Link>
+              </li>
               <li className="navigation__li navigation__logout">
-                <a onClick={handleSignOut} href="/" className="navigation__a">
+                <a
+                  onClick={handleSignOut}
+                  href="/workout-app-react"
+                  className="navigation__a"
+                >
                   Wyloguj
                 </a>
               </li>
