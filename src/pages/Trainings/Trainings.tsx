@@ -32,6 +32,7 @@ const Trainings: React.FC<Props> = () => {
         text: "Data treningu",
         placeholder: "Data treningu",
         type: "datetime-local",
+        max: todayDatePattern,
       },
       {
         name: "workoutName",

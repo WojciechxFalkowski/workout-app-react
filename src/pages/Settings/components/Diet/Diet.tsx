@@ -1,27 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { FormTemplate } from "components";
-import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-export interface Props {}
-const Diet: React.FC<Props> = () => {
-  interface Fields {
-    name: string;
-    initialValue: string;
-    text: string;
-    placeholder: string;
-    type: string;
-    step: string;
-    min: string;
-  }
-  interface Button {
-    text: string;
-    type: string;
-  }
-  interface FormFields {
-    fields: Fields[];
-    button: Button;
-  }
-  const { currentUser } = useContext(AuthContext);
+import "./diet.scss";
+interface Fields {
+  name: string;
+  initialValue: string;
+  text: string;
+  placeholder: string;
+  type: string;
+  step: string;
+  min: string;
+}
+interface Button {
+  text: string;
+  type: string;
+}
+interface FormFields {
+  fields: Fields[];
+  button: Button;
+}
+interface currentUser {
+  uid: string;
+}
+export interface Props {
+  currentUser: currentUser;
+}
+const Diet: React.FC<Props> = ({ currentUser }) => {
   const [diet, setDiet] = useState<FormFields>();
   const uploadDiet = function (snapshot: any) {
     setDiet({
@@ -64,7 +68,7 @@ const Diet: React.FC<Props> = () => {
   };
   return (
     <div className="diet">
-      <h1 className="diet__h2">Diet</h1>
+      <h1 className="diet__h2">Dieta</h1>
       {diet && <FormTemplate formFields={diet} handleSubmit={handleSubmit} />}
     </div>
   );

@@ -30,6 +30,13 @@
     margin-top: 1vh;
     font-weight: bold;
   }
+  &__link {
+    color: $orange;
+    text-decoration: unset;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   &__rank {
     color: $dark-grey;
   }

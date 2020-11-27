@@ -31,7 +31,7 @@ const LoginPage: React.FC<Props> = () => {
   return (
     <>
       {isSignedIn ? (
-        <Redirect to="/home" />
+        <Redirect to="/" />
       ) : (
         <StyledFirebaseAuth
           uiConfig={uiConfig}

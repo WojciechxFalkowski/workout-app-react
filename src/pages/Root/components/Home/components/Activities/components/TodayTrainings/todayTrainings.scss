@@ -1,3 +1,4 @@
+@import "./../../../../../../../../utils/variables";
 .today-trainings {
   margin: 2vh 0;
   &__title {
@@ -10,5 +11,15 @@
     border: 1px solid black;
     line-height: 50px;
     text-align: center;
+  }
+  &__unset {
+    margin: 1vh 0;
+  }
+  &__a {
+    text-decoration: unset;
+    color: $orange;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

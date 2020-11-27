@@ -1,24 +1,52 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { Greetings, MyProfile, Activities, TableResults } from "./components";
+import firebase from "firebase/app";
 import "./home.scss";
-
+interface user {
+  name: string;
+  surname: string;
+  calories: number;
+}
 export interface Props {}
-// let index = 0;
 const Home: React.FC<Props> = () => {
-  // console.log(`wywołanie Home:${index++}`);
   const { currentUser } = useContext(AuthContext);
-  // console.log("currentUser w HOME:", currentUser);
-
+  const [user, setUser] = useState<user>();
+  const uploadDiet = function (snapshot: any) {
+    setUser({
+      name: snapshot.child("user/name").val(),
+      surname: snapshot.child("user/surname").val(),
+      calories: snapshot.child("diet/calories").val(),
+    });
+  };
+  useEffect(() => {
+    if (currentUser) {
+      const ref = firebase
+        .database()
+        .ref("users/" + currentUser.uid + "/settings");
+      ref.once("value", uploadDiet);
+      return () => {
+        ref.off("value", uploadDiet);
+      };
+    }
+  }, [currentUser]);
   return (
-    <div className="home">
-      {currentUser && <Greetings />}
-      <div className="home__profile">
-        <MyProfile />
-        <Activities />
-      </div>
-      <TableResults />
-    </div>
+    <>
+      {currentUser && user && (
+        <div className="home">
+          <Greetings name={user.name} />
+          <div className="home__profile">
+            <MyProfile
+              name={user.name}
+              surname={user.surname}
+              currentUser={currentUser}
+            />
+            <Activities calories={user.calories} />
+          </div>
+          <TableResults />
+        </div>
+      )}
+    </>
   );
 };
 

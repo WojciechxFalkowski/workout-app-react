@@ -1,0 +1,10 @@
+.table-results {
+  width: 80%;
+  margin: 0 auto;
+  &__tr {
+    text-align: center;
+  }
+  &__td {
+    padding: 1vh 0;
+  }
+}

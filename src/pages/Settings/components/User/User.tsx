@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { FormTemplate } from "components";
 import { required, composeValidators } from "utils/validation";
-import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import "./user.scss";
 interface Fields {
@@ -23,10 +22,14 @@ interface user {
   name: string;
   surname: string;
 }
-export interface Props {}
+interface currentUser {
+  uid: string;
+}
+export interface Props {
+  currentUser: currentUser;
+}
 
-const User: React.FC<Props> = () => {
-  const { currentUser } = useContext(AuthContext);
+const User: React.FC<Props> = ({ currentUser }) => {
   const [settings, setSettings] = useState<FormFields>();
   const uploadUserInfo = function (snapshot: any) {
     setSettings({
