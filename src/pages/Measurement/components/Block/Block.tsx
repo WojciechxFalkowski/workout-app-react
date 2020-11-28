@@ -131,6 +131,7 @@ const Block: React.FC<Props> = ({
       !values.weight
     ) {
     } else {
+      console.log("measurements", [...measurements]);
       setMeasurements([...measurements, { ...values, id: ID() }]);
       setShowBlock(false);
       if (currentUser) {

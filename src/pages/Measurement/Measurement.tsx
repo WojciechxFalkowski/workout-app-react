@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Block } from "./components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "../../fire";
+import { AddMeasurement } from "./components";
 import "./measurement.scss";
 import { Button } from "components";
 export interface Props {}
@@ -18,9 +19,9 @@ interface measurement {
 const Measurement: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [measurements, setMeasurements] = useState<Array<measurement>>([]);
-  const [showBlock, setShowBlock] = useState(false);
+  const [activeMeasurement, setActiveMeasurement] = useState(false);
   const handleAddMeasurement = () => {
-    setShowBlock(true);
+    setActiveMeasurement(true);
   };
   const handleDeleteMeasurement = (id: string) => {
     const filteredMeasurements = measurements.filter(
@@ -56,13 +57,6 @@ const Measurement: React.FC<Props> = () => {
   return (
     <main className="measurement">
       <Button onClick={handleAddMeasurement}>Dodaj pomiary</Button>
-      {showBlock && (
-        <Block
-          measurements={measurements}
-          setShowBlock={setShowBlock}
-          setMeasurements={setMeasurements}
-        />
-      )}
       <table className="measurement__table">
         <thead className="measurement__thead">
           <tr className="measurement__tr">
@@ -76,6 +70,13 @@ const Measurement: React.FC<Props> = () => {
           </tr>
         </thead>
         <tbody className="measurement__tbody">
+          {activeMeasurement && currentUser && (
+            <AddMeasurement
+              measurements={measurements}
+              setActiveMeasurement={setActiveMeasurement}
+              currentUserId={currentUser.uid}
+            />
+          )}
           {measurements
             .map((measurement) => {
               const date = new Date(measurement.date);

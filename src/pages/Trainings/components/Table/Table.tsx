@@ -44,12 +44,12 @@ const Table: React.FC<Props> = ({ trainings }) => {
               return (
                 <tr key={training.id} className="trainings__tr">
                   <th className="trainings__th">
-                    <span
+                    <button
                       onClick={() => handleTraining(training)}
-                      className="trainings__span"
+                      className="trainings__button"
                     >
                       {training.workoutName}
-                    </span>
+                    </button>
                   </th>
                   <th className="trainings__th">{modifiedDate}</th>
                 </tr>

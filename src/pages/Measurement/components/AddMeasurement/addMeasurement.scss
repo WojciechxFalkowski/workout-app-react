@@ -1,0 +1,20 @@
+.add-measurement {
+  &__td {
+    box-sizing: border-box;
+    min-width: 32px;
+    padding: 1vh 1vw;
+    border: 1px solid white;
+    @media (min-width: 360px) {
+      min-width: 42px;
+    }
+    input {
+      width: 15px;
+      @media (min-width: 360px) {
+        width: 25px;
+      }
+      @media (min-width: 768px) {
+        width: 40px;
+      }
+    }
+  }
+}

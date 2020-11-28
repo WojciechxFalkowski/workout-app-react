@@ -1,6 +1,8 @@
 @import "./../../../../utils/variables";
 .home {
   margin-top: 77px;
+  width: 90%;
+  margin: 77px auto 0 auto;
   @media (min-width: 1024px) {
     display: grid;
     grid-template-columns: 10vw 55vw 25vw 10vw;
