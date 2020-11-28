@@ -9,15 +9,13 @@ const EatenCalories: React.FC<Props> = ({ calories }) => {
   return (
     <div className="eaten-calories">
       <span className="eaten-calories__title">Dieta</span>
-      {typeof calories === "number" ? (
-        <div className="eaten-calories__calories">{calories} kcal</div>
-      ) : (
-        <div className="eaten-calories__calories-unset">
-          <Link className="eaten-calories__a" to="settings">
-            Brak ustawionej diety
-          </Link>
-        </div>
-      )}
+      <div className="eaten-calories__calories">
+        <Link className="eaten-calories__a" to="settings">
+          {typeof calories === "number"
+            ? `${calories} kcal`
+            : "Brak ustawionej diety"}
+        </Link>
+      </div>
     </div>
   );
 };

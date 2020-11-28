@@ -33,7 +33,7 @@ const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
         : trainingList[1]
       : trainingList[0];
   return (
-    <div className="my-profile">
+    <article className="my-profile">
       <span className="my-profile__text">Mój profil</span>
       <div className="my-profile__div-initials">
         <span className="my-profile__initials">
@@ -56,7 +56,7 @@ const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
         )}
       </span>
       <span className="my-profile__rank">{trainingName}</span>
-    </div>
+    </article>
   );
 };
 

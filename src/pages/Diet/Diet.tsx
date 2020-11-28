@@ -77,7 +77,7 @@ const Diet: React.FC<Props> = () => {
     }
   }, [currentUser]);
   return (
-    <div className="diet">
+    <main className="diet">
       <div className="diet__div">
         <Button onClick={handleAddDiet}>Dodaj diete</Button>
         {flag && (
@@ -85,7 +85,7 @@ const Diet: React.FC<Props> = () => {
         )}
       </div>
       <DietList diets={diets} />
-    </div>
+    </main>
   );
 };
 

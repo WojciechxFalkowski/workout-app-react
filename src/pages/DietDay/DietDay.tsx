@@ -58,12 +58,14 @@ const DietDay: React.FC<Props> = () => {
     }
   };
   return (
-    <div className="diet-day">
+    <main className="diet-day">
       <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
-      <AddMeal meals={meals} id={params.id} />
-      <MealList meals={meals} id={params.id} />
-      {meals.length !== 0 && <MealSummary meals={meals} />}
-    </div>
+      <section className="diet-day__section">
+        <AddMeal meals={meals} id={params.id} />
+        <MealList meals={meals} id={params.id} />
+        {meals.length !== 0 && <MealSummary meals={meals} />}
+      </section>
+    </main>
   );
 };
 

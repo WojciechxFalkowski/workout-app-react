@@ -8,10 +8,10 @@ const Settings: React.FC<Props> = () => {
   return (
     <>
       {currentUser && (
-        <div className="settings">
+        <main className="settings">
           <User currentUser={currentUser} />
           <Diet currentUser={currentUser} />
-        </div>
+        </main>
       )}
     </>
   );

@@ -112,30 +112,32 @@ const Exercise: React.FC<Props> = (props) => {
     }
   }, [currentUser, id, props.match.params.id]);
   return (
-    <div className="exercise">
+    <main className="exercise">
       {!isActiveEditing && (
         <GoBackDelete
           handleEdit={handleSaveExercise}
           editTitle="Usuń ćwiczenie"
         />
       )}
-      {currentUser && (
-        <EditTitle
-          labelText="Nazwa ćwiczenia"
-          editDate={false}
-          refUrl={`users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`}
-          isActiveEditing={isActiveEditing}
-          setIsActiveEditing={setIsActiveEditing}
-        />
-      )}
-      {!isActiveEditing && (
-        <FormInput
-          formFields={formFields}
-          setFormFields={setFormFields}
-          handleSubmit={handleSubmit}
-        />
-      )}
-    </div>
+      <section className="exercise__add-series">
+        {currentUser && (
+          <EditTitle
+            labelText="Nazwa ćwiczenia"
+            editDate={false}
+            refUrl={`users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`}
+            isActiveEditing={isActiveEditing}
+            setIsActiveEditing={setIsActiveEditing}
+          />
+        )}
+        {!isActiveEditing && (
+          <FormInput
+            formFields={formFields}
+            setFormFields={setFormFields}
+            handleSubmit={handleSubmit}
+          />
+        )}
+      </section>
+    </main>
   );
 };
 

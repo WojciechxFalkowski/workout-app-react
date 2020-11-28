@@ -83,36 +83,39 @@ const Training: React.FC<Props> = ({ match }) => {
   }, [currentUser, id]);
 
   return (
-    <div className="training">
+    <main className="training">
       {!isActiveEditing && (
         <GoBackDelete
           handleEdit={handleDeleteTraining}
           editTitle="Usuń trening"
         />
       )}
-
-      {currentUser && (
-        <EditTitle
-          labelText="Nazwa treningu"
-          editDate={true}
-          refUrl={`users/${currentUser.uid}/trainings/${id}`}
-          isActiveEditing={isActiveEditing}
-          setIsActiveEditing={setIsActiveEditing}
-        />
-      )}
-      {isActiveEditing && exercises && currentUser ? (
-        <DragAndDropList
-          exercises={exercises}
-          id={id}
-          refUrl={`users/${currentUser.uid}/trainings/${id}/exercises`}
-        />
-      ) : (
-        <>
-          <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-          {exercises && <TrainingExerciseList exercises={exercises} id={id} />}
-        </>
-      )}
-    </div>
+      <section className="training__add-exercise">
+        {currentUser && (
+          <EditTitle
+            labelText="Nazwa treningu"
+            editDate={true}
+            refUrl={`users/${currentUser.uid}/trainings/${id}`}
+            isActiveEditing={isActiveEditing}
+            setIsActiveEditing={setIsActiveEditing}
+          />
+        )}
+        {isActiveEditing && exercises && currentUser ? (
+          <DragAndDropList
+            exercises={exercises}
+            id={id}
+            refUrl={`users/${currentUser.uid}/trainings/${id}/exercises`}
+          />
+        ) : (
+          <>
+            <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
+            {exercises && (
+              <TrainingExerciseList exercises={exercises} id={id} />
+            )}
+          </>
+        )}
+      </section>
+    </main>
   );
 };
 

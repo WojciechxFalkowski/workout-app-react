@@ -1,5 +1,6 @@
 .exercise {
   position: relative;
+  margin-top: 77px;
   padding-bottom: 5vh;
   &__h2 {
     margin-top: 5vh;
@@ -39,43 +40,6 @@
     margin: 0 1vw;
     cursor: pointer;
     user-select: none;
-  }
-
-  &__add-series {
-    margin-top: 40px;
-    height: 1px;
-    position: relative;
-    background-color: rgb(209, 209, 209);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    background-color: white;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 50%;
-    -ms-transform: rotate(45deg) translate(-50%, 0%); /* IE 9 */
-    -webkit-transform: rotate(45deg) translate(-50%, 0%); /* Chrome, Safari, Opera */
-    transform: rotate(45deg) translate(-50%, 0%);
-    &::before {
-      content: "";
-      position: absolute;
-      width: 3px;
-      height: 9px;
-      background-color: rgb(209, 209, 209);
-      left: 11px;
-      top: 6px;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background-color: rgb(209, 209, 209);
-      left: 8px;
-      top: 12px;
-    }
   }
   &__add {
     text-align: center;

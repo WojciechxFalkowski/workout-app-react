@@ -54,7 +54,7 @@ const Measurement: React.FC<Props> = () => {
     }
   }, [currentUser]);
   return (
-    <div className="measurement">
+    <main className="measurement">
       <Button onClick={handleAddMeasurement}>Dodaj pomiary</Button>
       {showBlock && (
         <Block
@@ -107,7 +107,7 @@ const Measurement: React.FC<Props> = () => {
             .reverse()}
         </tbody>
       </table>
-    </div>
+    </main>
   );
 };
 

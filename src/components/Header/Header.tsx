@@ -20,7 +20,6 @@ const Header: React.FC<Props> = () => {
   };
   return (
     <>
-      <div className="invisible__header"></div>
       <header ref={header} className="header">
         <h1 className="header__logo">
           <Link to="/" className="header__link">

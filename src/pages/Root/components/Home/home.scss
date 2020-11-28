@@ -1,6 +1,29 @@
+@import "./../../../../utils/variables";
 .home {
+  margin-top: 77px;
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 10vw 55vw 25vw 10vw;
+    grid-template-rows: 10vh 80vh;
+  }
+  .greetings {
+    display: inline-block;
+    margin-top: 5vh;
+    @media (min-width: 1024px) {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+  }
   &__profile {
-    width: 70%;
-    margin: 0 auto;
+    @media (min-width: 1024px) {
+      grid-column: 3/4;
+      grid-row: 2/3;
+    }
+  }
+  .table-results {
+    @media (min-width: 1024px) {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
   }
 }

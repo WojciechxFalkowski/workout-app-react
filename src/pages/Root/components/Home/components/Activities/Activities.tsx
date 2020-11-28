@@ -7,11 +7,11 @@ export interface Props {
 
 const Activities: React.FC<Props> = ({ calories }) => {
   return (
-    <div className="activities">
+    <article className="activities">
       <span className="activities__title">Dzisiaj</span>
       <EatenCalories calories={calories} />
       <TodayTrainings />
-    </div>
+    </article>
   );
 };
 

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { AuthContext } from "components/AuthProvider/AuthProvider";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./greetings.scss";
 export interface Props {
@@ -7,7 +6,6 @@ export interface Props {
 }
 
 const Greetings: React.FC<Props> = ({ name }) => {
-  const { currentUser } = useContext(AuthContext);
   const date = new Date();
   const dayOfWeek = [
     "Poniedziałek",
@@ -36,8 +34,8 @@ const Greetings: React.FC<Props> = ({ name }) => {
     monthOfYear[date.getMonth()]
   } ${date.getFullYear()}`;
   return (
-    <div className="greetings">
-      <span className="greetings__name">
+    <section className="greetings">
+      <h1 className="greetings__name">
         {"Cześć "}
         {name ? (
           name
@@ -47,10 +45,10 @@ const Greetings: React.FC<Props> = ({ name }) => {
           </Link>
         )}
         {" !"}
-      </span>
+      </h1>
 
       <span className="greetings__date">{today}</span>
-    </div>
+    </section>
   );
 };
 

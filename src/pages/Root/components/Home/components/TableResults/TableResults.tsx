@@ -36,34 +36,38 @@ const TableResults: React.FC<Props> = () => {
       };
     }
   }, [currentUser]);
-  console.log("statistics", statistics);
   return (
-    <table className="table-results">
-      <thead>
-        <tr className="table-results__tr">
-          <th className="table-results__th">Miejsce</th>
-          <th className="table-results__th">Imię</th>
-          <th className="table-results__th">Nazwisko</th>
-          <th className="table-results__th">Liczba treningów</th>
-        </tr>
-      </thead>
-      <tbody>
-        {statistics &&
-          statistics.map((item, index) => {
-            return (
-              <tr
-                className="table-results__tr"
-                key={`${item.name}/${item.surname}/${item.numberOfTrainings}`}
-              >
-                <td className="table-results__td">{index + 1}</td>
-                <td className="table-results__td">{item.name}</td>
-                <td className="table-results__td">{item.surname}</td>
-                <td className="table-results__td">{item.numberOfTrainings}</td>
-              </tr>
-            );
-          })}
-      </tbody>
-    </table>
+    <section className="table-results">
+      <h2 className="table-results__h2">Statystyki</h2>
+      <table className="table-results__table">
+        <thead>
+          <tr className="table-results__tr">
+            <th className="table-results__th">Miejsce</th>
+            <th className="table-results__th">Imię</th>
+            <th className="table-results__th">Nazwisko</th>
+            <th className="table-results__th">Liczba treningów</th>
+          </tr>
+        </thead>
+        <tbody>
+          {statistics &&
+            statistics.map((item, index) => {
+              return (
+                <tr
+                  className="table-results__tr"
+                  key={`${item.name}/${item.surname}/${item.numberOfTrainings}`}
+                >
+                  <td className="table-results__td">{index + 1}</td>
+                  <td className="table-results__td">{item.name}</td>
+                  <td className="table-results__td">{item.surname}</td>
+                  <td className="table-results__td">
+                    {item.numberOfTrainings}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </section>
   );
 };
 

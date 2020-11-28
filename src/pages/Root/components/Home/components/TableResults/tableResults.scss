@@ -1,8 +1,33 @@
+@import "./../../../../../../utils/variables";
+
 .table-results {
-  width: 80%;
-  margin: 0 auto;
+  &__h2 {
+    margin-top: 5vh;
+    padding: 2vh 0;
+    text-align: center;
+    background-color: $goldenrod;
+    font-weight: bold;
+    font-size: 1.2rem;
+    @media (min-width: 1024px) {
+      width: 90%;
+      max-width: 700px;
+    }
+  }
+  &__table {
+    width: 100%;
+    background-color: $goldenrod;
+    margin-bottom: 5vh;
+    @media (min-width: 1024px) {
+      width: 90%;
+      max-width: 700px;
+    }
+  }
+
   &__tr {
     text-align: center;
+  }
+  &__th {
+    padding: 1vh 0;
   }
   &__td {
     padding: 1vh 0;

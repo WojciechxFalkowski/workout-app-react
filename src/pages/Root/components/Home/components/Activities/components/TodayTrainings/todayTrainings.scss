@@ -5,19 +5,14 @@
     font-weight: bold;
   }
   &__trainings {
-    margin-top: 1vh;
-    width: 100%;
-    height: 50px;
-    border: 1px solid black;
-    line-height: 50px;
-    text-align: center;
+    margin: 1vh 0;
   }
   &__unset {
     margin: 1vh 0;
   }
   &__a {
     text-decoration: unset;
-    color: $orange;
+    color: white;
     &:hover {
       text-decoration: underline;
     }

@@ -33,18 +33,19 @@ const Home: React.FC<Props> = () => {
   return (
     <>
       {currentUser && user && (
-        <div className="home">
+        <main className="home">
           <Greetings name={user.name} />
-          <div className="home__profile">
+          <section className="home__profile">
             <MyProfile
               name={user.name}
               surname={user.surname}
               currentUser={currentUser}
             />
             <Activities calories={user.calories} />
-          </div>
+          </section>
+
           <TableResults />
-        </div>
+        </main>
       )}
     </>
   );

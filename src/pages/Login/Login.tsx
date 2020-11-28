@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import firebase from "firebase/app";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Redirect } from "react-router-dom";
+import "./login.scss";
 export interface Props {}
 export interface Test {
   signInFlow: string;
@@ -29,7 +30,7 @@ const LoginPage: React.FC<Props> = () => {
   };
 
   return (
-    <>
+    <main className="login">
       {isSignedIn ? (
         <Redirect to="/" />
       ) : (
@@ -38,7 +39,7 @@ const LoginPage: React.FC<Props> = () => {
           firebaseAuth={firebase.auth()}
         />
       )}
-    </>
+    </main>
   );
 };
 

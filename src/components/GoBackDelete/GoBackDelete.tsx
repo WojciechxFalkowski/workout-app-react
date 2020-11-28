@@ -8,10 +8,10 @@ export interface Props {
 
 const GoBackDelete: React.FC<Props> = ({ handleEdit, editTitle }) => {
   return (
-    <div className="go-back-delete">
+    <section className="go-back-delete">
       <Arrow />
       <Button onClick={handleEdit}>{editTitle}</Button>
-    </div>
+    </section>
   );
 };
 

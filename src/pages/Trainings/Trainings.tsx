@@ -4,7 +4,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "../../fire";
 import { Table } from "./components";
 import { useHistory } from "react-router-dom";
-
+import "./trainings.scss";
 import { required, composeValidators } from "utils/validation";
 export interface Props {}
 type Trainings = Array<training>;
@@ -91,10 +91,14 @@ const Trainings: React.FC<Props> = () => {
     }
   }, [currentUser]);
   return (
-    <>
-      <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      {trainings && <Table trainings={trainings} />}
-    </>
+    <main className="trainings">
+      <section className="trainings__add">
+        <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
+      </section>
+      <section className="trainings__list">
+        {trainings && <Table trainings={trainings} />}
+      </section>
+    </main>
   );
 };
 

@@ -1,5 +1,11 @@
+@import "./../../../../../../utils/variables";
 .activities {
+  background-color: $goldenrod;
+  padding: 2vh 2vw;
+  text-align: center;
   &__title {
+    display: inline-block;
+    margin: 2vh 0;
     font-size: 1.2rem;
     font-weight: bold;
   }

@@ -2,11 +2,14 @@
 .my-profile {
   text-align: center;
   margin: 0 auto;
+  background-color: $goldenrod;
+  padding: 2vh 2vw;
   &__text {
     display: block;
     width: 100%;
-    text-align: left;
     font-weight: bold;
+    text-align: center;
+    padding-bottom: 2vh;
   }
   &__div-initials {
     position: relative;
@@ -38,6 +41,7 @@
     }
   }
   &__rank {
-    color: $dark-grey;
+    display: inline-block;
+    margin: 0.5vh 0;
   }
 }

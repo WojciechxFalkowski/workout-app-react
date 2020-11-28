@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "fire";
 import { Charts } from "./components";
+import "./statistics.scss";
 type exercise = {
   workoutName: string;
   series?: Array<string>;
@@ -30,7 +31,11 @@ const Statistics: React.FC<Props> = () => {
     }
   }, [currentUser]);
 
-  return <>{trainings && <Charts trainings={trainings} />}</>;
+  return (
+    <main className="statistics">
+      {trainings && <Charts trainings={trainings} />}
+    </main>
+  );
 };
 
 export default Statistics;
