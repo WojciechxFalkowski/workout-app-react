@@ -5,7 +5,11 @@ import { AddElementBlock } from "./../../components";
 import { AiFillDelete } from "react-icons/ai";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-import { IngredientItem, SumNutrientsByType } from "./components";
+import {
+  IngredientItem,
+  SumNutrientsByType,
+  AddIngredient,
+} from "./components";
 import "./mealTable.scss";
 interface mealItem {
   ingredient: string;
@@ -29,6 +33,7 @@ export interface Props {
 const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
   const { currentUser } = useContext(AuthContext);
   const [showBlock, setShowBlock] = useState(false);
+  const [activeMeal, setActiveMeal] = useState(false);
   const titles: Array<string> = [
     "Węglowodany",
     "Tłuszcze",
@@ -37,8 +42,8 @@ const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
     "Kalorie",
   ];
 
-  const handleAddMealEelement = () => {
-    setShowBlock(true);
+  const handleAddMealElement = () => {
+    setActiveMeal(true);
   };
 
   const handleRemoveMeal = (mealName: string) => {
@@ -83,9 +88,19 @@ const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
                 />
               );
             })}
+          {activeMeal && currentUser && (
+            <AddIngredient
+              activeMeal={activeMeal}
+              setActiveMeal={setActiveMeal}
+              mealList={meal.list}
+              currentUserId={currentUser.uid}
+              id={id}
+              indexList={indexList}
+            />
+          )}
           <tr className="meal-table__tr">
             <td className="meal-table__td">
-              <Button onClick={handleAddMealEelement}>Dodaj</Button>
+              <Button onClick={handleAddMealElement}>Dodaj</Button>
             </td>
             <SumNutrientsByType meal={meal} titles={titles} />
             <td className="meal-table__td"></td>

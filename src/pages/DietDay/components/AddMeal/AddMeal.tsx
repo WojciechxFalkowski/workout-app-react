@@ -7,6 +7,7 @@ export interface Props {
 }
 
 const AddMeal: React.FC<Props> = ({ meals, id }) => {
+  console.log("meals", meals);
   const [showBlock, setShowBlock] = useState(false);
   const handleAddMeal = () => {
     setShowBlock(true);

@@ -48,7 +48,10 @@ const IngredientItem: React.FC<Props> = ({
       <td className="meal-table__td">{item.mineralsalt}</td>
       <td className="meal-table__td">{item.calories}</td>
       <td className="meal-table__td">
-        <IoIosRemoveCircleOutline onClick={() => handleRemoveMealItem(index)} />
+        <IoIosRemoveCircleOutline
+          onClick={() => handleRemoveMealItem(index)}
+          className="meal-table__remove"
+        />
       </td>
     </tr>
   );

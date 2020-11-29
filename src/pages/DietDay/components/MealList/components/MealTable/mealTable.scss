@@ -71,14 +71,41 @@
     }
   }
   &__td {
-    padding: 2vh 2vw;
+    padding: 2vh 0vw;
+    input {
+      width: 22px;
+      font-size: 0.6rem;
+      @media (min-width: 768px) {
+        width: 40px;
+        font-size: 0.9rem;
+      }
+    }
     &:nth-child(1) {
+      padding-left: 10px;
       text-align: left;
+      input {
+        width: 50px;
+        @media (min-width: 768px) {
+          width: 150px;
+        }
+      }
     }
-    svg {
-      fill: red;
-      cursor: pointer;
+    &:nth-last-child(2) {
+      input {
+        width: 25px;
+        @media (min-width: 768px) {
+          width: 40px;
+        }
+        @media (min-width: 768px) {
+          width: 47px;
+        }
+      }
     }
+  }
+  &__span {
+    padding: 1vh 0;
+    display: block;
+    color: red;
   }
   &__tbody {
     tr {
@@ -87,5 +114,13 @@
         background-color: unset;
       }
     }
+  }
+  &__save {
+    fill: green;
+    cursor: pointer;
+  }
+  &__remove {
+    fill: red;
+    cursor: pointer;
   }
 }

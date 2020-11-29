@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Block } from "./components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import fire from "../../fire";
+import firebase from "firebase/app";
 import { AddMeasurement } from "./components";
 import "./measurement.scss";
 import { Button } from "components";
@@ -28,7 +27,7 @@ const Measurement: React.FC<Props> = () => {
       (item: any) => item.id !== id
     );
     if (currentUser) {
-      fire
+      firebase
         .database()
         .ref("users/" + currentUser.uid + "/measurements")
         .set([...filteredMeasurements]);
@@ -44,7 +43,7 @@ const Measurement: React.FC<Props> = () => {
   };
   useEffect(() => {
     if (currentUser) {
-      const ref = fire
+      const ref = firebase
         .database()
         .ref("users/" + currentUser.uid + "/measurements")
         .orderByChild("date");
