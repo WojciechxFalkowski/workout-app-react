@@ -5,7 +5,7 @@
     margin-top: 5vh;
     padding: 2vh 0;
     text-align: center;
-    background-color: $goldenrod;
+    background-color: $white-background;
     font-weight: bold;
     font-size: 1.2rem;
     @media (min-width: 1024px) {
@@ -15,7 +15,7 @@
   }
   &__table {
     width: 100%;
-    background-color: $goldenrod;
+    background-color: $white-background;
     margin-bottom: 5vh;
     @media (min-width: 1024px) {
       width: 90%;

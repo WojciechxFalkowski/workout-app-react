@@ -12,7 +12,7 @@ export interface Props {}
 const Home: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState<user>();
-  const uploadDiet = function (snapshot: any) {
+  const uploadUser = function (snapshot: any) {
     setUser({
       name: snapshot.child("user/name").val(),
       surname: snapshot.child("user/surname").val(),
@@ -24,9 +24,9 @@ const Home: React.FC<Props> = () => {
       const ref = firebase
         .database()
         .ref("users/" + currentUser.uid + "/settings");
-      ref.once("value", uploadDiet);
+      ref.on("value", uploadUser);
       return () => {
-        ref.off("value", uploadDiet);
+        ref.off("value", uploadUser);
       };
     }
   }, [currentUser]);

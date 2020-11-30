@@ -21,14 +21,12 @@ const LoginPage: React.FC<Props> = () => {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: () => {
+      signInSuccessWithAuthResult: () => {
         setIsSignedIn(true);
-
         return false;
       },
     },
   };
-
   return (
     <main className="login">
       {isSignedIn ? (

@@ -13,29 +13,43 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
-    const writeUserData = (userId: string, email: string) => {
+    const writeUserData = (
+      userId: string,
+      email: string,
+      name: string,
+      surname: string
+    ) => {
       firebase
         .database()
         .ref("users/" + userId)
         .set({
           email: email,
         });
+      firebase
+        .database()
+        .ref("users/" + userId + "/settings/user")
+        .set({
+          name,
+          surname,
+        });
     };
     firebase.auth().onAuthStateChanged((user: any) => {
-      setCurrentUser(user);
-      setPending(false);
       if (user) {
         let rootRef = firebase.database().ref("users/");
         rootRef.child(user.uid).once("value", function (snapshot: any) {
           let exists = snapshot.val() !== null;
           if (!exists) {
             // console.log("To konto nie ma bazy danych");
-            writeUserData(user.uid, user.email);
+            const name = user.displayName.split(" ")[0];
+            const surname = user.displayName.split(" ").slice(1).join(" ");
+            writeUserData(user.uid, user.email, name, surname);
           } else {
             // console.log("To konto ma baze danych");
           }
         });
       }
+      setCurrentUser(user);
+      setPending(false);
     });
   }, []);
 
