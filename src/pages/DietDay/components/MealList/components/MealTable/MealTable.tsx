@@ -1,7 +1,5 @@
 import { Button } from "components";
 import React, { useState, useContext } from "react";
-import { AddElementBlock } from "./../../components";
-
 import { AiFillDelete } from "react-icons/ai";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
@@ -16,7 +14,6 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
@@ -32,13 +29,11 @@ export interface Props {
 
 const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
   const { currentUser } = useContext(AuthContext);
-  const [showBlock, setShowBlock] = useState(false);
   const [activeMeal, setActiveMeal] = useState(false);
   const titles: Array<string> = [
     "Węglowodany",
     "Tłuszcze",
     "Białko",
-    "Sole mineralne",
     "Kalorie",
   ];
 
@@ -58,64 +53,53 @@ const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
     }
   };
   return (
-    <>
-      <table key={meal.mealName} className="meal-table">
-        <thead className="meal-table__thead">
-          <tr className="meal-table__tr">
-            <th className="meal-table__th">{meal.mealName}</th>
-            {titles.map((title) => (
-              <th key={title} className="meal-table__th">
-                {title}
-              </th>
-            ))}
-
-            <th className="meal-table__th">
-              <AiFillDelete onClick={() => handleRemoveMeal(meal.mealName)} />
+    <table key={meal.mealName} className="meal-table">
+      <thead className="meal-table__thead">
+        <tr className="meal-table__tr">
+          <th className="meal-table__th">{meal.mealName}</th>
+          {titles.map((title) => (
+            <th key={title} className="meal-table__th">
+              {title}
             </th>
-          </tr>
-        </thead>
-        <tbody className="meal-table__tbody">
-          {meal.list &&
-            meal.list.map((item, index) => {
-              return (
-                <IngredientItem
-                  key={item.ingredient}
-                  meal={meal}
-                  item={item}
-                  index={index}
-                  indexList={indexList}
-                  id={id}
-                />
-              );
-            })}
-          {activeMeal && currentUser && (
-            <AddIngredient
-              activeMeal={activeMeal}
-              setActiveMeal={setActiveMeal}
-              mealList={meal.list}
-              currentUserId={currentUser.uid}
-              id={id}
-              indexList={indexList}
-            />
-          )}
-          <tr className="meal-table__tr">
-            <td className="meal-table__td">
-              <Button onClick={handleAddMealElement}>Dodaj</Button>
-            </td>
-            <SumNutrientsByType meal={meal} titles={titles} />
-            <td className="meal-table__td"></td>
-          </tr>
-        </tbody>
-      </table>
-      {showBlock && (
-        <AddElementBlock
-          index={indexList}
-          id={id}
-          setShowBlock={setShowBlock}
-          meal={meal}
-        />
-      )}
-    </>
+          ))}
+
+          <th className="meal-table__th">
+            <AiFillDelete onClick={() => handleRemoveMeal(meal.mealName)} />
+          </th>
+        </tr>
+      </thead>
+      <tbody className="meal-table__tbody">
+        {meal.list &&
+          meal.list.map((item, index) => {
+            return (
+              <IngredientItem
+                key={item.ingredient}
+                meal={meal}
+                item={item}
+                index={index}
+                indexList={indexList}
+                id={id}
+              />
+            );
+          })}
+        {activeMeal && currentUser && (
+          <AddIngredient
+            setActiveMeal={setActiveMeal}
+            mealList={meal.list}
+            currentUserId={currentUser.uid}
+            id={id}
+            indexList={indexList}
+          />
+        )}
+        <tr className="meal-table__tr">
+          <td className="meal-table__td">
+            <Button onClick={handleAddMealElement}>Dodaj</Button>
+          </td>
+          <SumNutrientsByType meal={meal} titles={titles} />
+          <td className="meal-table__td"></td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

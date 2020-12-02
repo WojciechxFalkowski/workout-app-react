@@ -4,7 +4,6 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
@@ -17,14 +16,13 @@ export interface Props {
 }
 
 const SumNutrientsByType: React.FC<Props> = ({ meal, titles }) => {
-  const sumNutrientsByType = [0, 0, 0, 0, 0];
+  const sumNutrientsByType = [0, 0, 0, 0];
   if (meal.list) {
     meal.list.forEach((item) => {
       sumNutrientsByType[0] += item.carbs;
       sumNutrientsByType[1] += item.fats;
       sumNutrientsByType[2] += item.proteins;
-      sumNutrientsByType[3] += item.mineralsalt;
-      sumNutrientsByType[4] += item.calories;
+      sumNutrientsByType[3] += item.calories;
     });
   }
   return (

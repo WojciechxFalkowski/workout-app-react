@@ -1,4 +1,4 @@
-@import "./../../../../../../utils/variables";
+@import "utils/mixins";
 .meal-table {
   width: 96%;
   margin: 5vh auto;
@@ -51,22 +51,30 @@
     }
   }
   &__th {
-    padding: 2vh 1vw;
+    padding: 2vh 0.5vw;
     @media (min-width: 768px) {
-      padding: 1vh 2vw;
+      padding: 2vh 1vw;
     }
     &:nth-child(1) {
       text-align: left;
     }
     &:nth-last-child(1) {
       svg {
-        transform: translateY(5px);
+        transform: translateY(2px);
         cursor: pointer;
       }
     }
     &:nth-child(1) {
       @media (min-width: 768px) {
         min-width: 170px;
+      }
+    }
+    input {
+      font-size: 0.7rem;
+      width: 50px;
+      @media (min-width: 768px) {
+        font-size: 0.9rem;
+        width: 130px;
       }
     }
   }
@@ -122,5 +130,22 @@
   &__remove {
     fill: red;
     cursor: pointer;
+  }
+  &__add {
+    padding: 2vw 0.5vw;
+  }
+  &__save-meal {
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    @media (min-width: 768px) {
+      font-size: 20px;
+      transform: translateY(5px);
+    }
+  }
+  &__error {
+    display: block;
+    padding: 0.5vh 0vw;
+    color: red;
   }
 }

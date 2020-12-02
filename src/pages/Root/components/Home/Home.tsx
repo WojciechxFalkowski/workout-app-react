@@ -3,10 +3,16 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { Greetings, MyProfile, Activities, TableResults } from "./components";
 import firebase from "firebase/app";
 import "./home.scss";
+interface ingredients {
+  carbs: number;
+  fats: number;
+  proteins: number;
+  calories: number;
+}
 interface user {
   name: string;
   surname: string;
-  calories: number;
+  ingredients: ingredients;
 }
 export interface Props {}
 const Home: React.FC<Props> = () => {
@@ -16,7 +22,12 @@ const Home: React.FC<Props> = () => {
     setUser({
       name: snapshot.child("user/name").val(),
       surname: snapshot.child("user/surname").val(),
-      calories: snapshot.child("diet/calories").val(),
+      ingredients: {
+        carbs: snapshot.child("diet/carbs").val(),
+        fats: snapshot.child("diet/fats").val(),
+        proteins: snapshot.child("diet/proteins").val(),
+        calories: snapshot.child("diet/calories").val(),
+      },
     });
   };
   useEffect(() => {
@@ -41,7 +52,7 @@ const Home: React.FC<Props> = () => {
               surname={user.surname}
               currentUser={currentUser}
             />
-            <Activities calories={user.calories} />
+            <Activities ingredients={user.ingredients} />
           </section>
 
           <TableResults />

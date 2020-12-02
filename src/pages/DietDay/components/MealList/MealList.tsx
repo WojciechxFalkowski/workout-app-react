@@ -6,7 +6,6 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {

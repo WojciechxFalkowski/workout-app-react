@@ -7,7 +7,6 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
@@ -45,7 +44,6 @@ const IngredientItem: React.FC<Props> = ({
       <td className="meal-table__td">{item.carbs}</td>
       <td className="meal-table__td">{item.fats}</td>
       <td className="meal-table__td">{item.proteins}</td>
-      <td className="meal-table__td">{item.mineralsalt}</td>
       <td className="meal-table__td">{item.calories}</td>
       <td className="meal-table__td">
         <IoIosRemoveCircleOutline

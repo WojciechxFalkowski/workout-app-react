@@ -7,11 +7,9 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 export interface Props {
-  activeMeal: boolean;
   setActiveMeal: (active: boolean) => void;
   mealList: Array<mealItem>;
   currentUserId: string;
@@ -20,7 +18,6 @@ export interface Props {
 }
 
 const AddIngredient: React.FC<Props> = ({
-  activeMeal,
   setActiveMeal,
   mealList,
   currentUserId,
@@ -43,48 +40,46 @@ const AddIngredient: React.FC<Props> = ({
   const [carbs, setCarbs] = useInput({ type: "number" });
   const [fats, setFats] = useInput({ type: "number" });
   const [proteins, setProteins] = useInput({ type: "number" });
-  const [mineralsalt, setMineralsalt] = useInput({ type: "number" });
   const [calories, setCalories] = useInput({ type: "number" });
+  let isNameTaken;
+  if (mealList) {
+    isNameTaken =
+      mealList.findIndex((item) => item.ingredient === String(ingredient)) !==
+      -1;
+  }
   const handleSaveMealItem = () => {
-    if (
-      ingredient !== "" &&
-      carbs !== "" &&
-      fats !== "" &&
-      proteins !== "" &&
-      mineralsalt !== "" &&
-      calories !== ""
-    ) {
-      const mealItem = {
-        ingredient: String(ingredient),
-        carbs: Number(carbs),
-        fats: Number(fats),
-        proteins: Number(proteins),
-        mineralsalt: Number(mineralsalt),
-        calories: Number(calories),
-      };
-      if (currentUserId) {
-        firebase
-          .database()
-          .ref(`users/${currentUserId}/diet/${id}/meal/${indexList}/list`)
-          .set([...mealList, mealItem]);
-        setActiveMeal(false);
+    const mealItem = {
+      ingredient: String(ingredient),
+      carbs: Number(carbs),
+      fats: Number(fats),
+      proteins: Number(proteins),
+      calories: Number(calories),
+    };
+    if (currentUserId) {
+      let mealItems = [];
+      if (mealList) {
+        mealItems = [...mealList, mealItem];
+      } else {
+        mealItems = [mealItem];
       }
+      firebase
+        .database()
+        .ref(`users/${currentUserId}/diet/${id}/meal/${indexList}/list`)
+        .set(mealItems);
+      setActiveMeal(false);
     }
   };
   return (
-    <tr className="">
+    <tr className="meal-table__tr">
       <td className="meal-table__td">
         {setIngredient}
         <span className="meal-table__span">
-          {mealList.findIndex(
-            (item) => item.ingredient === String(ingredient)
-          ) !== -1 && "Podana nazwa jest zajęta"}
+          {isNameTaken && "Podana nazwa jest zajęta"}
         </span>
       </td>
       <td className="meal-table__td">{setCarbs}</td>
       <td className="meal-table__td">{setFats}</td>
       <td className="meal-table__td">{setProteins}</td>
-      <td className="meal-table__td">{setMineralsalt}</td>
       <td className="meal-table__td">{setCalories}</td>
       <td className="meal-table__td">
         <span onClick={() => handleSaveMealItem()}>
@@ -92,11 +87,8 @@ const AddIngredient: React.FC<Props> = ({
           carbs !== "" &&
           fats !== "" &&
           proteins !== "" &&
-          mineralsalt !== "" &&
           calories !== "" &&
-          mealList.findIndex(
-            (item) => item.ingredient === String(ingredient)
-          ) === -1 ? (
+          !isNameTaken ? (
             <AiOutlineCheckCircle
               className="meal-table__save"
               onClick={() => handleSaveMealItem()}

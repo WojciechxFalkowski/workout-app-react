@@ -1,5 +1,5 @@
-@import "./../../../../utils/variables";
-.mealSummary {
+@import "utils/mixins";
+.meal-summary {
   width: 96%;
   margin: 5vh auto;
   background-color: $salmon;

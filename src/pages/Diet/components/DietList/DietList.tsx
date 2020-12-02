@@ -5,7 +5,6 @@ interface list {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
@@ -25,7 +24,7 @@ const DietList: React.FC<Props> = ({ diets }) => {
     <>
       {diets
         .map((diet) => {
-          let [carbs, fats, proteins, mineralsalt, calories] = [0, 0, 0, 0, 0];
+          let [carbs, fats, proteins, calories] = [0, 0, 0, 0];
           if (diet.meal) {
             diet.meal.forEach((meal) => {
               if (meal.list) {
@@ -33,7 +32,6 @@ const DietList: React.FC<Props> = ({ diets }) => {
                   carbs += item.carbs;
                   fats += item.fats;
                   proteins += item.proteins;
-                  mineralsalt += item.mineralsalt;
                   calories += item.calories;
                 });
               }
@@ -46,7 +44,6 @@ const DietList: React.FC<Props> = ({ diets }) => {
               carbs={carbs}
               fats={fats}
               proteins={proteins}
-              mineralsalt={mineralsalt}
               calories={calories}
             />
           );

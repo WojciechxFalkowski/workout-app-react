@@ -31,10 +31,37 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
     setDiet({
       fields: [
         {
+          name: "carbs",
+          initialValue: snapshot.child("carbs").val(),
+          text: "Węglowodany",
+          placeholder: "Węglowodany",
+          type: "number",
+          step: "1",
+          min: "0",
+        },
+        {
+          name: "fats",
+          initialValue: snapshot.child("fats").val(),
+          text: "Tłuszcze",
+          placeholder: "Tłuszcze",
+          type: "number",
+          step: "1",
+          min: "0",
+        },
+        {
+          name: "proteins",
+          initialValue: snapshot.child("proteins").val(),
+          text: "Białko",
+          placeholder: "Białko",
+          type: "number",
+          step: "1",
+          min: "0",
+        },
+        {
           name: "calories",
           initialValue: snapshot.child("calories").val(),
-          text: "Podaj ilość kalorii",
-          placeholder: "Podaj ilość kalorii",
+          text: "Kalorie",
+          placeholder: "Kalorie",
           type: "number",
           step: "1",
           min: "0",
@@ -58,12 +85,18 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
     }
   }, [currentUser]);
   const handleSubmit = (values: any) => {
-    const calories = values.calories ? Number(values.calories) : "";
+    for (var propName in values) {
+      if (values[propName] === null || values[propName] === undefined) {
+        delete values[propName];
+      } else {
+        values[propName] = Number(values[propName]);
+      }
+    }
     if (currentUser) {
       firebase
         .database()
-        .ref("users/" + currentUser.uid + "/settings/diet/calories")
-        .set(calories);
+        .ref("users/" + currentUser.uid + "/settings/diet")
+        .set(values);
     }
   };
   return (

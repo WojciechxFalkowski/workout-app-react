@@ -1,99 +1,134 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./mealSummary.scss";
+import firebase from "firebase/app";
 interface mealItem {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
   mealName: string;
   list: Array<mealItem>;
 }
+interface diet {
+  calories: number;
+  carbs: number;
+  fats: number;
+  proteins: number;
+}
 export interface Props {
   meals: Array<meal>;
+  currentUserId: string;
 }
-const MealSummary: React.FC<Props> = ({ meals }) => {
-  const sumNutrientsByType: Array<number> = [0, 0, 0, 0, 0];
+const MealSummary: React.FC<Props> = ({ meals, currentUserId }) => {
+  const sumNutrientsByType: Array<number> = [0, 0, 0, 0];
   const titles: Array<string> = [
     "Węglowodany",
     "Tłuszcze",
     "Białko",
-    "Sole mineralne",
     "Kalorie",
   ];
-  const dailySchedule: Array<number> = [3000, 3000, 3000, 3000, 3000];
+  const [diet, setDiet] = useState<Array<number>>([0, 0, 0, 0]);
+  const [flag, setFlag] = useState(false);
   meals.forEach((meal) => {
     if (meal.list) {
       meal.list.forEach((item) => {
         sumNutrientsByType[0] += item.carbs;
         sumNutrientsByType[1] += item.fats;
         sumNutrientsByType[2] += item.proteins;
-        sumNutrientsByType[3] += item.mineralsalt;
-        sumNutrientsByType[4] += item.calories;
+        sumNutrientsByType[3] += item.calories;
       });
     }
   });
+  const uploadDiet = (snapshot: any) => {
+    if (snapshot.val()) {
+      const { carbs, fats, proteins, calories } = snapshot.val();
+      setDiet([carbs, fats, proteins, calories]);
+      setFlag(true);
+    }
+  };
+  useEffect(() => {
+    if (currentUserId) {
+      const ref = firebase
+        .database()
+        .ref("users/" + currentUserId + "/settings/diet");
+      ref.on("value", uploadDiet);
+      return () => {
+        ref.off("value", uploadDiet);
+      };
+    }
+  }, [currentUserId]);
   return (
-    <table className="mealSummary">
-      <tbody className="mealSummary__tbody">
-        <tr className="mealSummary__tr">
-          <td className="mealSummary__td">Razem</td>
-          {sumNutrientsByType.map((type, index) => {
-            return (
-              <td key={titles[index]} className="mealSummary__td">
-                {type}
-              </td>
-            );
-          })}
-        </tr>
-        <tr className="mealSummary__tr">
-          <td className="mealSummary__td">Dzienny plan</td>
-          {dailySchedule.map((item, index) => (
-            <td key={titles[index]} className="mealSummary__td">
-              {item}
-            </td>
-          ))}
-        </tr>
-        <tr className="mealSummary__tr">
-          <td className="mealSummary__td">Brakujące</td>
-          {dailySchedule.map((item, index) => {
-            const distinction = sumNutrientsByType[index] - item;
-            if (distinction >= 0) {
-              return (
-                <td
-                  key={titles[index]}
-                  className="mealSummary__td mealSummary__above-zero"
-                >
-                  {distinction}
+    <>
+      {flag && (
+        <table className="meal-summary">
+          <tbody className="meal-summary__tbody">
+            <tr className="meal-summary__tr">
+              <td className="meal-summary__td">Razem</td>
+              {sumNutrientsByType.map((type, index) => {
+                return (
+                  <td key={titles[index]} className="meal-summary__td">
+                    {type}
+                  </td>
+                );
+              })}
+            </tr>
+            <tr className="meal-summary__tr">
+              <td className="meal-summary__td">Dzienny plan</td>
+              {titles.map((title, index) => (
+                <td key={title} className="meal-summary__td">
+                  {diet[index] === undefined ? "-" : diet[index]}
                 </td>
-              );
-            } else {
-              return (
-                <td
-                  key={titles[index]}
-                  className="mealSummary__td mealSummary__below-zero"
-                >
-                  {distinction}
-                </td>
-              );
-            }
-          })}
-        </tr>
-      </tbody>
-      <tfoot className="mealSummary__tfoot">
-        <tr className="mealSummary__tr">
-          <th className="mealSummary__th"></th>
-          {titles.map((title) => (
-            <th key={title} className="mealSummary__th">
-              {title}
-            </th>
-          ))}
-        </tr>
-      </tfoot>
-    </table>
+              ))}
+            </tr>
+            <tr className="meal-summary__tr">
+              <td className="meal-summary__td">Brakujące</td>
+              {sumNutrientsByType.map((type, index) => {
+                const distinction =
+                  diet[index] === undefined ? "-" : type - diet[index];
+                if (distinction >= 0) {
+                  return (
+                    <td
+                      key={titles[index]}
+                      className="meal-summary__td meal-summary__above-zero"
+                    >
+                      {distinction}
+                    </td>
+                  );
+                } else if (distinction === "-") {
+                  return (
+                    <td key={titles[index]} className="meal-summary__td">
+                      {distinction}
+                    </td>
+                  );
+                } else {
+                  return (
+                    <td
+                      key={titles[index]}
+                      className="meal-summary__td meal-summary__below-zero"
+                    >
+                      {distinction}
+                    </td>
+                  );
+                }
+              })}
+            </tr>
+          </tbody>
+          <tfoot className="meal-summary__tfoot">
+            <tr className="meal-summary__tr">
+              <th className="meal-summary__th"></th>
+              {titles.map((title) => (
+                <th key={title} className="meal-summary__th">
+                  {title}
+                </th>
+              ))}
+            </tr>
+          </tfoot>
+        </table>
+      )}
+    </>
   );
 };
 

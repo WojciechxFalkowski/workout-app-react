@@ -3,8 +3,9 @@ import { useParams, useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import "./dietDay.scss";
-import { GoBackDelete } from "components";
+import { GoBackDelete, Button } from "components";
 import { MealList, AddMeal, MealSummary } from "./components";
+
 interface params {
   id: string;
 }
@@ -13,7 +14,6 @@ interface mealItem {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 interface meal {
@@ -35,7 +35,7 @@ const DietDay: React.FC<Props> = () => {
     });
     setMeals(dietDayArray);
   };
-
+  const [activeMeal, setActiveMeal] = useState(false);
   useEffect(() => {
     if (currentUser) {
       const ref = firebase
@@ -61,9 +61,19 @@ const DietDay: React.FC<Props> = () => {
     <main className="diet-day">
       <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
       <section className="diet-day__section">
-        <AddMeal meals={meals} id={params.id} />
+        <Button onClick={() => setActiveMeal(true)}>Dodaj posiłek</Button>
         <MealList meals={meals} id={params.id} />
-        {meals.length !== 0 && <MealSummary meals={meals} />}
+        {activeMeal && currentUser && (
+          <AddMeal
+            meals={meals}
+            setActiveMeal={setActiveMeal}
+            currentUserId={currentUser.uid}
+            id={params.id}
+          />
+        )}
+        {meals.length !== 0 && currentUser && (
+          <MealSummary meals={meals} currentUserId={currentUser.uid} />
+        )}
       </section>
     </main>
   );

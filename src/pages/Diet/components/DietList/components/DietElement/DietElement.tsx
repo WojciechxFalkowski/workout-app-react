@@ -7,7 +7,6 @@ export interface Props {
   carbs: number;
   fats: number;
   proteins: number;
-  mineralsalt: number;
   calories: number;
 }
 
@@ -16,7 +15,6 @@ const DietElement: React.FC<Props> = ({
   carbs,
   fats,
   proteins,
-  mineralsalt,
   calories,
 }) => {
   const history = useHistory();
@@ -24,16 +22,9 @@ const DietElement: React.FC<Props> = ({
     "Węglowodany",
     "Tłuszcze",
     "Białko",
-    "Sole mineralne",
     "Kalorie",
   ];
-  const nutrients: Array<number> = [
-    carbs,
-    fats,
-    proteins,
-    mineralsalt,
-    calories,
-  ];
+  const nutrients: Array<number> = [carbs, fats, proteins, calories];
   const handleDietDay = (date: string) => {
     history.push(`diet/${date}`);
   };
