@@ -11,7 +11,7 @@ const Greetings: React.FC<Props> = ({ name }) => {
     "Poniedziałek",
     "Wtorek",
     "Środa",
-    "Czwarte",
+    "Czwartek",
     "Piątek",
     "Sobota",
     "Niedziela",

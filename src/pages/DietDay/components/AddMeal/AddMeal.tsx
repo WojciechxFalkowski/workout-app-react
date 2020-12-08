@@ -56,6 +56,7 @@ const AddMeal: React.FC<Props> = ({
             <input
               type="text"
               value={inputName}
+              placeholder="Nazwa"
               onChange={(e) => setInputName(e.target.value)}
               ref={inputNameRef}
             />
