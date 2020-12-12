@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Chart } from "components";
-
+import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 import "./weightRaisedPerTrainingName.scss";
 interface trainingsPerTrainingNameItem {
   date: Array<string>;
@@ -47,11 +47,7 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
       }
     }
     const date = new Date(training.date);
-    const formatedDate = `${
-      date.getDate() <= 9 ? "0" + date.getDate() : date.getDate()
-    }/${
-      date.getMonth() + 1 < 10 ? "0" + date.getMonth() + 1 : date.getMonth() + 1
-    }/${date.getFullYear()}`;
+    const formatedDate = `${dayMonthYearWithSeparator(date, "/")}`;
     trainingsArray.date.push(formatedDate);
     trainingsArray.amount.push(amount);
   });

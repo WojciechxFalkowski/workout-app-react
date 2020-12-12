@@ -1,36 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./greetings.scss";
+import { namesOfDaysOfWeekArray, namesOfTheMonths } from "utils/constants";
 export interface Props {
   name: string;
 }
 
 const Greetings: React.FC<Props> = ({ name }) => {
   const date = new Date();
-  const dayOfWeek = [
-    "Poniedziałek",
-    "Wtorek",
-    "Środa",
-    "Czwartek",
-    "Piątek",
-    "Sobota",
-    "Niedziela",
-  ];
-  const monthOfYear = [
-    "Stycznia",
-    "Lutego",
-    "Marca",
-    "Kwietnia",
-    "Maja",
-    "Czerwca",
-    "Lipca",
-    "Sierpnia",
-    "Września",
-    "Października",
-    "Listopada",
-    "Grudnia",
-  ];
-  const today = `${dayOfWeek[date.getDay()]}, ${date.getDate()} ${
+  const dayOfWeek = namesOfDaysOfWeekArray;
+  const monthOfYear = namesOfTheMonths;
+  const today = `${dayOfWeek[date.getDay() - 1]}, ${date.getDate()} ${
     monthOfYear[date.getMonth()]
   } ${date.getFullYear()}`;
   return (

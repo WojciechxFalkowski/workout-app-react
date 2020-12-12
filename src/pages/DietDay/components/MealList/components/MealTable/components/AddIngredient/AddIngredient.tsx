@@ -82,7 +82,7 @@ const AddIngredient: React.FC<Props> = ({
       <td className="meal-table__td">{setProteins}</td>
       <td className="meal-table__td">{setCalories}</td>
       <td className="meal-table__td">
-        <span onClick={() => handleSaveMealItem()}>
+        <span>
           {ingredient !== "" &&
           carbs !== "" &&
           fats !== "" &&

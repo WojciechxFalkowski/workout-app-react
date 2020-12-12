@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import fire from "fire";
-import { DragAndDropList } from "./components";
+import { DragAndDropList, TrainingItem } from "./components";
 import { useHistory } from "react-router-dom";
-import { TrainingExerciseList } from "./components";
-import { FormTemplate, EditTitle, GoBackDelete } from "components";
-import { required, composeValidators } from "utils/validation";
+import { EditTitle, GoBackDelete } from "components";
 import "./training.scss";
-interface Exercise {
-  workoutName: string;
-}
+
 interface Id {
   id: string;
 }
@@ -24,21 +20,6 @@ const Training: React.FC<Props> = ({ match }) => {
   const { id } = match.params;
   const { currentUser } = useContext(AuthContext);
   const [isActiveEditing, setIsActiveEditing] = useState(false);
-  const formFields = {
-    fields: [
-      {
-        name: "workoutName",
-        validate: composeValidators(required("To pole jest wymagane!")),
-        initialValue: undefined,
-        text: "Nowe ćwiczenie",
-        placeholder: "Nowe ćwiczenie",
-      },
-    ],
-    button: {
-      type: "submit",
-      text: "Dodaj ćwiczenie",
-    },
-  };
 
   const handleDeleteTraining = () => {
     if (currentUser) {
@@ -46,20 +27,7 @@ const Training: React.FC<Props> = ({ match }) => {
       history.goBack();
     }
   };
-  const handleSubmit = (values: Exercise) => {
-    if (currentUser) {
-      fire
-        .database()
-        .ref(`users/${currentUser.uid}/trainings/${id}`)
-        .child("exercises")
-        .push()
-        .set({ workoutName: values.workoutName });
-      values.workoutName = "";
-    }
-  };
 
-  if (currentUser) {
-  }
   const [exercises, setExercises] = useState();
   const loadTrainings = function (snapshot: any) {
     const exerciseArray: any = [];
@@ -84,12 +52,11 @@ const Training: React.FC<Props> = ({ match }) => {
 
   return (
     <main className="training">
-      {!isActiveEditing && (
-        <GoBackDelete
-          handleEdit={handleDeleteTraining}
-          editTitle="Usuń trening"
-        />
-      )}
+      <GoBackDelete
+        handleEdit={handleDeleteTraining}
+        editTitle="Usuń trening"
+      />
+
       <section className="training__add-exercise">
         {currentUser && (
           <EditTitle
@@ -100,19 +67,14 @@ const Training: React.FC<Props> = ({ match }) => {
             setIsActiveEditing={setIsActiveEditing}
           />
         )}
-        {isActiveEditing && exercises && currentUser ? (
+        {isActiveEditing && currentUser ? (
           <DragAndDropList
             exercises={exercises}
             id={id}
             refUrl={`users/${currentUser.uid}/trainings/${id}/exercises`}
           />
         ) : (
-          <>
-            <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-            {exercises && (
-              <TrainingExerciseList exercises={exercises} id={id} />
-            )}
-          </>
+          exercises && <TrainingItem exercises={exercises} id={id} />
         )}
       </section>
     </main>

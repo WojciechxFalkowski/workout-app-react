@@ -1,0 +1,9 @@
+@import "utils/mixins";
+.trainings {
+  &__h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 2vh 0;
+  }
+}

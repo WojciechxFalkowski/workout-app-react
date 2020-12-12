@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-import { AddMeasurement } from "./components";
+import { Thead, MeasurementList, AddMeasurement } from "./components";
 import "./measurement.scss";
 import { Button } from "components";
 export interface Props {}
@@ -57,17 +57,7 @@ const Measurement: React.FC<Props> = () => {
     <main className="measurement">
       <Button onClick={handleAddMeasurement}>Dodaj pomiary</Button>
       <table className="measurement__table">
-        <thead className="measurement__thead">
-          <tr className="measurement__tr">
-            <th className="measurement__th">Data</th>
-            <th className="measurement__th">Waga</th>
-            <th className="measurement__th">Ramię</th>
-            <th className="measurement__th">Klatka</th>
-            <th className="measurement__th">Talia</th>
-            <th className="measurement__th">Uda</th>
-            <th className="measurement__th"></th>
-          </tr>
-        </thead>
+        <Thead />
         <tbody className="measurement__tbody">
           {activeMeasurement && currentUser && (
             <AddMeasurement
@@ -76,35 +66,10 @@ const Measurement: React.FC<Props> = () => {
               currentUserId={currentUser.uid}
             />
           )}
-          {measurements
-            .map((measurement) => {
-              const date = new Date(measurement.date);
-              const modifiedDate = `${
-                date.getDate() > 9 ? date.getDate() : "0" + date.getDate()
-              }/${
-                date.getMonth() + 1 > 9
-                  ? date.getMonth() + 1
-                  : "0" + date.getMonth() + 1
-              }/${date.getFullYear()}`;
-              return (
-                <tr className="measurement__tr" key={measurement.id}>
-                  <td className="measurement__td">{modifiedDate}</td>
-                  <td className="measurement__td">{measurement.weight}</td>
-                  <td className="measurement__td">{measurement.arm}</td>
-                  <td className="measurement__td">{measurement.chest}</td>
-                  <td className="measurement__td">{measurement.waist}</td>
-                  <td className="measurement__td">{measurement.thighs}</td>
-                  <td className="measurement__td">
-                    <Button
-                      onClick={() => handleDeleteMeasurement(measurement.id)}
-                    >
-                      Usuń
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })
-            .reverse()}
+          <MeasurementList
+            measurements={measurements}
+            handleDeleteMeasurement={handleDeleteMeasurement}
+          />
         </tbody>
       </table>
     </main>

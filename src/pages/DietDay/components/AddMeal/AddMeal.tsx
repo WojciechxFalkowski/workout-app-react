@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiFillDelete, AiOutlineCheckCircle } from "react-icons/ai";
 import firebase from "firebase/app";
+import { ingredientTitles } from "utils/constants";
+
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -27,12 +29,7 @@ const AddMeal: React.FC<Props> = ({
 }) => {
   const inputNameRef = useRef<HTMLInputElement>(null);
   const [inputName, setInputName] = useState("");
-  const titles: Array<string> = [
-    "Węglowodany",
-    "Tłuszcze",
-    "Białko",
-    "Kalorie",
-  ];
+  const titles: Array<string> = ingredientTitles;
   const handleAddMeal = () => {
     if (currentUserId) {
       firebase
@@ -60,16 +57,6 @@ const AddMeal: React.FC<Props> = ({
               onChange={(e) => setInputName(e.target.value)}
               ref={inputNameRef}
             />
-            <span className="meal-table__add">
-              {meals &&
-                meals.findIndex((meal) => meal.mealName === inputName) === -1 &&
-                inputName !== "" && (
-                  <AiOutlineCheckCircle
-                    className="meal-table__save-meal"
-                    onClick={() => handleAddMeal()}
-                  />
-                )}
-            </span>
             <span className="meal-table__error">
               {meals.findIndex((meal) => meal.mealName === inputName) !== -1 &&
                 "Nazwa zajęta"}
@@ -82,7 +69,16 @@ const AddMeal: React.FC<Props> = ({
           ))}
 
           <th className="meal-table__th">
-            <AiFillDelete onClick={() => setActiveMeal(false)} />
+            {meals &&
+            meals.findIndex((meal) => meal.mealName === inputName) === -1 &&
+            inputName !== "" ? (
+              <AiOutlineCheckCircle
+                className="meal-table__save-meal"
+                onClick={() => handleAddMeal()}
+              />
+            ) : (
+              <AiFillDelete onClick={() => setActiveMeal(false)} />
+            )}
           </th>
         </tr>
       </thead>

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "components";
 import firebase from "firebase/app";
 import "./addMeasurement.scss";
+import generateRandomString from "utils/generateRandomString";
+import { CustomHookInput } from "components";
+import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 export interface Props {
   measurements: any;
   setActiveMeasurement: (arg1: boolean) => void;
@@ -13,10 +16,19 @@ const AddMeasurement: React.FC<Props> = ({
   setActiveMeasurement,
   currentUserId,
 }) => {
+  const [weight, setWeight] = CustomHookInput({ type: "number" });
+  const [arm, setArn] = CustomHookInput({ type: "number" });
+  const [chest, setChest] = CustomHookInput({ type: "number" });
+  const [waist, setWaist] = CustomHookInput({ type: "number" });
+  const [thighs, setThighs] = CustomHookInput({ type: "number" });
+  const isComplete =
+    weight === "" &&
+    arm === "" &&
+    chest === "" &&
+    waist === "" &&
+    thighs === "";
   const date = new Date();
-  const today = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}`;
+  const today = dayMonthYearWithSeparator(date, "/");
   const saveMeasurement = (newMeasurement: any) => {
     firebase
       .database()
@@ -24,20 +36,12 @@ const AddMeasurement: React.FC<Props> = ({
       .set([...measurements, newMeasurement]);
   };
   const handleSaveMeasurement = () => {
-    if (
-      weight === "" &&
-      arm === "" &&
-      chest === "" &&
-      waist === "" &&
-      thighs === ""
-    ) {
+    if (isComplete) {
     } else {
-      const today = `${date.getFullYear()}-${
-        date.getMonth() + 1
-      }-${date.getDate()}`;
+      const today = dayMonthYearWithSeparator(date, "-");
       const measurement = {
         date: today,
-        id: ID(),
+        id: generateRandomString(),
         weight,
         arm,
         chest,
@@ -49,29 +53,7 @@ const AddMeasurement: React.FC<Props> = ({
 
     setActiveMeasurement(false);
   };
-  const ID = function () {
-    return (
-      Math.random().toString(36).substr(2, 9) +
-      Math.random().toString(36).substr(2, 9) +
-      Math.random().toString(36).substr(2, 9)
-    );
-  };
-  const useInput = ({ type }: any) => {
-    const [value, setValue] = useState("");
-    const input = (
-      <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        type={type}
-      />
-    );
-    return [value, input];
-  };
-  const [weight, setWeight] = useInput({ type: "number" });
-  const [arm, setArn] = useInput({ type: "number" });
-  const [chest, setChest] = useInput({ type: "number" });
-  const [waist, setWaist] = useInput({ type: "number" });
-  const [thighs, setThighs] = useInput({ type: "number" });
+
   return (
     <tr className="add-measurement">
       <td className="add-measurement__td">{today}</td>
@@ -82,13 +64,7 @@ const AddMeasurement: React.FC<Props> = ({
       <td className="add-measurement__td">{setThighs}</td>
       <td className="add-measurement__td">
         <Button onClick={() => handleSaveMeasurement()}>
-          {weight === "" &&
-          arm === "" &&
-          chest === "" &&
-          waist === "" &&
-          thighs === ""
-            ? "Usuń"
-            : "Zapisz"}
+          {isComplete ? "Usuń" : "Zapisz"}
         </Button>
       </td>
     </tr>

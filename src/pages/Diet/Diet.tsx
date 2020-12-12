@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import { Button } from "components";
+import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 interface list {
   ingredient: string;
   carbs: number;
@@ -29,9 +30,7 @@ const Diet: React.FC<Props> = () => {
   const [flag, setFlag] = useState(false);
   const handleAddDiet = () => {
     const today = new Date();
-    const todayDatePattern = `${today.getFullYear()}${today.getMonth() + 1}${
-      today.getDate() > 9 ? today.getDate() : "0" + today.getDate()
-    }`;
+    const todayDatePattern = dayMonthYearWithSeparator(today, "", "yes");
     let flag = true;
     diets.forEach((item) => {
       if (todayDatePattern === item.date) {

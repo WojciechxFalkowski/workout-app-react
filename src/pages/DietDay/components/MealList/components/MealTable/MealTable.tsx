@@ -9,6 +9,7 @@ import {
   AddIngredient,
 } from "./components";
 import "./mealTable.scss";
+import { ingredientTitles } from "utils/constants";
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -30,12 +31,7 @@ export interface Props {
 const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
   const { currentUser } = useContext(AuthContext);
   const [activeMeal, setActiveMeal] = useState(false);
-  const titles: Array<string> = [
-    "Węglowodany",
-    "Tłuszcze",
-    "Białko",
-    "Kalorie",
-  ];
+  const titles: Array<string> = ingredientTitles;
 
   const handleAddMealElement = () => {
     setActiveMeal(true);

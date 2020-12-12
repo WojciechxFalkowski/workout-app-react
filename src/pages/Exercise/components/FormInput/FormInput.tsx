@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, Field } from "react-final-form";
-import { required, composeValidators } from "utils/validation";
 import "./formInput.scss";
 import { Line, RemoveSeries, SeriesNumber } from "./components";
+import { AuthContext } from "components/AuthProvider/AuthProvider";
+import firebase from "firebase/app";
 interface Fields {
   name: string;
   validate: (value: any) => void;
@@ -20,42 +21,28 @@ interface FormFields {
 interface Props {
   formFields: FormFields;
   setFormFields: (cos: any) => void;
-  handleSubmit: (values: any) => void;
+  id: string;
+  paramId: string;
 }
 
 const FormInput: React.FC<Props> = ({
   formFields: { fields, button },
-  handleSubmit,
   setFormFields,
+  id,
+  paramId,
 }) => {
-  const handleAddSeries = () => {
-    fields.push(
-      {
-        name: `exerciseWeight${ID()}`,
-        validate: composeValidators(required("To pole jest wymagane!")),
-        initialValue: undefined,
-        text: "Ciężar (kg)",
-        placeholder: "Ciężar (kg)",
-      },
-      {
-        name: `exerciseRepeat${ID()}`,
-        validate: composeValidators(required("To pole jest wymagane!")),
-        initialValue: undefined,
-        text: "Liczba powtórzeń",
-        placeholder: "Liczba powtórzeń",
-      }
-    );
-    setFormFields({
-      fields,
-      button,
+  const { currentUser } = useContext(AuthContext);
+  const handleSubmit = (values: any) => {
+    const newArray: any = [];
+    fields.forEach((field) => {
+      newArray.push(values[field.name]);
     });
+    if (currentUser) {
+      const url = `users/${currentUser.uid}/trainings/${id}/exercises/${paramId}`;
+      firebase.database().ref(url).child("series").set(newArray);
+    }
   };
-  const ID = function () {
-    return (
-      Math.random().toString(36).substr(2, 9) +
-      Math.random().toString(36).substr(2, 9)
-    );
-  };
+
   const handleRemoveSeries = (number: number) => {
     fields.splice(number - 1, 2);
     setFormFields({
@@ -104,7 +91,7 @@ const FormInput: React.FC<Props> = ({
               </Field>
             );
           })}
-          <Line handleAddSeries={handleAddSeries} />
+          <Line fields={fields} button={button} setFormFields={setFormFields} />
           <button className="form__button">{button.text}</button>
         </form>
       )}

@@ -1,1 +1,2 @@
-export { default as Table } from "./Table";
+export { default as TrainingsList } from "./TrainingsList";
+export { default as AddTraining } from "./AddTraining";

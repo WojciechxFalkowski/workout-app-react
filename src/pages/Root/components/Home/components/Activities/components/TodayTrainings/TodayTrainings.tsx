@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase/app";
 import "./todayTrainings.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-
+import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 type Trainings = Array<training>;
 interface training {
   id: string;
@@ -14,10 +14,8 @@ export interface Props {}
 const TodayTrainings: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [trainings, setTrainings] = useState<Trainings>();
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const date = new Date();
+  const modifiedDate = dayMonthYearWithSeparator(date, "-");
   const uploadTrainings = function (snapshot: any) {
     const trainingArray: any = [];
     snapshot.forEach(function (childSnapshot: any) {
@@ -32,13 +30,13 @@ const TodayTrainings: React.FC<Props> = () => {
         .database()
         .ref("users/" + currentUser.uid + "/trainings")
         .orderByChild("date")
-        .startAt(date);
+        .startAt(modifiedDate);
       ref.on("value", uploadTrainings);
       return () => {
         ref.off("value", uploadTrainings);
       };
     }
-  }, [currentUser, date]);
+  }, [currentUser, modifiedDate]);
   return (
     <div className="today-trainings">
       <span className="today-trainings__title">Treningi</span>

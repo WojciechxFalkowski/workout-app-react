@@ -4,6 +4,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { FormInput } from "./components";
 import { EditTitle, GoBackDelete } from "components";
 import { required, composeValidators } from "utils/validation";
+import generateRandomString from "utils/generateRandomString";
 import fire from "./../../fire";
 import "./exercise.scss";
 interface Id {
@@ -17,7 +18,6 @@ interface Params {
 export interface Props {
   match: Params;
 }
-
 const Exercise: React.FC<Props> = (props) => {
   let history = useHistory();
   const { currentUser } = useContext(AuthContext);
@@ -57,22 +57,7 @@ const Exercise: React.FC<Props> = (props) => {
       history.goBack();
     }
   };
-  const handleSubmit = (values: any) => {
-    const newArray: any = [];
-    formFields.fields.forEach((field) => {
-      newArray.push(values[field.name]);
-    });
-    if (currentUser) {
-      const url = `users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`;
-      fire.database().ref(url).child("series").set(newArray);
-    }
-  };
-  const ID = function () {
-    return (
-      Math.random().toString(36).substr(2, 9) +
-      Math.random().toString(36).substr(2, 9)
-    );
-  };
+
   useEffect(() => {
     if (currentUser) {
       fire
@@ -94,7 +79,7 @@ const Exercise: React.FC<Props> = (props) => {
               fields.push({
                 name: `${
                   fields.length % 2 === 0 ? "exerciseWeight" : "exerciseRepeat"
-                }${ID()}`,
+                }${generateRandomString()}`,
                 validate: composeValidators(required("To pole jest wymagane!")),
                 initialValue: childSnapshot.val(),
                 text: text,
@@ -113,12 +98,10 @@ const Exercise: React.FC<Props> = (props) => {
   }, [currentUser, id, props.match.params.id]);
   return (
     <main className="exercise">
-      {!isActiveEditing && (
-        <GoBackDelete
-          handleEdit={handleSaveExercise}
-          editTitle="Usuń ćwiczenie"
-        />
-      )}
+      <GoBackDelete
+        handleEdit={handleSaveExercise}
+        editTitle="Usuń ćwiczenie"
+      />
       <section className="exercise__add-series">
         {currentUser && (
           <EditTitle
@@ -133,7 +116,8 @@ const Exercise: React.FC<Props> = (props) => {
           <FormInput
             formFields={formFields}
             setFormFields={setFormFields}
-            handleSubmit={handleSubmit}
+            id={id}
+            paramId={props.match.params.id}
           />
         )}
       </section>

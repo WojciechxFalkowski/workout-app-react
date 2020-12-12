@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./mealSummary.scss";
 import firebase from "firebase/app";
+import { ingredientTitles } from "utils/constants";
+import {
+  SumOfEatenIngredients,
+  DailyPlan,
+  MissingCalories,
+  Tfoot,
+} from "./components";
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -12,24 +19,13 @@ interface meal {
   mealName: string;
   list: Array<mealItem>;
 }
-interface diet {
-  calories: number;
-  carbs: number;
-  fats: number;
-  proteins: number;
-}
 export interface Props {
   meals: Array<meal>;
   currentUserId: string;
 }
 const MealSummary: React.FC<Props> = ({ meals, currentUserId }) => {
   const sumNutrientsByType: Array<number> = [0, 0, 0, 0];
-  const titles: Array<string> = [
-    "Węglowodany",
-    "Tłuszcze",
-    "Białko",
-    "Kalorie",
-  ];
+  const titles: Array<string> = ingredientTitles;
   const [diet, setDiet] = useState<Array<number>>([0, 0, 0, 0]);
   const [flag, setFlag] = useState(false);
   meals.forEach((meal) => {
@@ -65,67 +61,18 @@ const MealSummary: React.FC<Props> = ({ meals, currentUserId }) => {
       {flag && (
         <table className="meal-summary">
           <tbody className="meal-summary__tbody">
-            <tr className="meal-summary__tr">
-              <td className="meal-summary__td">Razem</td>
-              {sumNutrientsByType.map((type, index) => {
-                return (
-                  <td key={titles[index]} className="meal-summary__td">
-                    {type}
-                  </td>
-                );
-              })}
-            </tr>
-            <tr className="meal-summary__tr">
-              <td className="meal-summary__td">Dzienny plan</td>
-              {titles.map((title, index) => (
-                <td key={title} className="meal-summary__td">
-                  {diet[index] === undefined ? "-" : diet[index]}
-                </td>
-              ))}
-            </tr>
-            <tr className="meal-summary__tr">
-              <td className="meal-summary__td">Brakujące</td>
-              {sumNutrientsByType.map((type, index) => {
-                const distinction =
-                  diet[index] === undefined ? "-" : type - diet[index];
-                if (distinction >= 0) {
-                  return (
-                    <td
-                      key={titles[index]}
-                      className="meal-summary__td meal-summary__above-zero"
-                    >
-                      {distinction}
-                    </td>
-                  );
-                } else if (distinction === "-") {
-                  return (
-                    <td key={titles[index]} className="meal-summary__td">
-                      {distinction}
-                    </td>
-                  );
-                } else {
-                  return (
-                    <td
-                      key={titles[index]}
-                      className="meal-summary__td meal-summary__below-zero"
-                    >
-                      {distinction}
-                    </td>
-                  );
-                }
-              })}
-            </tr>
+            <SumOfEatenIngredients
+              sumNutrientsByType={sumNutrientsByType}
+              titles={titles}
+            />
+            <DailyPlan diet={diet} titles={titles} />
+            <MissingCalories
+              sumNutrientsByType={sumNutrientsByType}
+              diet={diet}
+              titles={titles}
+            />
           </tbody>
-          <tfoot className="meal-summary__tfoot">
-            <tr className="meal-summary__tr">
-              <th className="meal-summary__th"></th>
-              {titles.map((title) => (
-                <th key={title} className="meal-summary__th">
-                  {title}
-                </th>
-              ))}
-            </tr>
-          </tfoot>
+          <Tfoot titles={titles} />
         </table>
       )}
     </>
