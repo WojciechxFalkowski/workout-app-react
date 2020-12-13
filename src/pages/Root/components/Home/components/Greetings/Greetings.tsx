@@ -10,7 +10,7 @@ const Greetings: React.FC<Props> = ({ name }) => {
   const date = new Date();
   const dayOfWeek = namesOfDaysOfWeekArray;
   const monthOfYear = namesOfTheMonths;
-  const today = `${dayOfWeek[date.getDay() - 1]}, ${date.getDate()} ${
+  const today = `${dayOfWeek[date.getDay()]}, ${date.getDate()} ${
     monthOfYear[date.getMonth()]
   } ${date.getFullYear()}`;
   return (

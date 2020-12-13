@@ -32,9 +32,9 @@ const Training: React.FC<Props> = ({ match }) => {
   const loadTrainings = function (snapshot: any) {
     const exerciseArray: any = [];
     snapshot.forEach(function (childSnapshot: any) {
-      const { workoutName } = childSnapshot.val();
+      const { series, workoutName } = childSnapshot.val();
       const key = childSnapshot.key;
-      exerciseArray.push({ workoutName, key });
+      exerciseArray.push({ workoutName, key, series });
     });
     setExercises(exerciseArray);
   };

@@ -15,7 +15,7 @@ const TodayTrainings: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [trainings, setTrainings] = useState<Trainings>();
   const date = new Date();
-  const modifiedDate = dayMonthYearWithSeparator(date, "-");
+  const modifiedDate = dayMonthYearWithSeparator(date, "-", "yes");
   const uploadTrainings = function (snapshot: any) {
     const trainingArray: any = [];
     snapshot.forEach(function (childSnapshot: any) {
@@ -43,9 +43,13 @@ const TodayTrainings: React.FC<Props> = () => {
       {trainings && trainings.length !== 0 ? (
         trainings.map((training) => {
           return (
-            <div key={training.id} className="today-trainings__trainings">
+            <Link
+              key={training.id}
+              to={`trainings/${training.id}`}
+              className="today-trainings__link"
+            >
               {training.workoutName}
-            </div>
+            </Link>
           );
         })
       ) : (

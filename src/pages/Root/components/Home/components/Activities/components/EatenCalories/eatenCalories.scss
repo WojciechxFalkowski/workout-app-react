@@ -5,12 +5,16 @@
     font-weight: bold;
   }
   &__calories {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin: 1vh 0;
   }
 
-  &__a {
-    text-decoration: unset;
+  &__p {
     color: $goldenrod;
+    padding-top: 8px;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }

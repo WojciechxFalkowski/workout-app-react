@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormTemplate } from "components";
+import { FormTemplate, LoadingIndicator } from "components";
 import firebase from "firebase/app";
 import "./diet.scss";
 interface Fields {
@@ -102,7 +102,11 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
   return (
     <div className="diet">
       <h1 className="diet__h2">Dieta</h1>
-      {diet && <FormTemplate formFields={diet} handleSubmit={handleSubmit} />}
+      {diet ? (
+        <FormTemplate formFields={diet} handleSubmit={handleSubmit} />
+      ) : (
+        <LoadingIndicator />
+      )}
     </div>
   );
 };

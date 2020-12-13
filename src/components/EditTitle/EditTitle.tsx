@@ -4,6 +4,7 @@ import { FormTemplate } from "components";
 import fire from "fire";
 import { required, composeValidators } from "utils/validation";
 import "./editTitle.scss";
+import LoadingIndicator from "components/LoadingIndicator";
 export interface Props {
   labelText: string;
   editDate: boolean;
@@ -22,6 +23,7 @@ const EditTitle: React.FC<Props> = ({
   const [workoutName, setWorkoutName] = useState();
   const [editTimeDate, setEditTimeDate] = useState();
   const [editName, setEditName] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const formFields = {
     fields: [
       {
@@ -71,6 +73,7 @@ const EditTitle: React.FC<Props> = ({
   const loadTrainingName = function (snapshot: any) {
     setWorkoutName(snapshot.val().workoutName);
     setEditTimeDate(snapshot.val().date);
+    setIsLoaded(true);
   };
   useEffect(() => {
     const newRef = fire.database().ref(refUrl);
@@ -84,7 +87,7 @@ const EditTitle: React.FC<Props> = ({
     <>
       {editName ? (
         <FormTemplate formFields={formFields} handleSubmit={handleSubmit} />
-      ) : (
+      ) : isLoaded ? (
         <div className="edit-title__div">
           <h2 className="edit-title__h2">{workoutName}</h2>
           <div className="edit-title__div-icon">
@@ -94,6 +97,8 @@ const EditTitle: React.FC<Props> = ({
             />
           </div>
         </div>
+      ) : (
+        <LoadingIndicator />
       )}
     </>
   );

@@ -5,13 +5,13 @@ export const ingredientTitles: Array<string> = [
   "Kalorie",
 ];
 export const namesOfDaysOfWeekArray: Array<string> = [
+  "Niedziela",
   "Poniedziałek",
   "Wtorek",
   "Środa",
   "Czwartek",
   "Piątek",
   "Sobota",
-  "Niedziela",
 ];
 export const namesOfTheMonths: Array<string> = [
   "Stycznia",

@@ -3,6 +3,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { Greetings, MyProfile, Activities, TableResults } from "./components";
 import firebase from "firebase/app";
 import "./home.scss";
+import { LoadingIndicator } from "components";
 interface ingredients {
   carbs: number;
   fats: number;
@@ -43,7 +44,7 @@ const Home: React.FC<Props> = () => {
   }, [currentUser]);
   return (
     <>
-      {currentUser && user && (
+      {currentUser && user ? (
         <main className="home">
           <Greetings name={user.name} />
           <section className="home__profile">
@@ -57,6 +58,8 @@ const Home: React.FC<Props> = () => {
 
           <TableResults />
         </main>
+      ) : (
+        <LoadingIndicator />
       )}
     </>
   );

@@ -3,7 +3,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import { Thead, MeasurementList, AddMeasurement } from "./components";
 import "./measurement.scss";
-import { Button } from "components";
+import { Button, LoadingIndicator } from "components";
 export interface Props {}
 
 interface measurement {
@@ -19,6 +19,7 @@ const Measurement: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [measurements, setMeasurements] = useState<Array<measurement>>([]);
   const [activeMeasurement, setActiveMeasurement] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const handleAddMeasurement = () => {
     setActiveMeasurement(true);
   };
@@ -40,6 +41,7 @@ const Measurement: React.FC<Props> = () => {
       measurementsArray.push(childData);
     });
     setMeasurements(measurementsArray);
+    setIsLoaded(true);
   };
   useEffect(() => {
     if (currentUser) {
@@ -56,22 +58,27 @@ const Measurement: React.FC<Props> = () => {
   return (
     <main className="measurement">
       <Button onClick={handleAddMeasurement}>Dodaj pomiary</Button>
-      <table className="measurement__table">
-        <Thead />
-        <tbody className="measurement__tbody">
-          {activeMeasurement && currentUser && (
-            <AddMeasurement
+      {isLoaded ? (
+        <table className="measurement__table">
+          <Thead />
+          <tbody className="measurement__tbody">
+            {activeMeasurement && currentUser && (
+              <AddMeasurement
+                measurements={measurements}
+                setActiveMeasurement={setActiveMeasurement}
+                currentUserId={currentUser.uid}
+              />
+            )}
+
+            <MeasurementList
               measurements={measurements}
-              setActiveMeasurement={setActiveMeasurement}
-              currentUserId={currentUser.uid}
+              handleDeleteMeasurement={handleDeleteMeasurement}
             />
-          )}
-          <MeasurementList
-            measurements={measurements}
-            handleDeleteMeasurement={handleDeleteMeasurement}
-          />
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      ) : (
+        <LoadingIndicator />
+      )}
     </main>
   );
 };

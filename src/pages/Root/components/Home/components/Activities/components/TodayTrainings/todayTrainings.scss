@@ -1,11 +1,19 @@
 @import "utils/mixins";
 .today-trainings {
-  margin: 2vh 0;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &__title {
     font-weight: bold;
   }
-  &__trainings {
-    margin: 1vh 0;
+  &__link {
+    padding-top: 8px;
+    text-decoration: none;
+    color: orange;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   &__unset {
     margin: 1vh 0;

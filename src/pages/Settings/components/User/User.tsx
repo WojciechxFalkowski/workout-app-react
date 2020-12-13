@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormTemplate } from "components";
+import { FormTemplate, LoadingIndicator } from "components";
 import { required, composeValidators } from "utils/validation";
 import firebase from "firebase/app";
 import "./user.scss";
@@ -78,8 +78,10 @@ const User: React.FC<Props> = ({ currentUser }) => {
   return (
     <div className="user">
       <h1 className="user__h1">Dane</h1>
-      {settings && (
+      {settings ? (
         <FormTemplate formFields={settings} handleSubmit={handleSubmit} />
+      ) : (
+        <LoadingIndicator />
       )}
     </div>
   );

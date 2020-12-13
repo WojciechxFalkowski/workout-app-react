@@ -42,9 +42,6 @@
     &:nth-child(1) {
       min-width: 72px;
     }
-    @media (min-width: 640px) {
-      padding: 2vh 2vw;
-    }
   }
   &__td {
     text-align: center;

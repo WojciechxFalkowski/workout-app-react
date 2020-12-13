@@ -4,7 +4,7 @@ import "./diet.scss";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-import { Button } from "components";
+import { Button, LoadingIndicator } from "components";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 interface list {
   ingredient: string;
@@ -28,6 +28,7 @@ const Diet: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   const [diets, setDiets] = useState<Array<diet>>([]);
   const [flag, setFlag] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const handleAddDiet = () => {
     const today = new Date();
     const todayDatePattern = dayMonthYearWithSeparator(today, "", "yes");
@@ -58,8 +59,8 @@ const Diet: React.FC<Props> = () => {
       const childData = childSnapshot.val();
       dietArray.push(childData);
     });
-
     setDiets(dietArray);
+    setIsLoaded(true);
   };
 
   useEffect(() => {
@@ -82,7 +83,7 @@ const Diet: React.FC<Props> = () => {
           <span className="diet__span">Dzisiejsza dieta jest już dodana</span>
         )}
       </div>
-      <DietList diets={diets} />
+      {isLoaded ? <DietList diets={diets} /> : <LoadingIndicator />}
     </main>
   );
 };

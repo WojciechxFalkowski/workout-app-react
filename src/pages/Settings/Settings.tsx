@@ -6,14 +6,14 @@ export interface Props {}
 const Settings: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext);
   return (
-    <>
+    <main className="settings">
       {currentUser && (
-        <main className="settings">
+        <>
           <User currentUser={currentUser} />
           <Diet currentUser={currentUser} />
-        </main>
+        </>
       )}
-    </>
+    </main>
   );
 };
 

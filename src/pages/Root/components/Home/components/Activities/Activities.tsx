@@ -15,7 +15,7 @@ const Activities: React.FC<Props> = ({ ingredients }) => {
   return (
     <article className="activities">
       <span className="activities__title">Dzisiaj</span>
-      <EatenCalories calories={ingredients.calories} />
+      <EatenCalories ingredients={ingredients} />
       <TodayTrainings />
     </article>
   );

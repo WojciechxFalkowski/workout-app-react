@@ -15,7 +15,7 @@
   &__table {
     width: 100%;
     background-color: $white-background;
-    margin-bottom: 5vh;
+
     @media (min-width: 1024px) {
       width: 90%;
       max-width: 700px;
@@ -30,5 +30,15 @@
   }
   &__td {
     padding: 1vh 0;
+  }
+  &__span {
+    display: inline-block;
+    background-color: $white-background;
+    height: 5vh;
+    width: 100%;
+    @media (min-width: 1024px) {
+      width: 90%;
+      max-width: 700px;
+    }
   }
 }

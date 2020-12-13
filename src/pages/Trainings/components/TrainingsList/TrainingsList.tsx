@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./trainingsList.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-import { Table } from "./components";
+import { ListItems } from "./components";
 import { LoadingIndicator } from "components";
 type Trainings = Array<training>;
 interface training {
@@ -46,7 +46,7 @@ const TrainingsList: React.FC<Props> = () => {
   return (
     <section className="trainings__list">
       <h2 className="trainings__h2">Treningi</h2>
-      {isLoaded ? <Table trainings={trainings} /> : <LoadingIndicator />}
+      {isLoaded ? <ListItems trainings={trainings} /> : <LoadingIndicator />}
     </section>
   );
 };

@@ -67,6 +67,7 @@ const TableResults: React.FC<Props> = () => {
             })}
         </tbody>
       </table>
+      <span className="table-results__span"></span>
     </section>
   );
 };

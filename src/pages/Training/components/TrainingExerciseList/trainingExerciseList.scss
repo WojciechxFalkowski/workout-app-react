@@ -1,15 +1,34 @@
 .training-exercise-list {
-  &__ul {
-    display: flex;
-    flex-direction: column;
-  }
   &__exercise {
-    padding: 1vh 1vw;
-    align-self: center;
-    font-size: 1.1rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: orange;
+    border: 8px solid white;
+    border-radius: 16px;
+    padding: 8px 16px;
+    max-width: 600px;
+    margin: 0 auto;
     cursor: pointer;
     &:hover {
-      text-decoration: underline;
+      opacity: 0.9;
     }
+    cursor: pointer;
+  }
+  &__workout-name {
+    width: 45%;
+  }
+  &__series-div {
+    width: 55%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__series {
+    padding: 4px;
+    font-size: 0.8rem;
+    margin: 2px 8px;
+    border-radius: 4px;
+    background-color: white;
   }
 }
