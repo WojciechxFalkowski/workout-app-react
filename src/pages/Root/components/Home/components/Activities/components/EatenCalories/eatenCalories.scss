@@ -19,4 +19,11 @@
       text-decoration: underline;
     }
   }
+  &__a {
+    text-decoration: unset;
+    color: $goldenrod;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

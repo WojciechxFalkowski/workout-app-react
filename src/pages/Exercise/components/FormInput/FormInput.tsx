@@ -12,6 +12,7 @@ interface Fields {
   placeholder: string;
 }
 interface Button {
+  type: string;
   text: string;
 }
 interface FormFields {
@@ -20,7 +21,7 @@ interface FormFields {
 }
 interface Props {
   formFields: FormFields;
-  setFormFields: (cos: any) => void;
+  setFormFields: React.Dispatch<React.SetStateAction<FormFields>>;
   id: string;
   paramId: string;
 }

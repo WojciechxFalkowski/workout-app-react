@@ -54,7 +54,7 @@ const Diet: React.FC<Props> = () => {
     }
   };
   const uploadDiet = function (snapshot: any) {
-    const dietArray: any = [];
+    const dietArray: Array<diet> = [];
     snapshot.forEach(function (childSnapshot: any) {
       const childData = childSnapshot.val();
       dietArray.push(childData);

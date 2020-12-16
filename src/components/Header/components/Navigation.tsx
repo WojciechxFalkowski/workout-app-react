@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import firebase from "firebase/app";
 import "./navigation.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
@@ -27,49 +27,54 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
           {currentUser ? (
             <>
               <li className="navigation__li">
-                <Link
+                <NavLink
+                  activeClassName="navigation--active"
                   onClick={handleHamburger}
                   to="/trainings"
                   className="navigation__a"
                 >
                   Treningi
-                </Link>
+                </NavLink>
               </li>
               <li className="navigation__li">
-                <Link
+                <NavLink
+                  activeClassName="navigation--active"
                   onClick={handleHamburger}
                   to="/statistics"
                   className="navigation__a"
                 >
                   Statystyki
-                </Link>
+                </NavLink>
               </li>
               <li className="navigation__li">
-                <Link
+                <NavLink
+                  activeClassName="navigation--active"
                   onClick={handleHamburger}
                   to="/measurement"
                   className="navigation__a"
                 >
                   Pomiary
-                </Link>
+                </NavLink>
               </li>
               <li className="navigation__li">
-                <Link
+                <NavLink
+                  activeClassName="navigation--active"
                   onClick={handleHamburger}
                   to="/diet"
                   className="navigation__a"
                 >
                   Dieta
-                </Link>
+                </NavLink>
               </li>
               <li className="navigation__li">
-                <Link
+                <NavLink
+                  activeClassName="navigation--active"
                   onClick={handleHamburger}
                   to="/settings"
                   className="navigation__a"
                 >
                   Ustawienia
-                </Link>
+                </NavLink>
               </li>
               <li className="navigation__li navigation__logout">
                 <a
@@ -83,13 +88,14 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
             </>
           ) : (
             <li className="navigation__li navigation__login">
-              <Link
+              <NavLink
+                activeClassName="navigation--active"
                 onClick={handleHamburger}
                 className="navigation__a"
                 to="/login"
               >
                 Zaloguj się
-              </Link>
+              </NavLink>
             </li>
           )}
         </ul>

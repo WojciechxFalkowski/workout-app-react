@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Navigation from "./components";
 import { Hamburger } from "components";
@@ -22,9 +22,14 @@ const Header: React.FC<Props> = () => {
     <>
       <header ref={header} className="header">
         <h1 className="header__logo">
-          <Link to="/" className="header__link">
+          <NavLink
+            to="/"
+            exact
+            activeClassName="navigation--active"
+            className="header__link"
+          >
             TO DO WORKOUT
-          </Link>
+          </NavLink>
         </h1>
         <div className="header__hamburger">
           <Hamburger onClick={onClick} hamburgerActive={hamburgerActive} />

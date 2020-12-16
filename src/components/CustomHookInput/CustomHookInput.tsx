@@ -8,6 +8,7 @@ const CustomHookInput = ({ type }: any) => {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       type={type}
+      min={0}
     />
   );
   return [value, input];

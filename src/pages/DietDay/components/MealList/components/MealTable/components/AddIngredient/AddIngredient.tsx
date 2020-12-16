@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import firebase from "firebase/app";
+import { CustomHookInput } from "components";
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -24,23 +25,11 @@ const AddIngredient: React.FC<Props> = ({
   id,
   indexList,
 }) => {
-  const useInput = ({ type }: any) => {
-    const [value, setValue] = useState("");
-    const input = (
-      <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        type={type}
-        min={0}
-      />
-    );
-    return [value, input];
-  };
-  const [ingredient, setIngredient] = useInput({ type: "text" });
-  const [carbs, setCarbs] = useInput({ type: "number" });
-  const [fats, setFats] = useInput({ type: "number" });
-  const [proteins, setProteins] = useInput({ type: "number" });
-  const [calories, setCalories] = useInput({ type: "number" });
+  const [ingredient, setIngredient] = CustomHookInput({ type: "text" });
+  const [carbs, setCarbs] = CustomHookInput({ type: "number" });
+  const [fats, setFats] = CustomHookInput({ type: "number" });
+  const [proteins, setProteins] = CustomHookInput({ type: "number" });
+  const [calories, setCalories] = CustomHookInput({ type: "number" });
   let isNameTaken;
   if (mealList) {
     isNameTaken =

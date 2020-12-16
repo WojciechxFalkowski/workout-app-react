@@ -15,6 +15,21 @@ interface Params {
   path: string;
   url: string;
 }
+interface Field {
+  name: string;
+  validate: (value: any) => void;
+  initialValue: string | undefined;
+  text: string;
+  placeholder: string;
+}
+interface Button {
+  type: string;
+  text: string;
+}
+interface FormFields {
+  fields: Field[];
+  button: Button;
+}
 export interface Props {
   match: Params;
 }
@@ -24,7 +39,7 @@ const Exercise: React.FC<Props> = (props) => {
   const url = props.match.url.replace("/trainings/", "");
   const id = url.replace("/" + props.match.params.id, "");
   const [isActiveEditing, setIsActiveEditing] = useState(false);
-  const [formFields, setFormFields] = useState({
+  const [formFields, setFormFields] = useState<FormFields>({
     fields: [
       {
         name: "exerciseWeight",
@@ -67,7 +82,7 @@ const Exercise: React.FC<Props> = (props) => {
         )
         .on("value", function (snapshot) {
           if (snapshot) {
-            const fields: any = [];
+            const fields: Field[] = [];
             const button = {
               type: "submit",
               text: "Zapisz",

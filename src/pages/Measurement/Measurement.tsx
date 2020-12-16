@@ -6,7 +6,7 @@ import "./measurement.scss";
 import { Button, LoadingIndicator } from "components";
 export interface Props {}
 
-interface measurement {
+export interface measurement {
   id: string;
   date: string;
   weight: number;
@@ -25,7 +25,7 @@ const Measurement: React.FC<Props> = () => {
   };
   const handleDeleteMeasurement = (id: string) => {
     const filteredMeasurements = measurements.filter(
-      (item: any) => item.id !== id
+      (item: measurement) => item.id !== id
     );
     if (currentUser) {
       firebase
@@ -35,7 +35,7 @@ const Measurement: React.FC<Props> = () => {
     }
   };
   const uploadMeasurements = function (snapshot: any) {
-    const measurementsArray: any = [];
+    const measurementsArray: Array<measurement> = [];
     snapshot.forEach(function (childSnapshot: any) {
       const childData = childSnapshot.val();
       measurementsArray.push(childData);

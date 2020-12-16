@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.scss";
-export interface Props {
-  onClick: () => void;
+interface Props {
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<Props> = ({ onClick, children }) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Arrow } from "components";
 import "./goBackDelete.scss";
 export interface Props {
-  handleEdit: () => void;
+  handleEdit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   editTitle: string;
 }
 

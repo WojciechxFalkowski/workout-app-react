@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./eatenCalories.scss";
 interface ingredients {
   carbs: number;
@@ -51,6 +51,11 @@ const EatenCalories: React.FC<Props> = ({
           >
             Kalorie: {calories}
           </p>
+        )}
+        {!carbs && !fats && !proteins && !calories && (
+          <Link className="eaten-calories__a" to="settings">
+            Brak ustawionej diety
+          </Link>
         )}
       </div>
     </div>

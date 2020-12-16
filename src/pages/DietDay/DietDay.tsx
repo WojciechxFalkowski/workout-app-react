@@ -28,7 +28,7 @@ const DietDay: React.FC<Props> = () => {
   const [meals, setMeals] = useState<Array<meal>>([]);
 
   const uploadDietDay = function (snapshot: any) {
-    const dietDayArray: any = [];
+    const dietDayArray: Array<meal> = [];
     snapshot.forEach(function (childSnapshot: any) {
       const childData = childSnapshot.val();
       dietDayArray.push(childData);

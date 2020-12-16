@@ -1,9 +1,13 @@
 * {
   box-sizing: border-box;
 }
+@import "utils/mixins";
 body {
   font-family: arial;
 }
 .mobile-menu {
   text-align: right;
+}
+main {
+  animation: animate-preloader 0.3s;
 }

@@ -5,8 +5,9 @@ import "./addMeasurement.scss";
 import generateRandomString from "utils/generateRandomString";
 import { CustomHookInput } from "components";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
+import { measurement } from "./../../Measurement";
 export interface Props {
-  measurements: any;
+  measurements: Array<measurement>;
   setActiveMeasurement: (arg1: boolean) => void;
   currentUserId: string;
 }

@@ -17,7 +17,7 @@ const TodayTrainings: React.FC<Props> = () => {
   const date = new Date();
   const modifiedDate = dayMonthYearWithSeparator(date, "-", "yes");
   const uploadTrainings = function (snapshot: any) {
-    const trainingArray: any = [];
+    const trainingArray: Trainings = [];
     snapshot.forEach(function (childSnapshot: any) {
       const childData = childSnapshot.val();
       trainingArray.push(childData);

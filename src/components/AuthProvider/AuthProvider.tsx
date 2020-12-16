@@ -3,11 +3,11 @@ import firebase from "firebase/app";
 import { LoadingIndicator } from "components";
 export const AuthContext = createContext<Partial<ContextProps>>({});
 type ContextProps = { currentUser: user | null };
-interface user {
+type user = {
   uid: string;
   displayName: string;
-}
-interface Props {}
+};
+type Props = {};
 const AuthProvider: React.FC<Props> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);

@@ -10,7 +10,7 @@ export interface Props {
   editDate: boolean;
   refUrl: string;
   isActiveEditing: boolean;
-  setIsActiveEditing: any;
+  setIsActiveEditing: (value: boolean) => void;
 }
 
 const EditTitle: React.FC<Props> = ({
