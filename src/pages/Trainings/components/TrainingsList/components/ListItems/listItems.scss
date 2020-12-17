@@ -14,15 +14,18 @@
       opacity: 0.9;
     }
   }
-  &__span:nth-child(1) {
+
+  &__name {
     display: inline-block;
+    font-weight: bold;
     width: 70%;
   }
-  &__span:nth-child(2) {
+  &__date {
     display: inline-block;
+    font-weight: bold;
     padding: 0 16px;
   }
-  &__span:nth-child(3) {
+  &__count {
     display: inline-block;
     color: white;
   }

@@ -27,3 +27,13 @@ export const namesOfTheMonths: Array<string> = [
   "Listopada",
   "Grudnia",
 ];
+interface trainingItem {
+  name: string;
+  min: number;
+}
+export const trainingList: Array<trainingItem> = [
+  { name: "Początkujący/a", min: 0 },
+  { name: "Średnio zaawansowany/a", min: 10 },
+  { name: "Zaawansowany", min: 50 },
+  { name: "Ekspert", min: 100 },
+];

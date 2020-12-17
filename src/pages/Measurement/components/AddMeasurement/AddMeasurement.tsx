@@ -39,7 +39,7 @@ const AddMeasurement: React.FC<Props> = ({
   const handleSaveMeasurement = () => {
     if (isComplete) {
     } else {
-      const today = dayMonthYearWithSeparator(date, "-");
+      const today = dayMonthYearWithSeparator(date, "-", "yes");
       const measurement = {
         date: today,
         id: generateRandomString(),

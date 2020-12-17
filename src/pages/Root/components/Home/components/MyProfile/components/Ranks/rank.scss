@@ -1,0 +1,44 @@
+@import "utils/mixins";
+.rank {
+  position: relative;
+  height: 100%;
+  button {
+    position: absolute;
+    background-color: $white-background;
+    top: 8px;
+    left: 8px;
+    padding: 2px 5px;
+
+    svg {
+      font-size: 1.3rem;
+    }
+  }
+  &__div {
+    height: 100%;
+  }
+  &__h1 {
+    margin: 16px 0;
+    font-weight: bold;
+  }
+  &__div-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 70%;
+    height: 70%;
+    @media (min-width: 640px) {
+      width: 50%;
+    }
+    @media (min-width: 1024px) {
+      width: 70%;
+    }
+  }
+  &__p {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__name {
+    text-align: left;
+  }
+}

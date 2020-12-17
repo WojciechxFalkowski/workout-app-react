@@ -1,0 +1,9 @@
+@import "utils/mixins";
+.my-profile-rank {
+  display: inline-block;
+  margin: 0.5vh 0;
+  cursor: pointer;
+  &:hover {
+    color: $orange;
+  }
+}

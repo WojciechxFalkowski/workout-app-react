@@ -39,12 +39,10 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
         rootRef.child(user.uid).once("value", function (snapshot: any) {
           let exists = snapshot.val() !== null;
           if (!exists) {
-            // console.log("To konto nie ma bazy danych");
             const name = user.displayName.split(" ")[0];
             const surname = user.displayName.split(" ").slice(1).join(" ");
             writeUserData(user.uid, user.email, name, surname);
           } else {
-            // console.log("To konto ma baze danych");
           }
         });
       }

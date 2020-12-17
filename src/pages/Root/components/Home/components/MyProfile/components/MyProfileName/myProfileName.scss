@@ -1,0 +1,39 @@
+@import "utils/mixins";
+.my-profile-name {
+  &__text {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    padding: 2vh 0;
+  }
+  &__div-initials {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: black;
+  }
+  &__initials {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+  }
+  &__link {
+    color: $orange;
+    text-decoration: unset;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__name {
+    display: block;
+    margin-top: 1vh;
+    font-weight: bold;
+  }
+}

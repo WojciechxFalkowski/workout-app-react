@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import firebase from "firebase/app";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { MyProfileName, MyProfileRank, Ranks } from "./components";
 import "./myProfile.scss";
 
 interface currentUser {
@@ -13,49 +12,26 @@ export interface Props {
 }
 
 const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
-  const trainingList: Array<string> = [
-    "Początkujący/a",
-    "Średnio zaawansowany/a",
-    "Zaawansowany",
-    "Ekspert",
-  ];
-  const [numberOfTrainings, setNumberOfTrainings] = useState<number>(0);
-  var ref = firebase.database().ref(`users/${currentUser.uid}/trainings`);
-  ref.once("value").then(function (snapshot) {
-    setNumberOfTrainings(snapshot.numChildren());
-  });
-  const trainingName =
-    numberOfTrainings >= 10
-      ? numberOfTrainings >= 50
-        ? numberOfTrainings >= 100
-          ? trainingList[3]
-          : trainingList[2]
-        : trainingList[1]
-      : trainingList[0];
+  const refFlipper = useRef<HTMLDivElement>(null);
+  const handleFlipCard = () => {
+    if (refFlipper.current) {
+      refFlipper.current.classList.toggle("active-card");
+    }
+  };
   return (
     <article className="my-profile">
-      <span className="my-profile__text">Mój profil</span>
-      <div className="my-profile__div-initials">
-        <span className="my-profile__initials">
-          {name && surname ? (
-            `${name[0].toUpperCase()}${surname[0].toUpperCase()}`
-          ) : (
-            <Link className="my-profile__link" to="settings">
-              ?
-            </Link>
-          )}
-        </span>
+      <div ref={refFlipper} className="my-profile__inner ">
+        <div className="my-profile__front">
+          <MyProfileName name={name} surname={surname} />
+          <MyProfileRank
+            currentUser={currentUser}
+            handleFlipCard={handleFlipCard}
+          />
+        </div>
+        <div className="my-profile__back">
+          <Ranks handleFlipCard={handleFlipCard} />
+        </div>
       </div>
-      <span className="my-profile__name">
-        {name && surname ? (
-          `${name} ${surname}`
-        ) : (
-          <Link className="my-profile__link" to="settings">
-            -
-          </Link>
-        )}
-      </span>
-      <span className="my-profile__rank">{trainingName}</span>
     </article>
   );
 };

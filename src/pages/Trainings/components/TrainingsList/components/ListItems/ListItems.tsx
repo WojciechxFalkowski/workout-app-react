@@ -37,9 +37,9 @@ const Table: React.FC<Props> = ({ trainings }) => {
               key={training.id}
               className="list-items__li"
             >
-              <span className="list-items__span">{training.workoutName}</span>
-              <span className="list-items__span">{modifiedDate}</span>
-              <span className="list-items__span">{exercisesCount}</span>
+              <span className="list-items__name">{training.workoutName}</span>
+              <span className="list-items__date">{modifiedDate}</span>
+              <span className="list-items__count">{exercisesCount}</span>
             </li>
           );
         })
