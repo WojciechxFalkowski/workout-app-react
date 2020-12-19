@@ -1,0 +1,38 @@
+@import "utils/mixins";
+.logged-home {
+  width: 98%;
+  margin: 77px auto 0 auto;
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 10vw 55vw 25vw 10vw;
+    grid-template-rows: 10vh 80vh;
+  }
+  .greetings {
+    display: inline-block;
+    margin-top: 5vh;
+    @media (min-width: 1024px) {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+  }
+  &__profile {
+    @media (min-width: 1024px) {
+      grid-column: 3/4;
+      grid-row: 2/3;
+    }
+  }
+  .table-results {
+    @media (min-width: 1024px) {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+  }
+}
+@keyframes main-page {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

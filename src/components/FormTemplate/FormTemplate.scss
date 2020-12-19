@@ -14,12 +14,8 @@
     display: block;
     margin: 1px 0;
     padding: 5px 10px;
-    font-size: 0.9rem;
-    height: 100px;
-    min-width: 195px;
+    min-width: 220px;
     min-height: 100px;
-    max-width: 320px;
-    max-height: 200px;
   }
   &__input {
     box-sizing: border-box;
@@ -28,7 +24,6 @@
     min-height: 33px;
     margin: 1px 0;
     padding: 5px 10px;
-    font-size: 0.9rem;
   }
   &__span {
     font-size: 0.55rem;

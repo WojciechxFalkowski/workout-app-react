@@ -1,0 +1,41 @@
+.background-image {
+  position: relative;
+  background: url("../../../../../../utils/images/home-page-background.jpg");
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: calc(100vh - 77px);
+
+  &__div {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    @media (min-width: 640px) and (orientation: landscape) {
+      width: unset;
+      top: 50%;
+      left: 10%;
+      transform: translate(0, -50%);
+    }
+  }
+  &__h1 {
+    font-size: 24px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  &__p {
+    color: white;
+    margin: 16px 0 32px 0;
+    // margin: 8px 0 16px 0;
+  }
+  button {
+    background-color: transparent;
+    color: white;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,41 @@
+@import "utils/mixins";
+.send-message {
+  display: flex;
+  align-items: center;
+  @media (min-width: 1024px) {
+    height: 600px;
+  }
+  &__sent {
+    height: 320px;
+    line-height: 320px;
+    margin: 0 auto;
+    color: green;
+    font-weight: bold;
+  }
+  form {
+    @media (min-width: 640px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 32px auto;
+      max-width: 600px;
+      justify-content: space-between;
+    }
+
+    div:nth-child(1) {
+      @media (min-width: 640px) {
+        margin: 0;
+      }
+    }
+    div:nth-child(2) {
+      @media (min-width: 640px) {
+        margin: 0;
+      }
+    }
+    div:nth-child(3) {
+      flex-basis: 100%;
+      textarea {
+        width: 100%;
+      }
+    }
+  }
+}

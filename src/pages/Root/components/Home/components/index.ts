@@ -1,4 +1,5 @@
-export { default as Greetings } from "./Greetings";
-export { default as MyProfile } from "./MyProfile";
-export { default as Activities } from "./Activities";
-export { default as TableResults } from "./TableResults";
+export { default as BackgroundImage } from "./BackgroundImage";
+export { default as Features } from "./Features";
+export { default as Feedback } from "./Feedback";
+export { default as SendMessage } from "./SendMessage";
+export { default as Footer } from "./Footer";
