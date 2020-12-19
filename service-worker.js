@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/workout-app-react/precache-manifest.54e17457162263da0b35db0eb718f1d4.js"
+  "/workout-app-react/precache-manifest.513a3fdd297d094af83a5495cd2ce2e5.js"
 );
 
 self.addEventListener('message', (event) => {
