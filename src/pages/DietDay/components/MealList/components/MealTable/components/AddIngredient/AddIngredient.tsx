@@ -3,6 +3,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import firebase from "firebase/app";
 import { CustomHookInput } from "components";
+import { maxValue } from "utils/validation";
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -36,6 +37,8 @@ const AddIngredient: React.FC<Props> = ({
       mealList.findIndex((item) => item.ingredient === String(ingredient)) !==
       -1;
   }
+  const maxNameLength =
+    typeof ingredient === "string" && ingredient.length >= 40;
   const handleSaveMealItem = () => {
     const mealItem = {
       ingredient: String(ingredient),
@@ -63,7 +66,8 @@ const AddIngredient: React.FC<Props> = ({
       <td className="meal-table__td">
         {setIngredient}
         <span className="meal-table__span">
-          {isNameTaken && "Podana nazwa jest zajęta"}
+          {isNameTaken && "Podana nazwa jest zajęta"}{" "}
+          {maxNameLength && "Maksymalna długość to 40 znaków"}
         </span>
       </td>
       <td className="meal-table__td">{setCarbs}</td>
@@ -77,7 +81,8 @@ const AddIngredient: React.FC<Props> = ({
           fats !== "" &&
           proteins !== "" &&
           calories !== "" &&
-          !isNameTaken ? (
+          !isNameTaken &&
+          !maxNameLength ? (
             <AiOutlineCheckCircle
               className="meal-table__save"
               onClick={() => handleSaveMealItem()}

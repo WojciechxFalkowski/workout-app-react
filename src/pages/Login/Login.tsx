@@ -14,8 +14,14 @@ const LoginPage: React.FC<Props> = () => {
   const uiConfig: Test = {
     signInFlow: "popup",
     signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        fullLabel: "Logowanie za pomocą google",
+      },
+      {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        fullLabel: "Logowanie za pomocą email",
+      },
     ],
     callbacks: {
       signInSuccessWithAuthResult: () => {
@@ -26,14 +32,16 @@ const LoginPage: React.FC<Props> = () => {
   };
   return (
     <main className="login">
-      {isSignedIn ? (
-        <Redirect to="/" />
-      ) : (
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
-      )}
+      <div className="login__div">
+        {isSignedIn ? (
+          <Redirect to="/" />
+        ) : (
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        )}
+      </div>
     </main>
   );
 };

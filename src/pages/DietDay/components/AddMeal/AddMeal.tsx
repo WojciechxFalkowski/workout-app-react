@@ -30,6 +30,7 @@ const AddMeal: React.FC<Props> = ({
   const inputNameRef = useRef<HTMLInputElement>(null);
   const [inputName, setInputName] = useState("");
   const titles: Array<string> = ingredientTitles;
+  const maxNameLength = inputName.length >= 20;
   const handleAddMeal = () => {
     if (currentUserId) {
       firebase
@@ -59,7 +60,8 @@ const AddMeal: React.FC<Props> = ({
             />
             <span className="meal-table__error">
               {meals.findIndex((meal) => meal.mealName === inputName) !== -1 &&
-                "Nazwa zajęta"}
+                "Nazwa zajęta"}{" "}
+              {maxNameLength && "Maksymalna długość to 20 znaków"}
             </span>
           </th>
           {titles.map((title) => (
@@ -71,7 +73,8 @@ const AddMeal: React.FC<Props> = ({
           <th className="meal-table__th">
             {meals &&
             meals.findIndex((meal) => meal.mealName === inputName) === -1 &&
-            inputName !== "" ? (
+            inputName !== "" &&
+            !maxNameLength ? (
               <AiOutlineCheckCircle
                 className="meal-table__save-meal"
                 onClick={() => handleAddMeal()}

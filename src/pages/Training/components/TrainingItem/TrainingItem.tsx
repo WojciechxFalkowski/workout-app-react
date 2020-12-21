@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TrainingExerciseList } from "./..";
 import { FormTemplate } from "components";
-import { required, composeValidators } from "utils/validation";
+import { required, composeValidators, maxValue } from "utils/validation";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 interface Exercise {
@@ -18,7 +18,10 @@ const TrainingItem: React.FC<Props> = ({ exercises, id }) => {
     fields: [
       {
         name: "workoutName",
-        validate: composeValidators(required("To pole jest wymagane!")),
+        validate: composeValidators(
+          required("To pole jest wymagane!"),
+          maxValue(60, "Nazwa treningu maksymalnie może mieć 60 znaków")
+        ),
         initialValue: undefined,
         text: "Nowe ćwiczenie",
         placeholder: "Nowe ćwiczenie",

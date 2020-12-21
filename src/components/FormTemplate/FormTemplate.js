@@ -34,6 +34,7 @@ const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
                         min={formField.min ? formField.min : undefined}
                         max={formField.max ? formField.max : undefined}
                         placeholder={formField.placeholder}
+                        onChange={() => console.log("dziala")}
                       />
                     )}
                     {meta.error && meta.touched && (

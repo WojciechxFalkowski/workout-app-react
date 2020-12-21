@@ -46,7 +46,7 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                   Statystyki
                 </NavLink>
               </li>
-              <li className="navigation__li">
+              {/* <li className="navigation__li">
                 <NavLink
                   activeClassName="navigation--active"
                   onClick={handleHamburger}
@@ -55,7 +55,7 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                 >
                   Pomiary
                 </NavLink>
-              </li>
+              </li> */}
               <li className="navigation__li">
                 <NavLink
                   activeClassName="navigation--active"
@@ -94,7 +94,7 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                 className="navigation__a"
                 to="/login"
               >
-                Zaloguj się
+                Logowanie / Rejestracja
               </NavLink>
             </li>
           )}

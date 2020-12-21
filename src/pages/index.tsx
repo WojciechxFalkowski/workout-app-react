@@ -8,3 +8,4 @@ export { default as Measurement } from "./Measurement";
 export { default as Diet } from "./Diet";
 export { default as DietDay } from "./DietDay";
 export { default as Settings } from "./Settings";
+export { default as NotFound } from "./NotFound";

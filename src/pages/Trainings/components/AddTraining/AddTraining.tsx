@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FormTemplate } from "components";
-import { required, composeValidators } from "utils/validation";
+import { required, composeValidators, maxValue } from "utils/validation";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
@@ -32,7 +32,10 @@ const AddTraining: React.FC<Props> = () => {
       },
       {
         name: "workoutName",
-        validate: composeValidators(required("To pole jest wymagane!")),
+        validate: composeValidators(
+          required("To pole jest wymagane!"),
+          maxValue(40, "Nazwa treningu maksymalnie może mieć 40 znaków")
+        ),
         initialValue: undefined,
         text: "Nazwa treningu",
         placeholder: "Nazwa treningu",

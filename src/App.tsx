@@ -14,6 +14,7 @@ import {
   Diet,
   DietDay,
   Settings,
+  NotFound,
 } from "pages";
 
 import {
@@ -50,17 +51,16 @@ const App = () => {
                 component={Exercise}
                 exact={true}
               ></PrivateRoute>
-              {/* <PrivateRoute path="/exercises" component={Home}></PrivateRoute> */}
               <PrivateRoute
                 path="/statistics"
-                exact={false}
+                exact={true}
                 component={Statistics}
               ></PrivateRoute>
-              <PrivateRoute
+              {/* <PrivateRoute
                 path="/measurement"
                 exact={false}
                 component={Measurement}
-              ></PrivateRoute>
+              ></PrivateRoute> */}
               <PrivateRoute
                 path="/diet"
                 exact={true}
@@ -76,9 +76,10 @@ const App = () => {
                 exact={true}
                 component={Settings}
               ></PrivateRoute>
-              <Route path="/" exact>
+              <Route path="/" exact={true}>
                 <Root />
               </Route>
+              <Route component={NotFound}></Route>
             </Switch>
           </Router>
         </AuthProvider>

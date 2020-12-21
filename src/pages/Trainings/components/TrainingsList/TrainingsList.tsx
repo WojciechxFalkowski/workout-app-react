@@ -10,11 +10,6 @@ interface training {
   date: string;
   workoutName: string;
 }
-interface training {
-  id: string;
-  date: string;
-  workoutName: string;
-}
 export interface Props {}
 const TrainingsList: React.FC<Props> = () => {
   const [trainings, setTrainings] = useState<Trainings>([]);

@@ -19,8 +19,7 @@ export interface Props {
 const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
   const options: Array<string> = [];
   trainings.forEach((training: training) => {
-    const id = options.findIndex((item) => item === training.workoutName);
-    if (id === -1) {
+    if (!options.includes(training.workoutName)) {
       options.push(training.workoutName);
     }
   });
@@ -53,30 +52,14 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
   });
 
   const specification = {
-    type: "bar",
+    type: "line",
     data: {
       labels: trainingsArray.date,
       datasets: [
         {
           data: trainingsArray.amount,
-          backgroundColor: function (context: any) {
-            const index = context.dataIndex;
-            return index % 2
-              ? "rgba(255, 165, 0, 0.5)"
-              : "rgba(235, 118, 98, 0.8)";
-          },
-
-          borderColor: function (context: any) {
-            const index = context.dataIndex;
-            return index % 2
-              ? "rgba(255, 165, 0, 0.5)"
-              : "rgba(235, 118, 98, 1)";
-          },
-          borderWidth: 1,
-          hoverBackgroundColor: [],
-          hoverBorderColor: [],
-          hoverBorderWidth: 3,
-          weight: 1,
+          fill: "false",
+          borderColor: "rgba(255, 165, 0, 1)",
         },
       ],
     },
@@ -107,11 +90,9 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
     setSelectChange(e.target.value);
   };
   return (
-    <div className="weightRaisedPerTrainingName">
-      <label className="weightRaisedPerTrainingName__label">
-        Wybierz partię mięśni
-      </label>
-      <select onChange={handleSelectChange}>
+    <div className="weight-chart">
+      <label className="weight-chart__label">Wybierz nazwe treningu</label>
+      <select onChange={handleSelectChange} className="weight-chart__select">
         {options.map((item, index) => {
           return (
             <option key={index} value={item}>

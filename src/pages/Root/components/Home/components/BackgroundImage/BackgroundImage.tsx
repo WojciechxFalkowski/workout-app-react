@@ -1,11 +1,13 @@
 import React from "react";
 import "./backgroundImage.scss";
 import { Button } from "components";
+import { useHistory } from "react-router-dom";
 export interface Props {}
 
 const BackgroundImage: React.FC<Props> = () => {
+  const history = useHistory();
   const handleRegister = () => {
-    console.log("Dziala");
+    history.push(`/login`);
   };
   return (
     <section className="background-image">
