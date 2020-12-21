@@ -3,7 +3,6 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import firebase from "firebase/app";
 import { CustomHookInput } from "components";
-import { maxValue } from "utils/validation";
 interface mealItem {
   ingredient: string;
   carbs: number;

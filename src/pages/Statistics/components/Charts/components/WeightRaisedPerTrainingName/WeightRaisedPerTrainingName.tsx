@@ -23,7 +23,6 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
       options.push(training.workoutName);
     }
   });
-
   const [selectChange, setSelectChange] = useState<string>(options[0]);
   const data = trainings.filter((training: training) => {
     return training.workoutName === selectChange;
