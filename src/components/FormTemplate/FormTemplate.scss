@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .form {
   position: relative;
   display: flex;
@@ -34,9 +35,9 @@
     min-width: 220px;
     margin: 1vh 0;
     min-height: 29px;
-    color: white;
-    background-color: orange;
-    border: 2px solid orange;
+    color: $white;
+    background-color: $orange;
+    border: 2px solid $orange;
     text-transform: uppercase;
     cursor: pointer;
     margin: 1vh auto;

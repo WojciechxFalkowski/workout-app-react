@@ -15,12 +15,14 @@
   &__title {
     text-align: center;
     font-weight: bold;
+    padding: 8px 0;
   }
   &__p {
     text-align: center;
     margin: 8px 0 32px 0;
     padding: 0 8px;
-    @media (min-width: 640px) {
+    @media (min-width: 1024px) {
+      margin-top: 16px;
     }
   }
 }

@@ -2,7 +2,7 @@
 .header {
   top: 0;
   left: 0;
-  background-color: black;
+  background-color: $black;
   display: flex;
   position: fixed;
   justify-content: space-between;
@@ -76,7 +76,7 @@
   }
   &__link {
     width: 110px;
-    border: 0px solid black;
+    border: 0px solid $black;
     color: $light-grey;
     cursor: pointer;
     text-decoration: none;
@@ -90,7 +90,7 @@
     }
   }
   @media (min-width: 768px) {
-    background-color: black;
+    background-color: $black;
     align-self: center;
   }
 }

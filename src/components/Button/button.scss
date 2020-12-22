@@ -1,13 +1,14 @@
+@import "utils/mixins";
 .button {
   padding: 5px 10px;
   font-weight: bold;
-  background-color: white;
+  background-color: $white;
   border: unset;
   border-radius: 4px;
   cursor: pointer;
   &:hover,
   &:focus {
-    background-color: orange;
-    color: white;
+    background-color: $orange;
+    color: $white;
   }
 }

@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .exercise {
   &__line {
     width: 100%;
@@ -7,11 +8,11 @@
     background-color: rgb(209, 209, 209);
     cursor: pointer;
     &:hover {
-      background-color: orange;
+      background-color: $orange;
     }
     &:hover .exercise__check {
-      border-color: orange;
-      color: orange;
+      border-color: $orange;
+      color: $orange;
     }
   }
   &__check {
@@ -22,7 +23,7 @@
     width: 22px;
     height: 22px;
     color: rgb(209, 209, 209);
-    background-color: white;
+    background-color: $white;
     border: 1px solid rgb(209, 209, 209);
     text-align: center;
     line-height: 22px;
@@ -31,7 +32,5 @@
     -webkit-transform: translate(-50%, -40%); /* Chrome, Safari, Opera */
     transform: translate(-50%, -55%);
     user-select: none;
-    &:hover {
-    }
   }
 }

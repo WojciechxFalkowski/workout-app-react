@@ -103,7 +103,7 @@
   }
   &__tbody {
     tr {
-      background-color: white;
+      background-color: $white;
       &:nth-last-child(1) {
         background-color: unset;
       }
@@ -121,7 +121,7 @@
     padding: 1vh 0;
   }
   &__save-meal {
-    color: white;
+    color: $white;
     cursor: pointer;
     @media (min-width: 640px) {
       transform: translateY(5px);

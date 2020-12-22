@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .exercise {
   position: relative;
   margin-top: 77px;
@@ -45,19 +46,19 @@
     text-align: center;
     & {
       svg:hover {
-        fill: white;
+        fill: $white;
       }
     }
   }
   &__icon {
-    border: 2px solid black;
+    border: 2px solid $black;
     border-radius: 50%;
     padding: 5px;
     transition: 0.3s;
     cursor: pointer;
     &:hover {
-      background-color: orange;
-      border-color: orange;
+      background-color: $orange;
+      border-color: $orange;
     }
   }
 }

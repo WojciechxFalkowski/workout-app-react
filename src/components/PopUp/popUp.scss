@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .pop-up {
   position: fixed;
   top: 0;
@@ -14,7 +15,7 @@
     width: 280px;
     min-height: 450px;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: $white;
     z-index: 101;
   }
 }

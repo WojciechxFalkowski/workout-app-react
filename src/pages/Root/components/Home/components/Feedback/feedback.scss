@@ -16,11 +16,14 @@
     display: flex;
     height: 250px;
 
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     justify-content: center;
     align-items: center;
     @media (min-width: 640px) {
       max-width: 80%;
+    }
+    @media (min-width: 1024px) {
+      max-width: 70%;
     }
   }
   &__left,

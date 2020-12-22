@@ -13,7 +13,7 @@
     height: 100px;
     margin: 0 auto;
     border-radius: 50%;
-    background-color: black;
+    background-color: $black;
   }
   &__initials {
     position: absolute;
@@ -22,7 +22,7 @@
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 2rem;
-    color: white;
+    color: $white;
   }
   &__link {
     color: $orange;

@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .list {
   display: flex;
   flex-direction: column;
@@ -5,8 +6,8 @@
   align-items: center;
   &__item {
     max-width: 640px;
-    background: black;
-    color: #fff;
+    background: $black;
+    color: $white;
     font-size: 0.9rem;
     padding: 8px 16px;
     margin: 1vh 0;

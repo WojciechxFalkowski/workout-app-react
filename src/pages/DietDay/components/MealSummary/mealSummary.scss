@@ -3,7 +3,7 @@
   width: 98%;
   margin: 5vh auto;
   background-color: $black;
-  color: white;
+  color: $white;
   font-size: 0.8rem;
   max-width: 1100px;
   @media (min-width: 640px) {
@@ -11,7 +11,7 @@
   }
 
   &__tr {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid $white;
     &:nth-last-child(1) {
       font-weight: bold;
     }

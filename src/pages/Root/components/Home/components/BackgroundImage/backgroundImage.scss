@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .background-image {
   position: relative;
   background: url("../../../../../../utils/images/home-page-background.jpg");
@@ -24,18 +25,18 @@
   }
   &__h1 {
     font-size: 24px;
-    color: white;
+    color: $white;
     text-transform: uppercase;
     font-weight: bold;
   }
   &__p {
-    color: white;
+    color: $white;
     margin: 16px 0 32px 0;
     // margin: 8px 0 16px 0;
   }
   button {
     background-color: transparent;
-    color: white;
+    color: $white;
     text-transform: uppercase;
   }
 }
