@@ -42,7 +42,6 @@ const AddTraining: React.FC<Props> = () => {
       },
     ],
     button: {
-      type: "submit",
       text: "Dodaj trening",
     },
   };

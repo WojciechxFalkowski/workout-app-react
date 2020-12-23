@@ -12,7 +12,6 @@ interface Fields {
 }
 interface Button {
   text: string;
-  type: string;
 }
 interface FormFields {
   fields: Fields[];
@@ -50,7 +49,6 @@ const User: React.FC<Props> = ({ currentUser }) => {
         },
       ],
       button: {
-        type: "submit",
         text: "Aktualizuj",
       },
     });

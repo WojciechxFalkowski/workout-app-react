@@ -28,7 +28,6 @@ const TrainingItem: React.FC<Props> = ({ exercises, id }) => {
       },
     ],
     button: {
-      type: "submit",
       text: "Dodaj ćwiczenie",
     },
   };

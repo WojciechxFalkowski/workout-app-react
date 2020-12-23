@@ -53,7 +53,6 @@ const SendMessage: React.FC<Props> = () => {
       },
     ],
     button: {
-      type: "submit",
       text: "Wyślij",
     },
   };

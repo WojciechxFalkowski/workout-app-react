@@ -36,7 +36,6 @@ const EditTitle: React.FC<Props> = ({
       },
     ],
     button: {
-      type: "submit",
       text: "Potwierdź zmiany",
     },
   };

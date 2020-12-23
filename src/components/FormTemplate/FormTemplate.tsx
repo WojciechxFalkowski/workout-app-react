@@ -1,12 +1,39 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import "./FormTemplate.scss";
-const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
+interface Fields {
+  name: string;
+  validate?: (fn: () => void) => void;
+  initialValue: any;
+  placeholder: string;
+  text: string;
+  type?: string;
+  parse?: ((value: any, name: string) => () => void) | undefined;
+  component?: string;
+  min?: string;
+  max?: string;
+  step?: string;
+}
+interface Button {
+  type?: "submit";
+  text: string;
+}
+interface formFields {
+  fields: Array<Fields>;
+  button: Button;
+}
+
+export interface Props {
+  formFields: formFields;
+  handleSubmit: (values: any) => void;
+}
+const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
+  const { fields, button } = formFields;
   return (
     <Form onSubmit={handleSubmit}>
       {(props) => (
         <form onSubmit={props.handleSubmit} className="form">
-          {fields.map((formField) => {
+          {fields.map((formField: Fields) => {
             return (
               <Field
                 key={formField.name}
@@ -21,14 +48,11 @@ const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
                     {formField.component === "textarea" ? (
                       <textarea
                         className="form__textarea"
-                        {...input}
-                        type="text"
                         placeholder={"Description"}
                       />
                     ) : (
                       <input
                         className="form__input"
-                        {...input}
                         type={formField.type}
                         step={formField.step ? formField.step : undefined}
                         min={formField.min ? formField.min : undefined}
@@ -45,11 +69,7 @@ const FormTemplate = ({ formFields: { fields, button }, handleSubmit }) => {
             );
           })}
 
-          <button
-            variant={button.variant}
-            type={button.type}
-            className="form__button"
-          >
+          <button type={button.type} className="form__button">
             {button.text}
           </button>
         </form>
