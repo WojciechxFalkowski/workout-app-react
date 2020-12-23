@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/workout-app-react/static/css/main.220756b7.chunk.css",
-    "main.js": "/workout-app-react/static/js/main.e4603634.chunk.js",
-    "main.js.map": "/workout-app-react/static/js/main.e4603634.chunk.js.map",
+    "main.css": "/workout-app-react/static/css/main.30a6f5cb.chunk.css",
+    "main.js": "/workout-app-react/static/js/main.3b2cce5b.chunk.js",
+    "main.js.map": "/workout-app-react/static/js/main.3b2cce5b.chunk.js.map",
     "runtime-main.js": "/workout-app-react/static/js/runtime-main.b27fd735.js",
     "runtime-main.js.map": "/workout-app-react/static/js/runtime-main.b27fd735.js.map",
     "static/css/2.117ce29f.chunk.css": "/workout-app-react/static/css/2.117ce29f.chunk.css",
-    "static/js/2.afa03772.chunk.js": "/workout-app-react/static/js/2.afa03772.chunk.js",
-    "static/js/2.afa03772.chunk.js.map": "/workout-app-react/static/js/2.afa03772.chunk.js.map",
+    "static/js/2.0f9d367a.chunk.js": "/workout-app-react/static/js/2.0f9d367a.chunk.js",
+    "static/js/2.0f9d367a.chunk.js.map": "/workout-app-react/static/js/2.0f9d367a.chunk.js.map",
     "index.html": "/workout-app-react/index.html",
-    "precache-manifest.85b0dc769693021a255a45a6ff602468.js": "/workout-app-react/precache-manifest.85b0dc769693021a255a45a6ff602468.js",
+    "precache-manifest.0cac624380c96d820ccb7fd5c6483923.js": "/workout-app-react/precache-manifest.0cac624380c96d820ccb7fd5c6483923.js",
     "service-worker.js": "/workout-app-react/service-worker.js",
     "static/css/2.117ce29f.chunk.css.map": "/workout-app-react/static/css/2.117ce29f.chunk.css.map",
-    "static/css/main.220756b7.chunk.css.map": "/workout-app-react/static/css/main.220756b7.chunk.css.map",
-    "static/js/2.afa03772.chunk.js.LICENSE.txt": "/workout-app-react/static/js/2.afa03772.chunk.js.LICENSE.txt",
+    "static/css/main.30a6f5cb.chunk.css.map": "/workout-app-react/static/css/main.30a6f5cb.chunk.css.map",
+    "static/js/2.0f9d367a.chunk.js.LICENSE.txt": "/workout-app-react/static/js/2.0f9d367a.chunk.js.LICENSE.txt",
     "static/media/backgroundImage.scss": "/workout-app-react/static/media/home-page-background.a730ae92.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.b27fd735.js",
     "static/css/2.117ce29f.chunk.css",
-    "static/js/2.afa03772.chunk.js",
-    "static/css/main.220756b7.chunk.css",
-    "static/js/main.e4603634.chunk.js"
+    "static/js/2.0f9d367a.chunk.js",
+    "static/css/main.30a6f5cb.chunk.css",
+    "static/js/main.3b2cce5b.chunk.js"
   ]
 }
