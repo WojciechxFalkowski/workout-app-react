@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/workout-app-react/static/css/main.30a6f5cb.chunk.css",
-    "main.js": "/workout-app-react/static/js/main.3b2cce5b.chunk.js",
-    "main.js.map": "/workout-app-react/static/js/main.3b2cce5b.chunk.js.map",
+    "main.css": "/workout-app-react/static/css/main.f26c4d9d.chunk.css",
+    "main.js": "/workout-app-react/static/js/main.423a4df2.chunk.js",
+    "main.js.map": "/workout-app-react/static/js/main.423a4df2.chunk.js.map",
     "runtime-main.js": "/workout-app-react/static/js/runtime-main.b27fd735.js",
     "runtime-main.js.map": "/workout-app-react/static/js/runtime-main.b27fd735.js.map",
     "static/css/2.117ce29f.chunk.css": "/workout-app-react/static/css/2.117ce29f.chunk.css",
     "static/js/2.0f9d367a.chunk.js": "/workout-app-react/static/js/2.0f9d367a.chunk.js",
     "static/js/2.0f9d367a.chunk.js.map": "/workout-app-react/static/js/2.0f9d367a.chunk.js.map",
     "index.html": "/workout-app-react/index.html",
-    "precache-manifest.0cac624380c96d820ccb7fd5c6483923.js": "/workout-app-react/precache-manifest.0cac624380c96d820ccb7fd5c6483923.js",
+    "precache-manifest.549cece8485924e8589574b6c90ad47e.js": "/workout-app-react/precache-manifest.549cece8485924e8589574b6c90ad47e.js",
     "service-worker.js": "/workout-app-react/service-worker.js",
     "static/css/2.117ce29f.chunk.css.map": "/workout-app-react/static/css/2.117ce29f.chunk.css.map",
-    "static/css/main.30a6f5cb.chunk.css.map": "/workout-app-react/static/css/main.30a6f5cb.chunk.css.map",
+    "static/css/main.f26c4d9d.chunk.css.map": "/workout-app-react/static/css/main.f26c4d9d.chunk.css.map",
     "static/js/2.0f9d367a.chunk.js.LICENSE.txt": "/workout-app-react/static/js/2.0f9d367a.chunk.js.LICENSE.txt",
     "static/media/backgroundImage.scss": "/workout-app-react/static/media/home-page-background.a730ae92.jpg"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.b27fd735.js",
     "static/css/2.117ce29f.chunk.css",
     "static/js/2.0f9d367a.chunk.js",
-    "static/css/main.30a6f5cb.chunk.css",
-    "static/js/main.3b2cce5b.chunk.js"
+    "static/css/main.f26c4d9d.chunk.css",
+    "static/js/main.423a4df2.chunk.js"
   ]
 }
