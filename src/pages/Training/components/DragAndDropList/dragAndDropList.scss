@@ -2,16 +2,17 @@
 .list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   &__item {
+    min-width: 300px;
     max-width: 640px;
     background: $black;
-    color: $white;
+    color: $bg-color-main;
     font-size: 0.9rem;
     padding: 8px 16px;
     margin: 1vh 0;
     text-align: center;
     border-radius: 8px;
+    background-color: $font-color-accent !important;
   }
 }

@@ -6,13 +6,18 @@
     min-width: 100px;
     font-size: 0.8rem;
     margin: 1vh 0;
-
-    color: $white;
-    background-color: $light-red;
-    border: 2px solid $light-red;
+    color: $font-color-main;
+    // background-color: $font-color-main;
+    background-color: unset;
+    border: 2px solid $bg-color-main;
     padding: 2px 0;
     text-transform: uppercase;
     cursor: pointer;
     margin: 1vh auto;
+    &:hover {
+      background-color: $bg-color-main;
+      border: 2px solid $font-color-accent;
+      color: $font-color-accent;
+    }
   }
 }

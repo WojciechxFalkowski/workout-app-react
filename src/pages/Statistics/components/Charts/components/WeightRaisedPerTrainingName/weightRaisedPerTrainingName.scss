@@ -1,5 +1,9 @@
+@import "utils/mixins";
 .weight-chart {
   text-align: center;
+  &__label {
+    color: $font-color-accent;
+  }
   &__select {
     margin-left: 8px;
   }

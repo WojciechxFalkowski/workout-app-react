@@ -2,13 +2,14 @@
 .button {
   padding: 5px 10px;
   font-weight: bold;
-  background-color: $white;
-  border: unset;
+  background-color: $bg-color-main;
+  border: 2px solid $font-color-accent;
   border-radius: 4px;
+  color: $font-color-accent;
   cursor: pointer;
   &:hover,
   &:focus {
-    background-color: $orange;
-    color: $white;
+    background-color: $font-color-accent;
+    color: $bg-color-main;
   }
 }

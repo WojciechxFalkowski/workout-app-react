@@ -1,9 +1,9 @@
 @import "utils/mixins";
 .activities {
-  background-color: $white-background;
-
+  color: $font-color-main;
   padding: 2vh 2vw;
   text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
   &__title {
     display: inline-block;
     margin: 2vh 0;

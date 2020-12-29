@@ -33,7 +33,7 @@ const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
     <Form onSubmit={handleSubmit}>
       {(props) => (
         <form onSubmit={props.handleSubmit} className="form">
-          {fields.map((formField: Fields) => {
+          {fields.map((formField: any) => {
             return (
               <Field
                 key={formField.name}
@@ -44,14 +44,16 @@ const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
               >
                 {({ input, meta }) => (
                   <div className="form__wrapper">
-                    <label>{formField.text}</label>
+                    <label className="form__label">{formField.text}</label>
                     {formField.component === "textarea" ? (
                       <textarea
+                        {...input}
                         className="form__textarea"
                         placeholder={"Description"}
                       />
                     ) : (
                       <input
+                        {...input}
                         className="form__input"
                         type={formField.type}
                         step={formField.step ? formField.step : undefined}

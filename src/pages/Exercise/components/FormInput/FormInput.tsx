@@ -68,7 +68,7 @@ const FormInput: React.FC<Props> = ({
                   <>
                     <SeriesNumber index={index} />
                     <div className="form__wrapper">
-                      <label>{formField.text}</label>
+                      <label className="form__label">{formField.text}</label>
                       <input
                         className="form__input"
                         {...input}
@@ -99,5 +99,4 @@ const FormInput: React.FC<Props> = ({
     </Form>
   );
 };
-
 export default FormInput;

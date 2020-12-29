@@ -4,7 +4,7 @@
     box-sizing: border-box;
     min-width: 32px;
     padding: 1vh 1vw;
-    border: 1px solid $white;
+    border: 1px solid $font-color-main;
     @media (min-width: 360px) {
       min-width: 42px;
     }

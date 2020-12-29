@@ -65,10 +65,10 @@
   &__logo {
     display: flex;
     margin-left: 1vw;
-    color: $orange;
+    color: $font-color-accent;
     font-weight: bold;
     & > a:hover {
-      color: $orange;
+      color: $font-color-accent;
     }
     @media (min-width: 768px) {
       margin-right: 10px;
@@ -76,21 +76,21 @@
   }
   &__link {
     width: 110px;
-    border: 0px solid $black;
-    color: $light-grey;
+    border: 0px solid $bg-color-main;
+    color: $font-color-main;
     cursor: pointer;
     text-decoration: none;
     margin: 1vh 1vw;
     margin-top: calc(1vh + 15px);
     &:hover {
-      color: $light-red;
+      color: $font-color-main;
     }
     &:focus {
       border-radius: 10px;
     }
   }
   @media (min-width: 768px) {
-    background-color: $black;
+    background-color: $bg-color-main;
     align-self: center;
   }
 }

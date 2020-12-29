@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { FormTemplate } from "components";
-import fire from "fire";
+import firebase from "firebase/app";
 import { required, composeValidators } from "utils/validation";
 import "./editTitle.scss";
 import LoadingIndicator from "components/LoadingIndicator";
@@ -55,9 +55,9 @@ const EditTitle: React.FC<Props> = ({
   };
   const saveEditedTraining = (workoutName: string, date?: string) => {
     if (date) {
-      fire.database().ref(refUrl).update({ workoutName, date });
+      firebase.database().ref(refUrl).update({ workoutName, date });
     } else {
-      fire.database().ref(refUrl).update({ workoutName });
+      firebase.database().ref(refUrl).update({ workoutName });
     }
   };
   const handleSubmit = (values: any) => {
@@ -75,7 +75,7 @@ const EditTitle: React.FC<Props> = ({
     setIsLoaded(true);
   };
   useEffect(() => {
-    const newRef = fire.database().ref(refUrl);
+    const newRef = firebase.database().ref(refUrl);
     newRef.once("value").then(loadTrainingName);
 
     return () => {

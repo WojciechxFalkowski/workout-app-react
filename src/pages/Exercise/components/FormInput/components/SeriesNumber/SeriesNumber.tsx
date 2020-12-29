@@ -7,7 +7,9 @@ export interface Props {
 const SeriesNumber: React.FC<Props> = ({ index }) => {
   return (
     <>
-      {index % 2 === 0 && <p className="seriesNumber">Seria {index / 2 + 1}</p>}
+      {index % 2 === 0 && (
+        <p className="series-number">Seria {index / 2 + 1}</p>
+      )}
     </>
   );
 };

@@ -8,17 +8,17 @@
   align-items: center;
   font-size: 0.8rem;
   border-radius: 10px;
-  color: $white;
+  color: $bg-color-main;
   cursor: pointer;
-
+  background-color: $font-color-accent;
   &:nth-child(even) {
-    background-color: $salmon;
+    // background-color: $salmon;
   }
   &:nth-child(odd) {
-    background-color: $goldenrod;
+    // background-color: $goldenrod;
   }
   &:hover {
-    opacity: 0.9;
+    opacity: 0.6;
   }
   @media (min-width: 768px) {
     font-size: 0.9rem;

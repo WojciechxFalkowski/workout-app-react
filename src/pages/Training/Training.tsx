@@ -4,6 +4,7 @@ import fire from "fire";
 import { DragAndDropList, TrainingItem } from "./components";
 import { useHistory } from "react-router-dom";
 import { EditTitle, GoBackDelete } from "components";
+import firebase from "firebase/app";
 import "./training.scss";
 
 interface Id {
@@ -23,7 +24,10 @@ const Training: React.FC<Props> = ({ match }) => {
 
   const handleDeleteTraining = () => {
     if (currentUser) {
-      fire.database().ref(`users/${currentUser.uid}/trainings/${id}`).remove();
+      firebase
+        .database()
+        .ref(`users/${currentUser.uid}/trainings/${id}`)
+        .remove();
       history.goBack();
     }
   };

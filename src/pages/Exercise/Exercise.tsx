@@ -5,7 +5,7 @@ import { FormInput } from "./components";
 import { EditTitle, GoBackDelete } from "components";
 import { required, composeValidators } from "utils/validation";
 import generateRandomString from "utils/generateRandomString";
-import fire from "./../../fire";
+import firebase from "firebase/app";
 import "./exercise.scss";
 interface Id {
   id: string;
@@ -63,7 +63,7 @@ const Exercise: React.FC<Props> = (props) => {
   });
   const handleSaveExercise = () => {
     if (currentUser) {
-      fire
+      firebase
         .database()
         .ref(
           `users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`
@@ -72,43 +72,46 @@ const Exercise: React.FC<Props> = (props) => {
       history.goBack();
     }
   };
+  const uploadExercise = function (snapshot: any) {
+    if (snapshot) {
+      const fields: Field[] = [];
+      const button = {
+        type: "submit",
+        text: "Zapisz",
+      };
+      snapshot.forEach(function (childSnapshot: any) {
+        const text =
+          fields.length % 2 === 0 ? "Ciężar (kg)" : "Liczba powtórzeń";
 
+        fields.push({
+          name: `${
+            fields.length % 2 === 0 ? "exerciseWeight" : "exerciseRepeat"
+          }${generateRandomString()}`,
+          validate: composeValidators(required("To pole jest wymagane!")),
+          initialValue: childSnapshot.val(),
+          text: text,
+          placeholder: text,
+        });
+      });
+      if (fields.length > 0) {
+        setFormFields({
+          fields,
+          button,
+        });
+      }
+    }
+  };
   useEffect(() => {
     if (currentUser) {
-      fire
+      const ref = firebase
         .database()
         .ref(
           `users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}/series`
-        )
-        .on("value", function (snapshot) {
-          if (snapshot) {
-            const fields: Field[] = [];
-            const button = {
-              type: "submit",
-              text: "Zapisz",
-            };
-            snapshot.forEach(function (childSnapshot) {
-              const text =
-                fields.length % 2 === 0 ? "Ciężar (kg)" : "Liczba powtórzeń";
-
-              fields.push({
-                name: `${
-                  fields.length % 2 === 0 ? "exerciseWeight" : "exerciseRepeat"
-                }${generateRandomString()}`,
-                validate: composeValidators(required("To pole jest wymagane!")),
-                initialValue: childSnapshot.val(),
-                text: text,
-                placeholder: text,
-              });
-            });
-            if (fields.length > 0) {
-              setFormFields({
-                fields,
-                button,
-              });
-            }
-          }
-        });
+        );
+      ref.on("value", uploadExercise);
+      return () => {
+        ref.off("value", uploadExercise);
+      };
     }
   }, [currentUser, id, props.match.params.id]);
   return (

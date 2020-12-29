@@ -1,7 +1,7 @@
-import fire from "fire";
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./dragAndDropList.scss";
+import firebase from "firebase/app";
 const reorder = (list: any, startIndex: any, endIndex: any) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -31,9 +31,9 @@ const DragAndDropList: React.FC<Props> = ({ exercises, id, refUrl }) => {
       result.destination.index
     );
     setListItems(items);
-    fire.database().ref(refUrl).set({});
+    firebase.database().ref(refUrl).set({});
     items.forEach((item: any) => {
-      fire.database().ref(refUrl).push().set({ workoutName: item.content });
+      firebase.database().ref(refUrl).push().set({ workoutName: item.content });
     });
   };
   return (

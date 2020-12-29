@@ -10,7 +10,7 @@
   &__link {
     padding-top: 8px;
     text-decoration: none;
-    color: $orange;
+    color: $font-color-accent;
     &:hover {
       text-decoration: underline;
     }
@@ -20,7 +20,7 @@
   }
   &__a {
     text-decoration: unset;
-    color: $goldenrod;
+    color: $font-color-accent;
     animation: animate-preloader 1.5s infinite alternate;
     &:hover {
       text-decoration: underline;

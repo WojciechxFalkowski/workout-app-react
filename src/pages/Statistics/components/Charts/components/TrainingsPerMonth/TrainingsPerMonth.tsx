@@ -1,5 +1,6 @@
 import React from "react";
 import { Chart } from "components";
+import { monthsNames } from "utils/constants";
 interface training {
   date: string;
   id: string;
@@ -11,20 +12,7 @@ export interface Props {
 }
 
 const TrainingsPerMonth: React.FC<Props> = ({ trainings }) => {
-  const weekNames = [
-    "Styczeń",
-    "Luty",
-    "Marzec",
-    "Kwiecień",
-    "Maj",
-    "Czerwiec",
-    "Lipiec",
-    "Sierpień",
-    "Wrzesień",
-    "Październik",
-    "Listopad",
-    "Grudzień",
-  ];
+  const weekNames = monthsNames;
   const trainingsPerMonth: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   trainings.forEach((training: training) => {
     trainingsPerMonth[new Date(training.date).getMonth()] += 1;
@@ -35,25 +23,14 @@ const TrainingsPerMonth: React.FC<Props> = ({ trainings }) => {
       labels: weekNames,
       datasets: [
         {
+          minBarLength: 1,
           data: trainingsPerMonth,
           backgroundColor: function (context: any) {
             const index = context.dataIndex;
             return index % 2
-              ? "rgba(255, 165, 0, 0.5)"
-              : "rgba(235, 118, 98, 0.8)";
+              ? "rgba(102, 252, 241, 1)"
+              : "rgba(197, 198, 199, 1)";
           },
-
-          borderColor: function (context: any) {
-            const index = context.dataIndex;
-            return index % 2
-              ? "rgba(255, 165, 0, 0.5)"
-              : "rgba(235, 118, 98, 1)";
-          },
-          borderWidth: 1,
-          hoverBackgroundColor: [],
-          hoverBorderColor: [],
-          hoverBorderWidth: 3,
-          weight: 1,
         },
       ],
     },
@@ -73,6 +50,12 @@ const TrainingsPerMonth: React.FC<Props> = ({ trainings }) => {
           {
             ticks: {
               lineHeight: 2,
+              beginAtZero: true,
+              callback: function (value: any) {
+                if (Number.isInteger(value)) {
+                  return value;
+                }
+              },
             },
           },
         ],

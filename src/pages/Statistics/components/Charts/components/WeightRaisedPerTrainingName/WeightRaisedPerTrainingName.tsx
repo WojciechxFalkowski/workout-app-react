@@ -58,7 +58,8 @@ const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
         {
           data: trainingsArray.amount,
           fill: "false",
-          borderColor: "rgba(255, 165, 0, 1)",
+          borderColor: "rgba(102, 252, 241, 1)",
+          backgroundColor: "rgba(102, 252, 241, 1)",
         },
       ],
     },

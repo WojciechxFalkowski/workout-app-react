@@ -1,13 +1,12 @@
 @import "utils/mixins";
 .feedback {
   padding: 32px 16px;
-  background-color: $orange;
-
   &__title {
     font-size: 20px;
     margin: 16px 0;
     text-align: center;
     font-weight: bold;
+    color: $font-color-accent;
     @media (min-width: 1024px) {
       margin: 32px 0 16px 0;
     }
@@ -15,7 +14,7 @@
   &__opinions {
     display: flex;
     height: 250px;
-
+    color: $font-color-main;
     margin: 0 auto 20px auto;
     justify-content: center;
     align-items: center;

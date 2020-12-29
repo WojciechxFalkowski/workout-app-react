@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import "./dietDay.scss";
-import { GoBackDelete, Button } from "components";
+import { GoBackDelete, Button, LoadingIndicator } from "components";
 import { MealList, AddMeal, MealSummary } from "./components";
 
 interface params {
@@ -26,7 +26,7 @@ const DietDay: React.FC<Props> = () => {
   const params: params = useParams();
   const history = useHistory();
   const [meals, setMeals] = useState<Array<meal>>([]);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   const uploadDietDay = function (snapshot: any) {
     const dietDayArray: Array<meal> = [];
     snapshot.forEach(function (childSnapshot: any) {
@@ -42,6 +42,7 @@ const DietDay: React.FC<Props> = () => {
         .database()
         .ref("users/" + currentUser.uid + "/diet/" + params.id + "/meal");
       ref.on("value", uploadDietDay);
+      setIsLoaded(true);
       return () => {
         ref.off("value", uploadDietDay);
       };
@@ -60,21 +61,25 @@ const DietDay: React.FC<Props> = () => {
   return (
     <main className="diet-day">
       <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
-      <section className="diet-day__section">
-        <Button onClick={() => setActiveMeal(true)}>Dodaj posiłek</Button>
-        <MealList meals={meals} id={params.id} />
-        {activeMeal && currentUser && (
-          <AddMeal
-            meals={meals}
-            setActiveMeal={setActiveMeal}
-            currentUserId={currentUser.uid}
-            id={params.id}
-          />
-        )}
-        {meals.length !== 0 && currentUser && (
-          <MealSummary meals={meals} currentUserId={currentUser.uid} />
-        )}
-      </section>
+      {isLoaded ? (
+        <section className="diet-day__section">
+          <Button onClick={() => setActiveMeal(true)}>Dodaj posiłek</Button>
+          <MealList meals={meals} id={params.id} />
+          {activeMeal && currentUser && (
+            <AddMeal
+              meals={meals}
+              setActiveMeal={setActiveMeal}
+              currentUserId={currentUser.uid}
+              id={params.id}
+            />
+          )}
+          {meals.length !== 0 && currentUser && (
+            <MealSummary meals={meals} currentUserId={currentUser.uid} />
+          )}
+        </section>
+      ) : (
+        <LoadingIndicator />
+      )}
     </main>
   );
 };

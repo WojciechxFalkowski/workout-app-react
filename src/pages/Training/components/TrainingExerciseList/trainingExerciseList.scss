@@ -1,34 +1,48 @@
 @import "utils/mixins";
 .training-exercise-list {
+  &__ul {
+    padding-bottom: 16px;
+  }
   &__exercise {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: $orange;
-    border: 8px solid $white;
+    background-color: $font-color-accent;
     border-radius: 16px;
     padding: 8px 16px;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 8px;
+    min-height: 48px;
     cursor: pointer;
     &:hover {
-      opacity: 0.9;
+      opacity: 0.6;
     }
     cursor: pointer;
+    @media (min-width: 640px) {
+      margin: 8px auto;
+      min-height: unset;
+    }
+    @media (min-width: 1024px) {
+      margin: 16px auto;
+    }
   }
   &__workout-name {
-    width: 45%;
+    width: 55%;
+    @media (min-width: 640px) {
+      width: 65%;
+    }
   }
   &__series-div {
-    width: 55%;
+    width: 45%;
     display: flex;
     flex-wrap: wrap;
+    @media (min-width: 640px) {
+      width: 35%;
+    }
   }
   &__series {
-    padding: 4px;
-    font-size: 0.8rem;
-    margin: 2px 8px;
-    border-radius: 4px;
+    font-size: 12px;
+    margin: 2px 4px;
   }
 }

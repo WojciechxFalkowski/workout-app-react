@@ -5,9 +5,10 @@
   &__name {
     font-size: 1.2rem;
     font-weight: bold;
+    color: $font-color-accent;
   }
   &__link {
-    color: $orange;
+    color: $font-color-accent;
     text-decoration: unset;
     &:hover {
       text-decoration: underline;
@@ -17,6 +18,6 @@
     display: block;
     margin-top: 5px;
     font-size: 0.9rem;
-    color: $dark-grey;
+    color: $font-color-main;
   }
 }

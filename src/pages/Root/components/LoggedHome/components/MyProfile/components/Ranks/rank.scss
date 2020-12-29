@@ -4,11 +4,16 @@
   height: 100%;
   button {
     position: absolute;
-    background-color: $white-background;
+    background-color: $bg-color-main;
     top: 8px;
     left: 8px;
     padding: 2px 5px;
-
+    color: $font-color-main;
+    border-width: 0px;
+    &:hover {
+      color: $font-color-accent;
+      background-color: unset;
+    }
     svg {
       font-size: 1.3rem;
     }

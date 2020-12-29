@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import { trainingList } from "utils/constants";
 import "./myProfileRank.scss";
@@ -12,10 +12,10 @@ interface Props {
 
 const MyProfileRank: React.FC<Props> = ({ currentUser, handleFlipCard }) => {
   const [numberOfTrainings, setNumberOfTrainings] = useState<number>(0);
-  var ref = firebase.database().ref(`users/${currentUser.uid}/trainings`);
-  ref.once("value").then(function (snapshot) {
+
+  const uploadTrainingsAmount = function (snapshot: any) {
     setNumberOfTrainings(snapshot.numChildren());
-  });
+  };
   const trainingName =
     numberOfTrainings >= trainingList[3].min
       ? trainingList[3].name
@@ -24,6 +24,13 @@ const MyProfileRank: React.FC<Props> = ({ currentUser, handleFlipCard }) => {
       : numberOfTrainings >= trainingList[1].min
       ? trainingList[1].name
       : trainingList[0].name;
+  useEffect(() => {
+    var ref = firebase.database().ref(`users/${currentUser.uid}/trainings`);
+    ref.once("value").then(uploadTrainingsAmount);
+    return () => {
+      ref.off("value", uploadTrainingsAmount);
+    };
+  }, [currentUser.uid]);
   return (
     <span onClick={handleFlipCard} className="my-profile-rank">
       {trainingName}

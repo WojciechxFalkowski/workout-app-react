@@ -1,3 +1,4 @@
+@import "utils/mixins";
 .feature {
   padding: 16px 8px;
   flex-basis: 70%;
@@ -11,16 +12,19 @@
   &__div {
     text-align: center;
     font-size: 20px;
+    color: $font-color-main;
   }
   &__title {
     text-align: center;
     font-weight: bold;
     padding: 8px 0;
+    color: $font-color-accent;
   }
   &__p {
     text-align: center;
     margin: 8px 0 32px 0;
     padding: 0 8px;
+    color: $font-color-main;
     @media (min-width: 1024px) {
       margin-top: 16px;
     }

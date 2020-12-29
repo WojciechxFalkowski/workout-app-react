@@ -27,6 +27,20 @@ export const namesOfTheMonths: Array<string> = [
   "Listopada",
   "Grudnia",
 ];
+export const monthsNames: Array<string> = [
+  "Styczeń",
+  "Luty",
+  "Marzec",
+  "Kwiecień",
+  "Maj",
+  "Czerwiec",
+  "Lipiec",
+  "Sierpień",
+  "Wrzesień",
+  "Październik",
+  "Listopad",
+  "Grudzień",
+];
 interface trainingItem {
   name: string;
   min: number;

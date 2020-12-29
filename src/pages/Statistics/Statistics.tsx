@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import fire from "fire";
+import firebase from "firebase/app";
 import { Charts } from "./components";
 import "./statistics.scss";
 type exercise = {
@@ -26,8 +26,11 @@ const Statistics: React.FC<Props> = () => {
   };
   useEffect(() => {
     if (currentUser) {
-      const ref = fire.database().ref(`users/${currentUser.uid}/trainings`);
+      const ref = firebase.database().ref(`users/${currentUser.uid}/trainings`);
       ref.once("value", uploadTrainings);
+      return () => {
+        ref.off("value", uploadTrainings);
+      };
     }
   }, [currentUser]);
 

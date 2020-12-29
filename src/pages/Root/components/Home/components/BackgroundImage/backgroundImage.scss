@@ -25,18 +25,17 @@
   }
   &__h1 {
     font-size: 24px;
-    color: $white;
     text-transform: uppercase;
     font-weight: bold;
+    color: $font-color-accent;
   }
   &__p {
-    color: $white;
+    color: $font-color-main;
     margin: 16px 0 32px 0;
-    // margin: 8px 0 16px 0;
   }
   button {
     background-color: transparent;
-    color: $white;
+    color: $font-color-accent;
     text-transform: uppercase;
   }
 }

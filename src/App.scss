@@ -1,12 +1,19 @@
+@import "utils/mixins";
 * {
   box-sizing: border-box;
 }
-@import "utils/mixins";
+html {
+  background-color: $bg-color-main;
+}
 body {
   font-family: arial;
 }
 .mobile-menu {
   text-align: right;
+}
+#root {
+  background-color: $bg-color-main;
+  min-height: calc(100vh - 77px);
 }
 main {
   animation: animate-preloader 0.3s;
