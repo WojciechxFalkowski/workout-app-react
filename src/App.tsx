@@ -3,6 +3,8 @@ import "reset-css";
 import "./App.scss";
 import "firebase/auth";
 import "firebase/database";
+import { ToastContainer } from "react-toastify";
+import "./firebaseui-styling.global.scss";
 import {
   Login,
   Root,
@@ -10,7 +12,6 @@ import {
   Training,
   Exercise,
   Statistics,
-  Measurement,
   Diet,
   DietDay,
   Settings,
@@ -31,6 +32,7 @@ const App = () => {
       <React.Suspense fallback={<LoadingIndicator />}>
         <AuthProvider>
           <Router basename={process.env.PUBLIC_URL}>
+            <ToastContainer />
             <Header />
             <Switch>
               <Route path="/login">

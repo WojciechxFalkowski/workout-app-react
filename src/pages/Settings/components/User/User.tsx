@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FormTemplate, LoadingIndicator } from "components";
 import { required, composeValidators } from "utils/validation";
 import firebase from "firebase/app";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./user.scss";
 interface Fields {
   name: string;
@@ -70,6 +72,7 @@ const User: React.FC<Props> = ({ currentUser }) => {
         .database()
         .ref("users/" + currentUser.uid + "/settings/user")
         .set(values);
+      toast("Zaktualizowano dane");
     }
   };
 

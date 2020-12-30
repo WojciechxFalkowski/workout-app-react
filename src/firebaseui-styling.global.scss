@@ -1,0 +1,31 @@
+@import "utils/mixins";
+.firebaseui-container,
+.firebaseui-page-provider-sign-in {
+  background-color: $bg-color-main !important;
+}
+h1.firebaseui-title {
+  color: $font-color-accent;
+}
+.firebaseui-card-header {
+  border-width: 0px !important;
+}
+.firebaseui-label,
+input.firebaseui-input,
+.is-focused label.firebaseui-label input.firebaseui-input {
+  color: $font-color-accent !important;
+  border-color: $font-color-main !important;
+}
+
+.firebaseui-textfield.mdl-textfield .firebaseui-label:after {
+  background-color: $font-color-accent !important;
+}
+.mdl-button--primary.mdl-button--primary {
+  color: $font-color-accent !important;
+}
+.mdl-button--raised.mdl-button--colored {
+  background: $font-color-accent !important;
+  color: $bg-color-main !important;
+}
+.firebaseui-link {
+  color: $font-color-accent !important;
+}

@@ -3,6 +3,7 @@ import { Form, Field } from "react-final-form";
 import "./formInput.scss";
 import { Line, RemoveSeries, SeriesNumber } from "./components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 import firebase from "firebase/app";
 interface Fields {
   name: string;
@@ -41,6 +42,7 @@ const FormInput: React.FC<Props> = ({
     if (currentUser) {
       const url = `users/${currentUser.uid}/trainings/${id}/exercises/${paramId}`;
       firebase.database().ref(url).child("series").set(newArray);
+      toast("Zaktualizowano ćwiczenie");
     }
   };
 

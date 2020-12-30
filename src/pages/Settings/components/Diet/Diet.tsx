@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FormTemplate, LoadingIndicator } from "components";
 import firebase from "firebase/app";
+import { toast } from "react-toastify";
 import "./diet.scss";
 interface Fields {
   name: string;
@@ -95,6 +96,7 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
         .database()
         .ref("users/" + currentUser.uid + "/settings/diet")
         .set(values);
+      toast("Zaktualizowano diete");
     }
   };
   return (
