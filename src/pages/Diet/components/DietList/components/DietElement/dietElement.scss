@@ -1,4 +1,4 @@
-@import "utils/mixins";
+@import "styles/mixins";
 .diet-element {
   display: flex;
   flex-direction: row;
@@ -11,12 +11,6 @@
   color: $bg-color-main;
   cursor: pointer;
   background-color: $font-color-accent;
-  &:nth-child(even) {
-    // background-color: $salmon;
-  }
-  &:nth-child(odd) {
-    // background-color: $goldenrod;
-  }
   &:hover {
     opacity: 0.6;
   }

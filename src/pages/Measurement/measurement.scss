@@ -1,4 +1,4 @@
-@import "utils/mixins";
+@import "styles/mixins";
 .measurement {
   margin-top: 77px;
   padding-top: 2vh;
@@ -10,24 +10,6 @@
     font-size: 0.7rem;
     @media (min-width: 360px) {
       font-size: 0.8rem;
-    }
-  }
-  &__tbody {
-    tr:nth-child(odd) {
-      background-color: $steelblue;
-      td {
-        button {
-          background-color: $steelblue;
-        }
-      }
-    }
-    tr:nth-child(even) {
-      background-color: $goldenrod;
-      td {
-        button {
-          background-color: $goldenrod;
-        }
-      }
     }
   }
   &__th,

@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import firebase from "firebase/app";
-import { CustomHookInput } from "components";
+import { Input } from "utils/customHooks";
 interface mealItem {
   ingredient: string;
   carbs: number;
@@ -25,11 +25,11 @@ const AddIngredient: React.FC<Props> = ({
   id,
   indexList,
 }) => {
-  const [ingredient, setIngredient] = CustomHookInput({ type: "text" });
-  const [carbs, setCarbs] = CustomHookInput({ type: "number" });
-  const [fats, setFats] = CustomHookInput({ type: "number" });
-  const [proteins, setProteins] = CustomHookInput({ type: "number" });
-  const [calories, setCalories] = CustomHookInput({ type: "number" });
+  const [ingredient, setIngredient] = Input({ type: "text" });
+  const [carbs, setCarbs] = Input({ type: "number" });
+  const [fats, setFats] = Input({ type: "number" });
+  const [proteins, setProteins] = Input({ type: "number" });
+  const [calories, setCalories] = Input({ type: "number" });
   let isNameTaken;
   if (mealList) {
     isNameTaken =

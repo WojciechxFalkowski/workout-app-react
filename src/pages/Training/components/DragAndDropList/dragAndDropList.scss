@@ -1,4 +1,4 @@
-@import "utils/mixins";
+@import "styles/mixins";
 .list {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   &__item {
     min-width: 300px;
     max-width: 640px;
-    background: $black;
+    background: $bg-color-main;
     color: $bg-color-main;
     font-size: 0.9rem;
     padding: 8px 16px;

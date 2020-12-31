@@ -3,7 +3,7 @@ import { Button } from "components";
 import firebase from "firebase/app";
 import "./addMeasurement.scss";
 import generateRandomString from "utils/generateRandomString";
-import { CustomHookInput } from "components";
+import { Input } from "utils/customHooks";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 import { measurement } from "./../../Measurement";
 export interface Props {
@@ -17,11 +17,11 @@ const AddMeasurement: React.FC<Props> = ({
   setActiveMeasurement,
   currentUserId,
 }) => {
-  const [weight, setWeight] = CustomHookInput({ type: "number" });
-  const [arm, setArn] = CustomHookInput({ type: "number" });
-  const [chest, setChest] = CustomHookInput({ type: "number" });
-  const [waist, setWaist] = CustomHookInput({ type: "number" });
-  const [thighs, setThighs] = CustomHookInput({ type: "number" });
+  const [weight, setWeight] = Input({ type: "number" });
+  const [arm, setArn] = Input({ type: "number" });
+  const [chest, setChest] = Input({ type: "number" });
+  const [waist, setWaist] = Input({ type: "number" });
+  const [thighs, setThighs] = Input({ type: "number" });
   const isComplete =
     weight === "" &&
     arm === "" &&

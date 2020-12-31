@@ -1,4 +1,4 @@
-@import "utils/mixins";
+@import "styles/mixins";
 .remove-series {
   margin: 1vh auto;
   &__button {
@@ -7,7 +7,6 @@
     font-size: 0.8rem;
     margin: 1vh 0;
     color: $font-color-main;
-    // background-color: $font-color-main;
     background-color: unset;
     border: 2px solid $bg-color-main;
     padding: 2px 0;

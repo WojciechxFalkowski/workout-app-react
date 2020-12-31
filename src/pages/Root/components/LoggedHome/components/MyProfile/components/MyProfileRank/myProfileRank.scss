@@ -1,9 +1,10 @@
-@import "utils/mixins";
+@import "styles/mixins";
 .my-profile-rank {
   display: inline-block;
   margin: 0.5vh 0;
+  color: $font-color-accent;
   cursor: pointer;
   &:hover {
-    color: $font-color-accent;
+    text-decoration: underline;
   }
 }

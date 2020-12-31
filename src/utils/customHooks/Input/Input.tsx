@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 export interface Props {}
 
-const CustomHookInput = ({ type }: any) => {
+const Input = ({ type }: any) => {
   const [value, setValue] = useState("");
   const input = (
     <input
@@ -14,4 +14,4 @@ const CustomHookInput = ({ type }: any) => {
   return [value, input];
 };
 
-export default CustomHookInput;
+export default Input;

@@ -4,7 +4,7 @@ import "./App.scss";
 import "firebase/auth";
 import "firebase/database";
 import { ToastContainer } from "react-toastify";
-import "./firebaseui-styling.global.scss";
+import "./styles/firebaseui-styling.global.scss";
 import {
   Login,
   Root,
@@ -17,13 +17,8 @@ import {
   Settings,
   NotFound,
 } from "pages";
-
-import {
-  LoadingIndicator,
-  Header,
-  AuthProvider,
-  PrivateRoute,
-} from "components";
+import { LoadingIndicator, Header, AuthProvider } from "components";
+import { PrivateRoute } from "core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 const App = () => {

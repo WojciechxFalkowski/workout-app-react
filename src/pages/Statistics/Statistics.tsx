@@ -3,6 +3,7 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import { Charts } from "./components";
 import "./statistics.scss";
+import { LoadingIndicator } from "components";
 type exercise = {
   workoutName: string;
   series?: Array<string>;
@@ -36,7 +37,7 @@ const Statistics: React.FC<Props> = () => {
 
   return (
     <main className="statistics">
-      {trainings && <Charts trainings={trainings} />}
+      {trainings ? <Charts trainings={trainings} /> : <LoadingIndicator />}
     </main>
   );
 };
