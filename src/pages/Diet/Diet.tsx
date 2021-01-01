@@ -78,7 +78,7 @@ const Diet: React.FC<Props> = () => {
   return (
     <main className="diet">
       <div className="diet__div">
-        <Button onClick={handleAddDiet}>Dodaj diete</Button>
+        <Button onClick={handleAddDiet}>Dodaj dietę</Button>
         {flag && (
           <span className="diet__span">Dzisiejsza dieta jest już dodana</span>
         )}

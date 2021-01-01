@@ -60,7 +60,7 @@ const DietDay: React.FC<Props> = () => {
   };
   return (
     <main className="diet-day">
-      <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń diete" />
+      <GoBackDelete handleEdit={handleRemoveDietDay} editTitle="Usuń dietę" />
       {isLoaded ? (
         <section className="diet-day__section">
           <Button onClick={() => setActiveMeal(true)}>Dodaj posiłek</Button>

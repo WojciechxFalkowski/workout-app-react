@@ -49,7 +49,7 @@ const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
                       <textarea
                         {...input}
                         className="form__textarea"
-                        placeholder={"Description"}
+                        placeholder={"Opis"}
                       />
                     ) : (
                       <input

@@ -19,7 +19,7 @@ const Features: React.FC<Props> = () => {
       />
       <Feature
         icon={<GiMeal />}
-        title="Zaplanuj diete"
+        title="Zaplanuj dietę"
         text="Prawidłowa dieta jest kluczowa dla zdrowia, kondycji i świetnego samopoczucia."
       />
       <Feature

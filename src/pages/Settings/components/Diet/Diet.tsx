@@ -96,7 +96,7 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
         .database()
         .ref("users/" + currentUser.uid + "/settings/diet")
         .set(values);
-      toast("Zaktualizowano diete");
+      toast("Zaktualizowano dietę");
     }
   };
   return (

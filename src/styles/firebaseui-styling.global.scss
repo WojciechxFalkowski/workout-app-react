@@ -15,7 +15,12 @@ input.firebaseui-input,
   color: $font-color-accent !important;
   border-color: $font-color-main !important;
 }
-
+.firebaseui-input-toggle-off {
+  background-image: url("./../utils/images/no-eye.svg") !important;
+}
+.firebaseui-input-toggle-on {
+  background-image: url("./../utils/images/eye.svg") !important;
+}
 .firebaseui-textfield.mdl-textfield .firebaseui-label:after {
   background-color: $font-color-accent !important;
 }

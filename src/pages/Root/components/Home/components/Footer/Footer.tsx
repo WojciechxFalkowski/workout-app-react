@@ -8,7 +8,7 @@ const Footer: React.FC<Props> = () => {
       <div className="footer__info">
         <h2 className="footer__h2">To do workout</h2>
         <p className="footer__text">
-          Aplikacji umożliwiający łatwiejsze zarządzanie swoimi treningami,
+          Aplikacja umożliwiająca łatwiejsze zarządzanie swoimi treningami,
           projekt w ciągłym rozwoju.
         </p>
       </div>
