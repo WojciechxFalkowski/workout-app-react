@@ -73,7 +73,7 @@ const App = () => {
                 exact={true}
                 component={Settings}
               ></PrivateRoute>
-              <Route path="/" exact={true}>
+              <Route path="/">
                 <Root />
               </Route>
               <Route component={NotFound}></Route>

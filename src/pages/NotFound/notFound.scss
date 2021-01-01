@@ -1,3 +1,4 @@
+@import "styles/mixins";
 .not-found {
   margin: 77px auto 0 auto;
   &__div {
@@ -10,5 +11,6 @@
   &__p {
     font-size: 24px;
     margin-bottom: 16px;
+    color: $font-color-accent;
   }
 }
