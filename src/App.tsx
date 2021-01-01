@@ -26,7 +26,7 @@ const App = () => {
     <CookiesProvider>
       <React.Suspense fallback={<LoadingIndicator />}>
         <AuthProvider>
-          <Router basename={process.env.PUBLIC_URL}>
+          <Router basename="/workout-app-react">
             <ToastContainer />
             <Header />
             <Switch>
