@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1aaa5a96b274cd1d875d320ac63343a6",
+    "revision": "c9fd8dc32b49ead589b3751dc4498912",
     "url": "/workout-app-react/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/workout-app-react/static/css/2.e2409563.chunk.css"
   },
   {
-    "revision": "25315c72f8029ec04845",
-    "url": "/workout-app-react/static/css/main.4af32e05.chunk.css"
+    "revision": "4ccd3460566453d44a2a",
+    "url": "/workout-app-react/static/css/main.e817b444.chunk.css"
   },
   {
     "revision": "03ffb471cc182ced299d",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/workout-app-react/static/js/2.364beb66.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "25315c72f8029ec04845",
-    "url": "/workout-app-react/static/js/main.91f82c4f.chunk.js"
+    "revision": "4ccd3460566453d44a2a",
+    "url": "/workout-app-react/static/js/main.e4608706.chunk.js"
   },
   {
     "revision": "a8ea7c4f458acf99c3f2",
