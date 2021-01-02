@@ -2,16 +2,16 @@ import React, { useRef } from "react";
 import { MyProfileName, MyProfileRank, Ranks } from "./components";
 import "./myProfile.scss";
 
-interface currentUser {
+type currentUser = {
   uid: string;
-}
-export interface Props {
+};
+export type props = {
   name: string;
   surname: string;
   currentUser: currentUser;
-}
+};
 
-const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
+const MyProfile = ({ name, surname, currentUser }: props) => {
   const refFlipper = useRef<HTMLDivElement>(null);
   const handleFlipCard = () => {
     if (refFlipper.current) {
@@ -19,7 +19,7 @@ const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
     }
   };
   return (
-    <article className="my-profile">
+    <section className="my-profile">
       <div ref={refFlipper} className="my-profile__inner ">
         <div className="my-profile__front">
           <MyProfileName name={name} surname={surname} />
@@ -32,7 +32,7 @@ const MyProfile: React.FC<Props> = ({ name, surname, currentUser }) => {
           <Ranks handleFlipCard={handleFlipCard} />
         </div>
       </div>
-    </article>
+    </section>
   );
 };
 

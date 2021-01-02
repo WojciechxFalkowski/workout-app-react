@@ -1,9 +1,9 @@
 import React from "react";
-export interface Props {
+export type props = {
   titles: Array<string>;
-}
+};
 
-const Tfoot: React.FC<Props> = ({ titles }) => {
+const Tfoot = ({ titles }: props) => {
   return (
     <tfoot className="meal-summary__tfoot">
       <tr className="meal-summary__tr">

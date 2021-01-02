@@ -6,22 +6,21 @@ import "./dietDay.scss";
 import { GoBackDelete, Button, LoadingIndicator } from "components";
 import { MealList, AddMeal, MealSummary } from "./components";
 
-interface params {
+type params = {
   id: string;
-}
-interface mealItem {
+};
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {}
-const DietDay: React.FC<Props> = () => {
+};
+const DietDay = () => {
   const { currentUser } = useContext(AuthContext);
   const params: params = useParams();
   const history = useHistory();

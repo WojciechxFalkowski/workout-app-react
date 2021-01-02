@@ -1,23 +1,23 @@
 import React from "react";
 import { EatenCalories, TodayTrainings } from "./components";
 import "./activities.scss";
-interface ingredients {
+type ingredients = {
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-export interface Props {
+};
+export type props = {
   ingredients: ingredients;
-}
+};
 
-const Activities: React.FC<Props> = ({ ingredients }) => {
+const Activities = ({ ingredients }: props) => {
   return (
-    <article className="activities">
-      <span className="activities__title">Dzisiaj</span>
+    <section className="activities">
+      <p className="activities__title">Dzisiaj</p>
       <EatenCalories ingredients={ingredients} />
       <TodayTrainings />
-    </article>
+    </section>
   );
 };
 

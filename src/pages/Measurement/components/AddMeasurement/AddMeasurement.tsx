@@ -6,17 +6,17 @@ import generateRandomString from "utils/generateRandomString";
 import { Input } from "utils/customHooks";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 import { measurement } from "./../../Measurement";
-export interface Props {
+export type props = {
   measurements: Array<measurement>;
   setActiveMeasurement: (arg1: boolean) => void;
   currentUserId: string;
-}
+};
 
-const AddMeasurement: React.FC<Props> = ({
+const AddMeasurement = ({
   measurements,
   setActiveMeasurement,
   currentUserId,
-}) => {
+}: props) => {
   const [weight, setWeight] = Input({ type: "number" });
   const [arm, setArn] = Input({ type: "number" });
   const [chest, setChest] = Input({ type: "number" });

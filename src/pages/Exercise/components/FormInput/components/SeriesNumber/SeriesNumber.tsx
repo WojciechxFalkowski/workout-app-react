@@ -1,10 +1,10 @@
 import React from "react";
 import "./seriesNumber.scss";
-export interface Props {
+export type props = {
   index: number;
-}
+};
 
-const SeriesNumber: React.FC<Props> = ({ index }) => {
+const SeriesNumber = ({ index }: props) => {
   return (
     <>
       {index % 2 === 0 && (

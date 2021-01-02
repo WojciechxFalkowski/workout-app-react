@@ -1,56 +1,42 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./eatenCalories.scss";
-interface ingredients {
+type ingredients = {
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-export interface Props {
+};
+export type props = {
   ingredients: ingredients;
-}
+};
 
-const EatenCalories: React.FC<Props> = ({
+const EatenCalories = ({
   ingredients: { carbs, fats, proteins, calories },
-}) => {
-  const history = useHistory();
-
+}: props) => {
   return (
     <div className="eaten-calories">
-      <span className="eaten-calories__title">Dieta</span>
+      <p className="eaten-calories__title">Dieta</p>
       <div className="eaten-calories__calories">
         {carbs && (
-          <p
-            onClick={() => history.push(`settings`)}
-            className="eaten-calories__p"
-          >
+          <Link to="settings" className="eaten-calories__p">
             Węglowodany: {carbs}
-          </p>
+          </Link>
         )}
         {fats && (
-          <p
-            onClick={() => history.push(`settings`)}
-            className="eaten-calories__p"
-          >
+          <Link to="settings" className="eaten-calories__p">
             Tłuszcze: {fats}
-          </p>
+          </Link>
         )}
         {proteins && (
-          <p
-            onClick={() => history.push(`settings`)}
-            className="eaten-calories__p"
-          >
+          <Link to="settings" className="eaten-calories__p">
             Białko: {proteins}
-          </p>
+          </Link>
         )}
         {calories && (
-          <p
-            onClick={() => history.push(`settings`)}
-            className="eaten-calories__p"
-          >
+          <Link to="settings" className="eaten-calories__p">
             Kalorie: {calories}
-          </p>
+          </Link>
         )}
         {!carbs && !fats && !proteins && !calories && (
           <Link className="eaten-calories__a" to="settings">

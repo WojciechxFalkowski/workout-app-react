@@ -4,15 +4,15 @@ import { FormTemplate } from "components";
 import { required, composeValidators, maxValue } from "utils/validation";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-interface Exercise {
+type Exercise = {
   workoutName: string;
-}
-export interface Props {
+};
+export type props = {
   exercises: any | undefined;
   id: string;
-}
+};
 
-const TrainingItem: React.FC<Props> = ({ exercises, id }) => {
+const TrainingItem = ({ exercises, id }: props) => {
   const { currentUser } = useContext(AuthContext);
   const formFields = {
     fields: [

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-export interface Props {}
+export type props = {};
 
 const Input = ({ type }: any) => {
   const [value, setValue] = useState("");

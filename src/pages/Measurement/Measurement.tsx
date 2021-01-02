@@ -4,9 +4,7 @@ import firebase from "firebase/app";
 import { Thead, MeasurementList, AddMeasurement } from "./components";
 import "./measurement.scss";
 import { Button, LoadingIndicator } from "components";
-export interface Props {}
-
-export interface measurement {
+export type measurement = {
   id: string;
   date: string;
   weight: number;
@@ -14,8 +12,8 @@ export interface measurement {
   chest: number;
   waist: number;
   thighs: number;
-}
-const Measurement: React.FC<Props> = () => {
+};
+const Measurement = () => {
   const { currentUser } = useContext(AuthContext);
   const [measurements, setMeasurements] = useState<Array<measurement>>([]);
   const [activeMeasurement, setActiveMeasurement] = useState(false);

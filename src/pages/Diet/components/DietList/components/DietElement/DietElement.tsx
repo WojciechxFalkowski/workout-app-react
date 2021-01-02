@@ -4,23 +4,17 @@ import "./dietElement.scss";
 import { useHistory } from "react-router-dom";
 import { ingredientTitles } from "utils/constants";
 import { slicedDayMonthYearWithSeparator } from "utils/dateFunctions";
-export interface Props {
+export type props = {
   date: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-const DietElement: React.FC<Props> = ({
-  date,
-  carbs,
-  fats,
-  proteins,
-  calories,
-}) => {
+};
+const DietElement = ({ date, carbs, fats, proteins, calories }: props) => {
   const history = useHistory();
-  const titles: Array<string> = ingredientTitles;
-  const nutrients: Array<number> = [carbs, fats, proteins, calories];
+  const titles = ingredientTitles;
+  const nutrients = [carbs, fats, proteins, calories];
   const handleDietDay = (date: string) => {
     history.push(`diet/${date}`);
   };

@@ -4,16 +4,16 @@ import {
   TrainingsPerTrainingName,
   WeightRaisedPerTrainingName,
 } from "./components";
-interface training {
+type training = {
   date: string;
   id: string;
   workoutName: string;
   exercises?: object;
-}
-export interface Props {
+};
+export type props = {
   trainings: Array<training>;
-}
-const Charts: React.FC<Props> = ({ trainings }) => {
+};
+const Charts = ({ trainings }: props) => {
   return (
     <>
       <TrainingsPerMonth trainings={trainings} />

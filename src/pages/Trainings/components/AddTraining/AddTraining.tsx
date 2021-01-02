@@ -1,50 +1,14 @@
 import React, { useContext } from "react";
 import { FormTemplate } from "components";
-import { required, composeValidators, maxValue } from "utils/validation";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-import {
-  dayMonthYearWithSeparator,
-  hoursMinutesWithSeparator,
-} from "utils/dateFunctions";
-export interface Props {}
+import formFields from "./formFields";
 
-const AddTraining: React.FC<Props> = () => {
+const AddTraining = () => {
   const { currentUser } = useContext(AuthContext);
   const history = useHistory();
-  const date = new Date();
-  const datePattern = `${dayMonthYearWithSeparator(
-    date,
-    "-",
-    "yes"
-  )}T${hoursMinutesWithSeparator(date, ":")}`;
-  const formFields = {
-    fields: [
-      {
-        name: "date",
-        validate: composeValidators(required("To pole jest wymagane!")),
-        initialValue: datePattern,
-        text: "Data treningu",
-        placeholder: "Data treningu",
-        type: "datetime-local",
-        max: datePattern,
-      },
-      {
-        name: "workoutName",
-        validate: composeValidators(
-          required("To pole jest wymagane!"),
-          maxValue(40, "Nazwa treningu maksymalnie może mieć 40 znaków")
-        ),
-        initialValue: undefined,
-        text: "Nazwa treningu",
-        placeholder: "Nazwa treningu",
-      },
-    ],
-    button: {
-      text: "Dodaj trening",
-    },
-  };
+
   const saveNewTraining = (
     userId: string,
     id: string,

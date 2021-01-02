@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "components";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 
-interface measurement {
+type measurement = {
   id: string;
   date: string;
   weight: number;
@@ -10,16 +10,13 @@ interface measurement {
   chest: number;
   waist: number;
   thighs: number;
-}
-export interface Props {
+};
+export type props = {
   measurements: Array<measurement>;
   handleDeleteMeasurement: (arg1: string) => void;
-}
+};
 
-const MeasurementList: React.FC<Props> = ({
-  measurements,
-  handleDeleteMeasurement,
-}) => {
+const MeasurementList = ({ measurements, handleDeleteMeasurement }: props) => {
   return (
     <>
       {measurements

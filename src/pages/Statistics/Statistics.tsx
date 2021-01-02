@@ -8,14 +8,14 @@ type exercise = {
   workoutName: string;
   series?: Array<string>;
 };
-interface training {
+type training = {
   date: string;
   id: string;
   workoutName: string;
   exercises?: object;
-}
-export interface Props {}
-const Statistics: React.FC<Props> = () => {
+};
+
+const Statistics = () => {
   const { currentUser }: any | undefined = useContext(AuthContext);
   const [trainings, setTrainings] = useState<Array<training>>();
   const uploadTrainings = function (snapshot: any) {

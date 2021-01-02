@@ -1,10 +1,10 @@
 import React from "react";
-export interface Props {
+export type props = {
   titles: Array<string>;
   diet: Array<number>;
-}
+};
 
-const DailyPlan: React.FC<Props> = ({ titles, diet }) => {
+const DailyPlan = ({ titles, diet }: props) => {
   return (
     <tr className="meal-summary__tr">
       <td className="meal-summary__td">Dzienny plan</td>

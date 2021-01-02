@@ -17,8 +17,12 @@ import {
   Settings,
   NotFound,
 } from "pages";
-import { LoadingIndicator, Header, AuthProvider } from "components";
-import { PrivateRoute } from "core";
+import {
+  LoadingIndicator,
+  Header,
+  AuthProvider,
+  PrivateRoute,
+} from "components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 const App = () => {

@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { Chart as ChartJS } from "chart.js";
 import "./chart.scss";
 
-export interface Props {
+export type props = {
   specification: any;
   children: any;
-}
-const Chart: React.FC<Props> = ({ specification, children }) => {
+};
+const Chart = ({ specification, children }: props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (canvasRef.current !== null) {

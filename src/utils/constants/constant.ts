@@ -1,10 +1,10 @@
-export const ingredientTitles: Array<string> = [
+export const ingredientTitles = [
   "Węglowodany",
   "Tłuszcze",
   "Białko",
   "Kalorie",
 ];
-export const namesOfDaysOfWeekArray: Array<string> = [
+export const namesOfDaysOfWeekArray = [
   "Niedziela",
   "Poniedziałek",
   "Wtorek",
@@ -13,7 +13,7 @@ export const namesOfDaysOfWeekArray: Array<string> = [
   "Piątek",
   "Sobota",
 ];
-export const namesOfTheMonths: Array<string> = [
+export const namesOfTheMonths = [
   "Stycznia",
   "Lutego",
   "Marca",
@@ -27,7 +27,7 @@ export const namesOfTheMonths: Array<string> = [
   "Listopada",
   "Grudnia",
 ];
-export const monthsNames: Array<string> = [
+export const monthsNames = [
   "Styczeń",
   "Luty",
   "Marzec",
@@ -41,10 +41,10 @@ export const monthsNames: Array<string> = [
   "Listopad",
   "Grudzień",
 ];
-interface trainingItem {
+type trainingItem = {
   name: string;
   min: number;
-}
+};
 export const trainingList: Array<trainingItem> = [
   { name: "Początkujący/a", min: 0 },
   { name: "Średnio zaawansowany/a", min: 10 },

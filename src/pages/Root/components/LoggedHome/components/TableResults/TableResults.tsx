@@ -2,14 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import firebase from "firebase/app";
 import "./tableResults.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-interface users {
+type users = {
   name: string;
   surname: string;
   numberOfTrainings: number;
-}
-export interface Props {}
+};
 
-const TableResults: React.FC<Props> = () => {
+const TableResults = () => {
   const { currentUser } = useContext(AuthContext);
   const [statistics, setStatistics] = useState<Array<users>>();
   const handleStatistics = function (snapshot: any) {
@@ -38,7 +37,7 @@ const TableResults: React.FC<Props> = () => {
   }, [currentUser]);
   return (
     <section className="table-results">
-      <h2 className="table-results__h2">Statystyki</h2>
+      <h3 className="table-results__h3">Statystyki</h3>
       <table className="table-results__table">
         <thead>
           <tr className="table-results__tr">

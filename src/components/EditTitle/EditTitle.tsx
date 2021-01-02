@@ -5,21 +5,21 @@ import firebase from "firebase/app";
 import { required, composeValidators } from "utils/validation";
 import "./editTitle.scss";
 import LoadingIndicator from "components/LoadingIndicator";
-export interface Props {
+export type props = {
   labelText: string;
   editDate: boolean;
   refUrl: string;
   isActiveEditing: boolean;
   setIsActiveEditing: (value: boolean) => void;
-}
+};
 
-const EditTitle: React.FC<Props> = ({
+const EditTitle = ({
   labelText,
   editDate,
   refUrl,
   isActiveEditing,
   setIsActiveEditing,
-}) => {
+}: props) => {
   const [workoutName, setWorkoutName] = useState();
   const [editTimeDate, setEditTimeDate] = useState();
   const [editName, setEditName] = useState(false);

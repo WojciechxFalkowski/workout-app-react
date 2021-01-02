@@ -5,13 +5,12 @@ import "./todayTrainings.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 type Trainings = Array<training>;
-interface training {
+type training = {
   id: string;
   date: string;
   workoutName: string;
-}
-export interface Props {}
-const TodayTrainings: React.FC<Props> = () => {
+};
+const TodayTrainings = () => {
   const { currentUser } = useContext(AuthContext);
   const [trainings, setTrainings] = useState<Trainings>();
   const date = new Date();
@@ -39,7 +38,7 @@ const TodayTrainings: React.FC<Props> = () => {
   }, [currentUser, modifiedDate]);
   return (
     <div className="today-trainings">
-      <span className="today-trainings__title">Treningi</span>
+      <p className="today-trainings__title">Treningi</p>
       {trainings && trainings.length !== 0 ? (
         trainings.map((training) => {
           return (

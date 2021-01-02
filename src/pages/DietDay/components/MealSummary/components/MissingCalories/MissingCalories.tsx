@@ -1,15 +1,11 @@
 import React from "react";
-export interface Props {
+export type props = {
   sumNutrientsByType: Array<number>;
   diet: Array<number>;
   titles: Array<string>;
-}
+};
 
-const MissingCalories: React.FC<Props> = ({
-  sumNutrientsByType,
-  diet,
-  titles,
-}) => {
+const MissingCalories = ({ sumNutrientsByType, diet, titles }: props) => {
   return (
     <>
       <tr className="meal-summary__tr">

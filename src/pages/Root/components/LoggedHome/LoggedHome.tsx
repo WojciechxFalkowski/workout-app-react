@@ -4,19 +4,18 @@ import { Greetings, MyProfile, Activities, TableResults } from "./components";
 import firebase from "firebase/app";
 import "./loggedHome.scss";
 import { LoadingIndicator } from "components";
-interface ingredients {
+type ingredients = {
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface user {
+};
+type user = {
   name: string;
   surname: string;
   ingredients: ingredients;
-}
-export interface Props {}
-const Home: React.FC<Props> = () => {
+};
+const Home = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState<user>();
   const uploadUser = function (snapshot: any) {

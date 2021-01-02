@@ -7,9 +7,8 @@ import {
   SendMessage,
   Footer,
 } from "./components";
-export interface Props {}
 
-const Home: React.FC<Props> = () => {
+const Home = () => {
   return (
     <main className="home">
       <BackgroundImage />

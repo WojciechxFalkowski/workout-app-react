@@ -8,3 +8,4 @@ export { default as Arrow } from "./Arrow";
 export { default as EditTitle } from "./EditTitle";
 export { default as GoBackDelete } from "./GoBackDelete";
 export { default as Chart } from "./Chart";
+export { default as PrivateRoute } from "./PrivateRoute";

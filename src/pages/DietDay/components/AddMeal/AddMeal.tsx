@@ -3,33 +3,28 @@ import { AiFillDelete, AiOutlineCheckCircle } from "react-icons/ai";
 import firebase from "firebase/app";
 import { ingredientTitles } from "utils/constants";
 
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {
+};
+export type props = {
   meals: Array<meal>;
   setActiveMeal: (arg1: boolean) => void;
   currentUserId: string;
   id: string;
-}
+};
 
-const AddMeal: React.FC<Props> = ({
-  meals,
-  setActiveMeal,
-  currentUserId,
-  id,
-}) => {
+const AddMeal = ({ meals, setActiveMeal, currentUserId, id }: props) => {
   const inputNameRef = useRef<HTMLInputElement>(null);
   const [inputName, setInputName] = useState("");
-  const titles: Array<string> = ingredientTitles;
+  const titles = ingredientTitles;
   const maxNameLength = inputName.length >= 20;
   const handleAddMeal = () => {
     if (currentUserId) {

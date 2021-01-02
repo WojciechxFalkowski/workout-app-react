@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import "./FormTemplate.scss";
-interface Fields {
+type Fields = {
   name: string;
   validate?: (fn: () => void) => void;
   initialValue: any;
@@ -13,21 +13,21 @@ interface Fields {
   min?: string;
   max?: string;
   step?: string;
-}
-interface Button {
+};
+type Button = {
   type?: "submit";
   text: string;
-}
-interface formFields {
+};
+type formFields = {
   fields: Array<Fields>;
   button: Button;
-}
+};
 
-export interface Props {
+export type props = {
   formFields: formFields;
   handleSubmit: (values: any) => void;
-}
-const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
+};
+const FormTemplate = ({ formFields, handleSubmit }: props) => {
   const { fields, button } = formFields;
   return (
     <Form onSubmit={handleSubmit}>
@@ -44,7 +44,14 @@ const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
               >
                 {({ input, meta }) => (
                   <div className="form__wrapper">
-                    <label className="form__label">{formField.text}</label>
+                    <label
+                      className="form__label"
+                      htmlFor={formField.placeholder
+                        .replace(/\s/g, "")
+                        .toLowerCase()}
+                    >
+                      {formField.text}
+                    </label>
                     {formField.component === "textarea" ? (
                       <textarea
                         {...input}
@@ -54,6 +61,9 @@ const FormTemplate: React.FC<Props> = ({ formFields, handleSubmit }) => {
                     ) : (
                       <input
                         {...input}
+                        id={formField.placeholder
+                          .replace(/\s/g, "")
+                          .toLowerCase()}
                         className="form__input"
                         type={formField.type}
                         step={formField.step ? formField.step : undefined}

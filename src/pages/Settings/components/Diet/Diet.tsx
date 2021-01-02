@@ -3,7 +3,7 @@ import { FormTemplate, LoadingIndicator } from "components";
 import firebase from "firebase/app";
 import { toast } from "react-toastify";
 import "./diet.scss";
-interface Fields {
+type Fields = {
   name: string;
   initialValue: string;
   text: string;
@@ -11,21 +11,21 @@ interface Fields {
   type: string;
   step: string;
   min: string;
-}
-interface Button {
+};
+type Button = {
   text: string;
-}
-interface FormFields {
+};
+type FormFields = {
   fields: Fields[];
   button: Button;
-}
-interface currentUser {
+};
+type currentUser = {
   uid: string;
-}
-export interface Props {
+};
+export type props = {
   currentUser: currentUser;
-}
-const Diet: React.FC<Props> = ({ currentUser }) => {
+};
+const Diet = ({ currentUser }: props) => {
   const [diet, setDiet] = useState<FormFields>();
   const uploadDiet = function (snapshot: any) {
     setDiet({
@@ -101,7 +101,7 @@ const Diet: React.FC<Props> = ({ currentUser }) => {
   };
   return (
     <div className="diet">
-      <h1 className="diet__h2">Dieta</h1>
+      <h3 className="diet__h3">Dieta</h3>
       {diet ? (
         <FormTemplate formFields={diet} handleSubmit={handleSubmit} />
       ) : (

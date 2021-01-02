@@ -7,8 +7,10 @@ type user = {
   uid: string;
   displayName: string;
 };
-type Props = {};
-const AuthProvider: React.FC<Props> = ({ children }) => {
+type props = {
+  children: any;
+};
+const AuthProvider = ({ children }: props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);
 

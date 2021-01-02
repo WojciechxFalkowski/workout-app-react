@@ -9,14 +9,12 @@ import {
 } from "utils/dateFunctions";
 import { minValue, maxValue } from "utils/validation";
 import firebase from "firebase/app";
-interface values {
+type values = {
   name: string;
   surname: string;
   opinion: string;
-}
-export interface Props {}
-
-const SendMessage: React.FC<Props> = () => {
+};
+const SendMessage = () => {
   const [isSendForm, setIsSendForm] = useCookies(["sendForm"]);
   const [isSameSession, setIsSameSession] = useState(false);
 

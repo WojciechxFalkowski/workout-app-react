@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-export interface Props {
+export type props = {
   component: any;
   exact: boolean;
   path: string;
-}
-const PrivateRoute: React.FC<Props> = ({
+};
+const PrivateRoute = ({
   component: RouteComponent,
 
   ...rest
-}) => {
+}: props) => {
   const { currentUser } = useContext(AuthContext);
   return (
     <Route

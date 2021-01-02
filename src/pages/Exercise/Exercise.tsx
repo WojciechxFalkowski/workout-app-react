@@ -7,37 +7,37 @@ import { required, composeValidators } from "utils/validation";
 import generateRandomString from "utils/generateRandomString";
 import firebase from "firebase/app";
 import "./exercise.scss";
-interface Id {
+type Id = {
   id: string;
-}
-interface Params {
+};
+type Params = {
   params: Id;
   path: string;
   url: string;
-}
-interface Field {
+};
+type Field = {
   name: string;
   validate: (value: any) => void;
   initialValue: string | undefined;
   text: string;
   placeholder: string;
-}
-interface Button {
+};
+type Button = {
   type: string;
   text: string;
-}
-interface FormFields {
+};
+type FormFields = {
   fields: Field[];
   button: Button;
-}
-export interface Props {
+};
+export type props = {
   match: Params;
-}
-const Exercise: React.FC<Props> = (props) => {
-  let history = useHistory();
+};
+const Exercise = ({ match: { url, params } }: props) => {
+  const history = useHistory();
   const { currentUser } = useContext(AuthContext);
-  const url = props.match.url.replace("/trainings/", "");
-  const id = url.replace("/" + props.match.params.id, "");
+  const newUrl = url.replace("/trainings/", "");
+  const id = newUrl.replace("/" + params.id, "");
   const [isActiveEditing, setIsActiveEditing] = useState(false);
   const [formFields, setFormFields] = useState<FormFields>({
     fields: [
@@ -65,9 +65,7 @@ const Exercise: React.FC<Props> = (props) => {
     if (currentUser) {
       firebase
         .database()
-        .ref(
-          `users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`
-        )
+        .ref(`users/${currentUser.uid}/trainings/${id}/exercises/${params.id}`)
         .remove();
       history.goBack();
     }
@@ -106,14 +104,14 @@ const Exercise: React.FC<Props> = (props) => {
       const ref = firebase
         .database()
         .ref(
-          `users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}/series`
+          `users/${currentUser.uid}/trainings/${id}/exercises/${params.id}/series`
         );
       ref.on("value", uploadExercise);
       return () => {
         ref.off("value", uploadExercise);
       };
     }
-  }, [currentUser, id, props.match.params.id]);
+  }, [currentUser, id, params.id]);
   return (
     <main className="exercise">
       <GoBackDelete
@@ -125,7 +123,7 @@ const Exercise: React.FC<Props> = (props) => {
           <EditTitle
             labelText="Nazwa ćwiczenia"
             editDate={false}
-            refUrl={`users/${currentUser.uid}/trainings/${id}/exercises/${props.match.params.id}`}
+            refUrl={`users/${currentUser.uid}/trainings/${id}/exercises/${params.id}`}
             isActiveEditing={isActiveEditing}
             setIsActiveEditing={setIsActiveEditing}
           />
@@ -135,7 +133,7 @@ const Exercise: React.FC<Props> = (props) => {
             formFields={formFields}
             setFormFields={setFormFields}
             id={id}
-            paramId={props.match.params.id}
+            paramId={params.id}
           />
         )}
       </section>

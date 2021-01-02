@@ -1,7 +1,5 @@
 import React from "react";
-export interface Props {}
-
-const Thead: React.FC<Props> = () => {
+const Thead = () => {
   return (
     <thead className="measurement__thead">
       <tr className="measurement__tr">

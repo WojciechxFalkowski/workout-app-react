@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import firebase from "firebase/app";
 import "./navigation.scss";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
-export interface Props {
+export type props = {
   handleHamburger: () => void;
-}
+};
 
-const Navigation: React.FC<Props> = ({ handleHamburger }) => {
+const Navigation = ({ handleHamburger }: props) => {
   const { currentUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
@@ -21,32 +21,31 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
       );
   };
   return (
-    <>
-      <div className="navigation">
-        <ul className="navigation__ul">
-          {currentUser ? (
-            <>
-              <li className="navigation__li">
-                <NavLink
-                  activeClassName="navigation--active"
-                  onClick={handleHamburger}
-                  to="/trainings"
-                  className="navigation__a"
-                >
-                  Treningi
-                </NavLink>
-              </li>
-              <li className="navigation__li">
-                <NavLink
-                  activeClassName="navigation--active"
-                  onClick={handleHamburger}
-                  to="/statistics"
-                  className="navigation__a"
-                >
-                  Statystyki
-                </NavLink>
-              </li>
-              {/* <li className="navigation__li">
+    <nav className="navigation">
+      <ul className="navigation__ul">
+        {currentUser ? (
+          <>
+            <li className="navigation__li">
+              <NavLink
+                activeClassName="navigation--active"
+                onClick={handleHamburger}
+                to="/trainings"
+                className="navigation__a"
+              >
+                Treningi
+              </NavLink>
+            </li>
+            <li className="navigation__li">
+              <NavLink
+                activeClassName="navigation--active"
+                onClick={handleHamburger}
+                to="/statistics"
+                className="navigation__a"
+              >
+                Statystyki
+              </NavLink>
+            </li>
+            {/* <li className="navigation__li">
                 <NavLink
                   activeClassName="navigation--active"
                   onClick={handleHamburger}
@@ -56,51 +55,50 @@ const Navigation: React.FC<Props> = ({ handleHamburger }) => {
                   Pomiary
                 </NavLink>
               </li> */}
-              <li className="navigation__li">
-                <NavLink
-                  activeClassName="navigation--active"
-                  onClick={handleHamburger}
-                  to="/diet"
-                  className="navigation__a"
-                >
-                  Dieta
-                </NavLink>
-              </li>
-              <li className="navigation__li">
-                <NavLink
-                  activeClassName="navigation--active"
-                  onClick={handleHamburger}
-                  to="/settings"
-                  className="navigation__a"
-                >
-                  Ustawienia
-                </NavLink>
-              </li>
-              <li className="navigation__li navigation__logout">
-                <a
-                  onClick={handleSignOut}
-                  href="/workout-app-react"
-                  className="navigation__a"
-                >
-                  Wyloguj
-                </a>
-              </li>
-            </>
-          ) : (
-            <li className="navigation__li navigation__login">
+            <li className="navigation__li">
               <NavLink
                 activeClassName="navigation--active"
                 onClick={handleHamburger}
+                to="/diet"
                 className="navigation__a"
-                to="/login"
               >
-                Logowanie / Rejestracja
+                Dieta
               </NavLink>
             </li>
-          )}
-        </ul>
-      </div>
-    </>
+            <li className="navigation__li">
+              <NavLink
+                activeClassName="navigation--active"
+                onClick={handleHamburger}
+                to="/settings"
+                className="navigation__a"
+              >
+                Ustawienia
+              </NavLink>
+            </li>
+            <li className="navigation__li navigation__logout">
+              <a
+                onClick={handleSignOut}
+                href="/workout-app-react"
+                className="navigation__a"
+              >
+                Wyloguj
+              </a>
+            </li>
+          </>
+        ) : (
+          <li className="navigation__li navigation__login">
+            <NavLink
+              activeClassName="navigation--active"
+              onClick={handleHamburger}
+              className="navigation__a"
+              to="/login"
+            >
+              Logowanie / Rejestracja
+            </NavLink>
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
 

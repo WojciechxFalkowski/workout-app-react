@@ -1,23 +1,23 @@
 import React from "react";
 
 import { MealTable } from "./components";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
+};
 
-export interface Props {
+export type props = {
   meals: Array<meal>;
   id: string;
-}
-const MealList: React.FC<Props> = ({ meals, id }) => {
+};
+const MealList = ({ meals, id }: props) => {
   return (
     <>
       {meals &&

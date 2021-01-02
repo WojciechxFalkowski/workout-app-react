@@ -1,10 +1,11 @@
 import React from "react";
 import "./button.scss";
-interface Props {
+type props = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+  children: any;
+};
 
-const Button: React.FC<Props> = ({ onClick, children }) => {
+const Button = ({ onClick, children }: props) => {
   return (
     <button onClick={onClick} className="button">
       {children}

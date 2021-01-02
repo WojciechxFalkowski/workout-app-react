@@ -1,17 +1,17 @@
 import React from "react";
 import { Chart } from "components";
 import { monthsNames } from "utils/constants";
-interface training {
+type training = {
   date: string;
   id: string;
   workoutName: string;
   exercises?: object;
-}
-export interface Props {
+};
+export type props = {
   trainings: Array<training>;
-}
+};
 
-const TrainingsPerMonth: React.FC<Props> = ({ trainings }) => {
+const TrainingsPerMonth = ({ trainings }: props) => {
   const weekNames = monthsNames;
   const trainingsPerMonth: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   trainings.forEach((training: training) => {

@@ -3,28 +3,28 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import firebase from "firebase/app";
 import { Input } from "utils/customHooks";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-export interface Props {
+};
+export type props = {
   setActiveMeal: (active: boolean) => void;
   mealList: Array<mealItem>;
   currentUserId: string;
   id: string;
   indexList: number;
-}
+};
 
-const AddIngredient: React.FC<Props> = ({
+const AddIngredient = ({
   setActiveMeal,
   mealList,
   currentUserId,
   id,
   indexList,
-}) => {
+}: props) => {
   const [ingredient, setIngredient] = Input({ type: "text" });
   const [carbs, setCarbs] = Input({ type: "number" });
   const [fats, setFats] = Input({ type: "number" });

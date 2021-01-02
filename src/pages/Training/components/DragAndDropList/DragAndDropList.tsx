@@ -8,12 +8,12 @@ const reorder = (list: any, startIndex: any, endIndex: any) => {
   result.splice(endIndex, 0, removed);
   return result;
 };
-export interface Props {
+export type props = {
   exercises: any;
   id: string;
   refUrl: string;
-}
-const DragAndDropList: React.FC<Props> = ({ exercises, id, refUrl }) => {
+};
+const DragAndDropList = ({ exercises, id, refUrl }: props) => {
   const [listItems, setListItems] = useState(
     exercises.map((exercise: any, index: number) => {
       return {

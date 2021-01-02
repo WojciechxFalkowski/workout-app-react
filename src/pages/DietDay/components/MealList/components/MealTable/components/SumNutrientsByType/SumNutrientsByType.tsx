@@ -1,21 +1,21 @@
 import React from "react";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {
+};
+export type props = {
   meal: meal;
   titles: Array<string>;
-}
+};
 
-const SumNutrientsByType: React.FC<Props> = ({ meal, titles }) => {
+const SumNutrientsByType = ({ meal, titles }: props) => {
   const sumNutrientsByType = [0, 0, 0, 0];
   if (meal.list) {
     meal.list.forEach((item) => {

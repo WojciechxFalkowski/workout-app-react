@@ -8,25 +8,25 @@ import {
   MissingCalories,
   Tfoot,
 } from "./components";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {
+};
+export type props = {
   meals: Array<meal>;
   currentUserId: string;
-}
-const MealSummary: React.FC<Props> = ({ meals, currentUserId }) => {
-  const sumNutrientsByType: Array<number> = [0, 0, 0, 0];
-  const titles: Array<string> = ingredientTitles;
-  const [diet, setDiet] = useState<Array<number>>([0, 0, 0, 0]);
+};
+const MealSummary = ({ meals, currentUserId }: props) => {
+  const sumNutrientsByType = [0, 0, 0, 0];
+  const titles = ingredientTitles;
+  const [diet, setDiet] = useState([0, 0, 0, 0]);
   const [flag, setFlag] = useState(false);
   meals.forEach((meal) => {
     if (meal.list) {

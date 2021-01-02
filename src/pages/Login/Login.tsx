@@ -3,13 +3,16 @@ import firebase from "firebase/app";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Redirect } from "react-router-dom";
 import "./login.scss";
-export interface Props {}
-export interface Test {
+type options = {
+  provider: any;
+  fullLabel: string;
+};
+export type Test = {
   signInFlow: string;
-  signInOptions: Array<string> | any;
+  signInOptions: Array<options>;
   callbacks: any;
-}
-const LoginPage: React.FC<Props> = () => {
+};
+const LoginPage = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const uiConfig: Test = {
     signInFlow: "popup",

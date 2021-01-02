@@ -2,32 +2,26 @@ import React, { useContext } from "react";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {
+};
+export type props = {
   meal: meal;
   item: mealItem;
   index: number;
   indexList: number;
   id: string;
-}
+};
 
-const IngredientItem: React.FC<Props> = ({
-  meal,
-  item,
-  index,
-  indexList,
-  id,
-}) => {
+const IngredientItem = ({ meal, item, index, indexList, id }: props) => {
   const { currentUser } = useContext(AuthContext);
   const handleRemoveMealItem = (index: number) => {
     if (currentUser) {

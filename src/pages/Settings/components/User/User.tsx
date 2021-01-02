@@ -5,32 +5,32 @@ import firebase from "firebase/app";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./user.scss";
-interface Fields {
+type Fields = {
   name: string;
   validate: (value: any) => void;
   initialValue: string;
   text: string;
   placeholder: string;
-}
-interface Button {
+};
+type Button = {
   text: string;
-}
-interface FormFields {
+};
+type FormFields = {
   fields: Fields[];
   button: Button;
-}
-interface user {
+};
+type user = {
   name: string;
   surname: string;
-}
-interface currentUser {
+};
+type currentUser = {
   uid: string;
-}
-export interface Props {
+};
+export type props = {
   currentUser: currentUser;
-}
+};
 
-const User: React.FC<Props> = ({ currentUser }) => {
+const User = ({ currentUser }: props) => {
   const [settings, setSettings] = useState<FormFields>();
   const uploadUserInfo = function (snapshot: any) {
     setSettings({
@@ -78,7 +78,7 @@ const User: React.FC<Props> = ({ currentUser }) => {
 
   return (
     <div className="user">
-      <h1 className="user__h1">Dane</h1>
+      <h2 className="user__h2">Dane</h2>
       {settings ? (
         <FormTemplate formFields={settings} handleSubmit={handleSubmit} />
       ) : (

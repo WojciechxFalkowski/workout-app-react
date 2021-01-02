@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./myProfileName.scss";
-export interface Props {
+export type props = {
   name: string;
   surname: string;
-}
+};
 
-const MyProfileName: React.FC<Props> = ({ name, surname }) => {
+const MyProfileName = ({ name, surname }: props) => {
   return (
     <div className="my-profile-name">
-      <span className="my-profile-name__text">Mój profil</span>
+      <p className="my-profile-name__text">Mój profil</p>
       <div className="my-profile-name__div-initials">
         <span className="my-profile-name__initials">
           {name && surname ? (

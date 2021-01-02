@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./greetings.scss";
 import { namesOfDaysOfWeekArray, namesOfTheMonths } from "utils/constants";
-export interface Props {
+export type props = {
   name: string;
-}
+};
 
-const Greetings: React.FC<Props> = ({ name }) => {
+const Greetings = ({ name }: props) => {
   const date = new Date();
   const dayOfWeek = namesOfDaysOfWeekArray;
   const monthOfYear = namesOfTheMonths;
@@ -15,7 +15,7 @@ const Greetings: React.FC<Props> = ({ name }) => {
   } ${date.getFullYear()}`;
   return (
     <section className="greetings">
-      <h1 className="greetings__name">
+      <h2 className="greetings__name">
         {"Cześć "}
         {name ? (
           name
@@ -25,7 +25,7 @@ const Greetings: React.FC<Props> = ({ name }) => {
           </Link>
         )}
         {" !"}
-      </h1>
+      </h2>
 
       <span className="greetings__date">{today}</span>
     </section>

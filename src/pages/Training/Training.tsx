@@ -7,16 +7,16 @@ import { EditTitle, GoBackDelete } from "components";
 import firebase from "firebase/app";
 import "./training.scss";
 
-interface Id {
+type Id = {
   id: string;
-}
+};
 type MatchParams = {
   params: Id;
 };
-export interface Props {
+export type props = {
   match: MatchParams;
-}
-const Training: React.FC<Props> = ({ match }) => {
+};
+const Training = ({ match }: props) => {
   const history = useHistory();
   const { id } = match.params;
   const { currentUser } = useContext(AuthContext);

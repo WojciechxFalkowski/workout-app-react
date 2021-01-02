@@ -1,12 +1,11 @@
 import React from "react";
 import "./footer.scss";
-export interface Props {}
 
-const Footer: React.FC<Props> = () => {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__info">
-        <h2 className="footer__h2">To do workout</h2>
+        <h5 className="footer__h5">To do workout</h5>
         <p className="footer__text">
           Aplikacja umożliwiająca łatwiejsze zarządzanie swoimi treningami,
           projekt w ciągłym rozwoju.

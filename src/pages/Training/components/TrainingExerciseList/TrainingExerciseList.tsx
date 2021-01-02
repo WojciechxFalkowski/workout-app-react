@@ -1,16 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./trainingExerciseList.scss";
-interface exerciseItem {
+type exerciseItem = {
   workoutName: string;
   series?: Array<string>;
   key: string;
-}
-export interface Props {
+};
+export type props = {
   exercises: Array<exerciseItem>;
   id: string;
-}
-const TrainingExerciseList: React.FC<Props> = ({ exercises, id }) => {
+};
+const TrainingExerciseList = ({ exercises, id }: props) => {
   const history = useHistory();
   const handleTrainingExercise = (
     exerciseKey: string,

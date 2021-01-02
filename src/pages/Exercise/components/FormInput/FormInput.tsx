@@ -5,34 +5,34 @@ import { Line, RemoveSeries, SeriesNumber } from "./components";
 import { AuthContext } from "components/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import firebase from "firebase/app";
-interface Fields {
+type Fields = {
   name: string;
   validate: (value: any) => void;
   initialValue: string | undefined;
   text: string;
   placeholder: string;
-}
-interface Button {
+};
+type Button = {
   type: string;
   text: string;
-}
-interface FormFields {
+};
+type FormFields = {
   fields: Fields[];
   button: Button;
-}
-interface Props {
+};
+type props = {
   formFields: FormFields;
   setFormFields: React.Dispatch<React.SetStateAction<FormFields>>;
   id: string;
   paramId: string;
-}
+};
 
-const FormInput: React.FC<Props> = ({
+const FormInput = ({
   formFields: { fields, button },
   setFormFields,
   id,
   paramId,
-}) => {
+}: props) => {
   const { currentUser } = useContext(AuthContext);
   const handleSubmit = (values: any) => {
     const newArray: any = [];

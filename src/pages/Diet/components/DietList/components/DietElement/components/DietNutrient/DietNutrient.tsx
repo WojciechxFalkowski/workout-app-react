@@ -1,12 +1,12 @@
 import * as React from "react";
 import "./dietNutrient.scss";
-export interface Props {
+export type props = {
   title: string;
   nutrients: Array<number>;
   index: number;
-}
+};
 
-const DietNutrient: React.FC<Props> = ({ title, nutrients, index }) => {
+const DietNutrient = ({ title, nutrients, index }: props) => {
   return (
     <>
       <div className="diet-nutrient">

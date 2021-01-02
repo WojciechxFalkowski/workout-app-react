@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Arrow } from "components";
 import "./goBackDelete.scss";
-export interface Props {
+export type props = {
   handleEdit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   editTitle: string;
-}
+};
 
-const GoBackDelete: React.FC<Props> = ({ handleEdit, editTitle }) => {
+const GoBackDelete = ({ handleEdit, editTitle }: props) => {
   return (
     <section className="go-back-delete">
       <Arrow />

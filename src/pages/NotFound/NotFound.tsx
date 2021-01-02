@@ -2,9 +2,7 @@ import React from "react";
 import "./notFound.scss";
 import { Button } from "components";
 import { useHistory } from "react-router-dom";
-export interface Props {}
-
-const NotFound: React.FC<Props> = () => {
+const NotFound = () => {
   const history = useHistory();
   const handleBackToHomePage = () => {
     history.push("/");

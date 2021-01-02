@@ -2,23 +2,23 @@ import React from "react";
 import "./line.scss";
 import generateRandomString from "utils/generateRandomString";
 import { required, composeValidators } from "utils/validation";
-interface Fields {
+type Fields = {
   name: string;
   validate: (value: any) => void;
   initialValue: string | undefined;
   text: string;
   placeholder: string;
-}
-interface Button {
+};
+type Button = {
   text: string;
-}
-export interface Props {
+};
+export type props = {
   fields: Fields[];
   button: Button;
   setFormFields: (cos: any) => void;
-}
+};
 
-const Line: React.FC<Props> = ({ fields, button, setFormFields }) => {
+const Line = ({ fields, button, setFormFields }: props) => {
   const handleAddSeries = () => {
     fields.push(
       {

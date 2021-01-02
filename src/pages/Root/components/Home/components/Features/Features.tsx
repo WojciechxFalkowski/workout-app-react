@@ -5,12 +5,11 @@ import { BsCardText } from "react-icons/bs";
 import { GiMeal } from "react-icons/gi";
 import { RiRunLine } from "react-icons/ri";
 import { AiOutlineBarChart } from "react-icons/ai";
-export interface Props {}
 
-const Features: React.FC<Props> = () => {
+const Features = () => {
   return (
     <section className="features">
-      <h2 className="features__title">Możliwości</h2>
+      <h3 className="features__title">Możliwości</h3>
       <Feature
         icon={<BsCardText />}
         title="Plan treningowy"

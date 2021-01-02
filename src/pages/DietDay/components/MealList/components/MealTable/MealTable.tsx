@@ -10,28 +10,28 @@ import {
 } from "./components";
 import "./mealTable.scss";
 import { ingredientTitles } from "utils/constants";
-interface mealItem {
+type mealItem = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<mealItem>;
-}
-export interface Props {
+};
+export type props = {
   meals: Array<meal>;
   meal: meal;
   indexList: number;
   id: string;
-}
+};
 
-const MealTable: React.FC<Props> = ({ meals, meal, indexList, id }) => {
+const MealTable = ({ meals, meal, indexList, id }: props) => {
   const { currentUser } = useContext(AuthContext);
   const [activeMeal, setActiveMeal] = useState(false);
-  const titles: Array<string> = ingredientTitles;
+  const titles = ingredientTitles;
 
   const handleAddMealElement = () => {
     setActiveMeal(true);

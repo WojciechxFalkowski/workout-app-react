@@ -1,12 +1,11 @@
 import React from "react";
 import { AddTraining, TrainingsList } from "./components";
 import "./trainings.scss";
-export interface Props {}
-const Trainings: React.FC<Props> = () => {
+
+const Trainings = () => {
   return (
     <main className="trainings">
       <AddTraining />
-
       <TrainingsList />
     </main>
   );

@@ -1,20 +1,20 @@
 import React from "react";
 import { Chart } from "components";
-interface trainingsPerTrainingNameItem {
+type trainingsPerTrainingNameItem = {
   name: Array<string>;
   amount: Array<number>;
-}
-interface training {
+};
+type training = {
   date: string;
   id: string;
   workoutName: string;
   exercises?: object;
-}
-export interface Props {
+};
+export type props = {
   trainings: Array<training>;
-}
+};
 
-const TrainingsPerTrainingName: React.FC<Props> = ({ trainings }) => {
+const TrainingsPerTrainingName = ({ trainings }: props) => {
   const trainingsPerTrainingName: trainingsPerTrainingNameItem = {
     name: [],
     amount: [],

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import { trainingList } from "utils/constants";
 import "./myProfileRank.scss";
-interface currentUser {
+type currentUser = {
   uid: string;
-}
-interface Props {
+};
+type props = {
   currentUser: currentUser;
   handleFlipCard: () => void;
-}
+};
 
-const MyProfileRank: React.FC<Props> = ({ currentUser, handleFlipCard }) => {
+const MyProfileRank = ({ currentUser, handleFlipCard }: props) => {
   const [numberOfTrainings, setNumberOfTrainings] = useState<number>(0);
 
   const uploadTrainingsAmount = function (snapshot: any) {

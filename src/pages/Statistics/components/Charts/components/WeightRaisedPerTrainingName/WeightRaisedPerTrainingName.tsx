@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { Chart } from "components";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 import "./weightRaisedPerTrainingName.scss";
-interface trainingsPerTrainingNameItem {
+type trainingsPerTrainingNameItem = {
   date: Array<string>;
   amount: Array<number>;
-}
-interface training {
+};
+type training = {
   date: string;
   id: string;
   workoutName: string;
   exercises?: object;
-}
-export interface Props {
+};
+export type props = {
   trainings: Array<training>;
-}
+};
 
-const WeightRaisedPerTrainingName: React.FC<Props> = ({ trainings }) => {
+const WeightRaisedPerTrainingName = ({ trainings }: props) => {
   const options: Array<string> = [];
   trainings.forEach((training: training) => {
     if (!options.includes(training.workoutName)) {

@@ -3,11 +3,11 @@ import { Button } from "components";
 import { IoIosArrowBack } from "react-icons/io";
 import { trainingList } from "utils/constants";
 import "./rank.scss";
-interface Props {
+type props = {
   handleFlipCard: () => void;
-}
+};
 
-const Ranks: React.FC<Props> = ({ handleFlipCard }) => {
+const Ranks = ({ handleFlipCard }: props) => {
   return (
     <div className="rank">
       <Button onClick={handleFlipCard}>

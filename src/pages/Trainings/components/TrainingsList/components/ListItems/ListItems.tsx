@@ -2,20 +2,20 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
 import "./listItems.scss";
-interface exercise {
+type exercise = {
   workoutName: string;
   series: Array<string>;
-}
-interface training {
+};
+type training = {
   id: string;
   date: string;
   workoutName: string;
   exercises?: exercise;
-}
-export interface Props {
+};
+export type props = {
   trainings: Array<training>;
-}
-const Table: React.FC<Props> = ({ trainings }) => {
+};
+const Table = ({ trainings }: props) => {
   const history = useHistory();
   const handleTraining = (training: training) => {
     history.push(`/trainings/${training.id}`);

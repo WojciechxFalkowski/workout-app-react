@@ -1,5 +1,6 @@
 @import "styles/mixins";
 .trainings {
+  margin: 0 8px;
   &__h2 {
     color: $font-color-accent;
     text-align: center;

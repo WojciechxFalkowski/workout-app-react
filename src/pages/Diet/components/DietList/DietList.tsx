@@ -1,25 +1,25 @@
 import React from "react";
 import { DietElement } from "./components";
-interface list {
+type list = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<list>;
-}
-interface diet {
+};
+type diet = {
   date: string;
   meal: Array<meal>;
-}
-export interface Props {
+};
+export type props = {
   diets: Array<diet>;
-}
+};
 
-const DietList: React.FC<Props> = ({ diets }) => {
+const DietList = ({ diets }: props) => {
   return (
     <>
       {diets

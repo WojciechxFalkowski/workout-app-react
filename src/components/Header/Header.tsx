@@ -1,12 +1,9 @@
 import React, { useRef } from "react";
 import "./header.scss";
 import { NavLink } from "react-router-dom";
-
 import Navigation from "./components";
 import { Hamburger } from "components";
-interface Props {}
-
-const Header: React.FC<Props> = () => {
+const Header = () => {
   const header = useRef<HTMLElement>(null);
   const hamburgerActive = useRef<HTMLDivElement>(null);
 

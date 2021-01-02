@@ -3,9 +3,7 @@ import "./feedback.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import firebase from "firebase/app";
 
-export interface Props {}
-
-const Feedback: React.FC<Props> = () => {
+const Feedback = () => {
   const [opinions, setOpinions] = useState<Array<string>>([]);
   const numberOfOpinions = opinions.length;
   const [indexOfActiveFeedback, setIndexOfActiveFeedback] = useState(0);
@@ -54,7 +52,7 @@ const Feedback: React.FC<Props> = () => {
 
   return (
     <section className="feedback">
-      <h2 className="feedback__title">Najświeższe opinie</h2>
+      <h4 className="feedback__title">Najświeższe opinie</h4>
       <div className="feedback__opinions">
         <span
           onClick={() => handleActiveFeedback("left")}

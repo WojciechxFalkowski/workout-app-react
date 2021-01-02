@@ -5,13 +5,13 @@ import firebase from "firebase/app";
 import { ListItems } from "./components";
 import { LoadingIndicator } from "components";
 type Trainings = Array<training>;
-interface training {
+type training = {
   id: string;
   date: string;
   workoutName: string;
-}
-export interface Props {}
-const TrainingsList: React.FC<Props> = () => {
+};
+
+const TrainingsList = () => {
   const [trainings, setTrainings] = useState<Trainings>([]);
   const { currentUser } = useContext(AuthContext);
   const [isLoaded, setIsLoaded] = useState(false);

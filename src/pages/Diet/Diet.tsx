@@ -6,24 +6,22 @@ import { AuthContext } from "components/AuthProvider/AuthProvider";
 import firebase from "firebase/app";
 import { Button, LoadingIndicator } from "components";
 import { dayMonthYearWithSeparator } from "utils/dateFunctions";
-interface list {
+type list = {
   ingredient: string;
   carbs: number;
   fats: number;
   proteins: number;
   calories: number;
-}
-interface meal {
+};
+type meal = {
   mealName: string;
   list: Array<list>;
-}
-interface diet {
+};
+type diet = {
   date: string;
   meal: Array<meal>;
-}
-export interface Props {}
-
-const Diet: React.FC<Props> = () => {
+};
+const Diet = () => {
   const history = useHistory();
   const { currentUser } = useContext(AuthContext);
   const [diets, setDiets] = useState<Array<diet>>([]);
