@@ -6,6 +6,11 @@ type ContextProps = { currentUser: user | null };
 type user = {
   uid: string;
   displayName: string;
+  providerData: any;
+  updateEmail: any;
+  delete: any;
+  reauthenticateWithCredential: any;
+  email: string;
 };
 type props = {
   children: any;
